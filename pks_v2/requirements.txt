@@ -2,8 +2,7 @@ streamlit
 sqlalchemy
 pymysql
 pandas
-re
 python-barcode
-io
-pillow
+Pillow
+
 
