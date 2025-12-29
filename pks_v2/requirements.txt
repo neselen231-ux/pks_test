@@ -3,6 +3,7 @@ sqlalchemy
 pymysql
 pandas
 re
-barcode
+python-barcode
 io
-PIL
+pillow
+
