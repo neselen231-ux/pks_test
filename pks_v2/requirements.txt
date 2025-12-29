@@ -1,4 +1,5 @@
 streamlit
 sqlalchemy
 pymysql
+re
 pandas
