@@ -19,10 +19,11 @@ if st.button("Input"):
     if reference:
         with engine.begin() as conn: 
             conn.execute(
-                text("INSERT INTO reception (name, age) VALUES (:ref, :qty)"),
-                {"ref": int(reference), "qty": int(qty)}
+                text("INSERT INTO reception (Reference, Quantity) VALUES (:ref, :qty)"),
+                {"ref": text(reference), "qty": int(qty)}
             )
         st.success("DB updated")
     else:
 
         st.warning("Reference missing")
+
