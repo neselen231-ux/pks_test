@@ -12,7 +12,7 @@ engine = create_engine(
 st.title("PKS Reception")
 
 # 입력란 2개
-reference = st.number_input("Reference number")
+reference = st.text_input("Reference number")
 qty = st.number_input("quantity", min_value=0, step=1)
 
 if st.button("Input"):
@@ -24,4 +24,5 @@ if st.button("Input"):
             )
         st.success("DB updated")
     else:
+
         st.warning("Reference missing")
