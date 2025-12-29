@@ -1,6 +1,7 @@
 import streamlit as st
 from sqlalchemy import create_engine, text
 import pandas as pd
+import re
 
 hide_ui = """
 <style>
@@ -20,12 +21,15 @@ engine = create_engine(
 
 st.title("PKS Reception")
 
-# 입력란 2개
+# 2 input boxes
 reference = st.text_input("Reference number")
 qty = st.number_input("quantity", min_value=0, step=1)
 
+# Reference pattern
+pattern = r"^\d{7}[A-Za-z]{2}$"
+
 if st.button("Input"):
-    if reference:
+    if re.fullmatch(pattern,reference):
         with engine.begin() as conn: 
             conn.execute(
                 text("INSERT INTO reception (Reference, Quantity) VALUES (:ref, :qty)"),
@@ -35,5 +39,6 @@ if st.button("Input"):
     else:
 
         st.warning("Reference missing")
+
 
 
