@@ -16,6 +16,16 @@ header {visibility: hidden;}        /* 상단 Streamlit 헤더 */
 """
 st.markdown(hide_ui, unsafe_allow_html=True)
 
+engine = create_engine(
+    f"mysql+pymysql://{st.secrets['DB_USER']}:{st.secrets['DB_PASS']}@{st.secrets['DB_HOST']}:{st.secrets['DB_PORT']}/{st.secrets['DB_NAME']}",
+    connect_args={
+        "ssl": {"ca": "ca.pem"}
+    }
+)
+
+st.title("Reception")
+
+
 # 2 input boxes
 reference = st.text_input("Reference number")
 qty = st.number_input("quantity", min_value=0, step=1)
@@ -94,6 +104,7 @@ new_rows = df[df["Lot_number"] > baseline]
 
 st.subheader("Reception declaration history")
 st.table(new_rows)
+
 
 
 
