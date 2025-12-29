@@ -2,6 +2,10 @@ import streamlit as st
 from sqlalchemy import create_engine, text
 import pandas as pd
 import re
+from barcode.codex import Code128
+from barcode.writer import ImageWriter
+from io import BytesIO
+from PIL import Image, ImageDraw, ImageFont
 
 hide_ui = """
 <style>
@@ -90,6 +94,7 @@ new_rows = df[df["Lot_number"] > baseline]
 
 st.subheader("Reception declaration history")
 st.table(new_rows)
+
 
 
 
