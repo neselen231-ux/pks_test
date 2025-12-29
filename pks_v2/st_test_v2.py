@@ -2,6 +2,15 @@ import streamlit as st
 from sqlalchemy import create_engine, text
 import pandas as pd
 
+hide_ui = """
+<style>
+#MainMenu {visibility: hidden;}     /* 좌측 상단 메뉴 */
+footer {visibility: hidden;}        /* 하단 footer */
+header {visibility: hidden;}        /* 상단 Streamlit 헤더 */
+</style>
+"""
+st.markdown(hide_ui, unsafe_allow_html=True)
+
 engine = create_engine(
     f"mysql+pymysql://{st.secrets['DB_USER']}:{st.secrets['DB_PASS']}@{st.secrets['DB_HOST']}:{st.secrets['DB_PORT']}/{st.secrets['DB_NAME']}",
     connect_args={
@@ -26,4 +35,5 @@ if st.button("Input"):
     else:
 
         st.warning("Reference missing")
+
 
