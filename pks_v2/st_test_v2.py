@@ -28,10 +28,29 @@ qty = st.number_input("quantity", min_value=0, step=1)
 # Reference pattern
 pattern = r"^\d{7}[A-Za-z]{2}$"
 
+# 🔄 자동 새로고침 (3초마다 리런)
+st.autorefresh(interval=3000, key="refresh")
+
+# baseline 없으면 처음 1번만 저장
+if "baseline" not in st.session_state:
+    with engine.connect() as conn:
+        st.session_state["baseline"] = conn.execute(
+            text("SELECT MAX(Lot_number) FROM reception")
+        ).scalar()
+
+baseline = st.session_state["baseline"]
+
+df = pd.read_sql("SELECT * FROM reception", con=engine)
+# baseline 이후 데이터만 보기
+new_rows = df[df["Lot_number"] > baseline]
+
+st.subheader("📌 앱 켠 이후 추가된 데이터만")
+st.table(new_rows)
+
 if st.button("Input"):
     if re.fullmatch(pattern,reference):
-        with engine.begin() as conn: 
-            conn.execute(
+        with engine.begin() as conn_2: 
+            conn_2.execute(
                 text("INSERT INTO reception (Reference, Quantity) VALUES (:ref, :qty)"),
                 {"ref": reference.upper(), "qty": int(qty)}
             )
@@ -39,6 +58,9 @@ if st.button("Input"):
     else:
 
         st.warning("Reference missing")
+
+
+
 
 
 
