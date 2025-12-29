@@ -33,12 +33,13 @@ if st.button("Input"):
         with engine.begin() as conn: 
             conn.execute(
                 text("INSERT INTO reception (Reference, Quantity) VALUES (:ref, :qty)"),
-                {"ref": text(reference), "qty": int(qty)}
+                {"ref": text(reference.upper()), "qty": int(qty)}
             )
         st.success("DB updated")
     else:
 
         st.warning("Reference missing")
+
 
 
 
