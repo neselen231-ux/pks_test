@@ -2,3 +2,7 @@ streamlit
 sqlalchemy
 pymysql
 pandas
+re
+barcode
+io
+PIL
