@@ -12,15 +12,6 @@ header {visibility: hidden;}        /* 상단 Streamlit 헤더 */
 """
 st.markdown(hide_ui, unsafe_allow_html=True)
 
-engine = create_engine(
-    f"mysql+pymysql://{st.secrets['DB_USER']}:{st.secrets['DB_PASS']}@{st.secrets['DB_HOST']}:{st.secrets['DB_PORT']}/{st.secrets['DB_NAME']}",
-    connect_args={
-        "ssl": {"ca": "ca.pem"}
-    }
-)
-
-st.title("PKS Reception")
-
 # 2 input boxes
 reference = st.text_input("Reference number")
 qty = st.number_input("quantity", min_value=0, step=1)
@@ -28,24 +19,6 @@ qty = st.number_input("quantity", min_value=0, step=1)
 # Reference pattern
 pattern = r"^\d{7}[A-Za-z]{2}$"
 
-# 🔄 자동 새로고침 (3초마다 리런)
-st.autorefresh(interval=3000, key="refresh")
-
-# baseline 없으면 처음 1번만 저장
-if "baseline" not in st.session_state:
-    with engine.connect() as conn:
-        st.session_state["baseline"] = conn.execute(
-            text("SELECT MAX(Lot_number) FROM reception")
-        ).scalar()
-
-baseline = st.session_state["baseline"]
-
-df = pd.read_sql("SELECT * FROM reception", con=engine)
-# baseline 이후 데이터만 보기
-new_rows = df[df["Lot_number"] > baseline]
-
-st.subheader("📌 앱 켠 이후 추가된 데이터만")
-st.table(new_rows)
 
 if st.button("Input"):
     if re.fullmatch(pattern,reference):
@@ -54,10 +27,74 @@ if st.button("Input"):
                 text("INSERT INTO reception (Reference, Quantity) VALUES (:ref, :qty)"),
                 {"ref": reference.upper(), "qty": int(qty)}
             )
+            
+            ## Last lot number
+            lot_number = conn_2.execute(
+                text("SELECT LAST_INSERT_ID()")
+            ).scalar()
+            
+            # ----- Reference Barcode -----
+            buf_ref = BytesIO()
+            Code128(reference.upper(), writer=ImageWriter()).write(buf_ref)
+            buf_ref.seek(0)
+            ref_img = Image.open(buf_ref)
+
+            # ----- Lot_number Barcode -----
+            buf_lot = BytesIO()
+            Code128(str(lot_number), writer=ImageWriter()).write(buf_lot)
+            buf_lot.seek(0)
+            lot_img = Image.open(buf_lot)
+            
+            # ===== PIL =====
+            total_width = max(ref_img.width , lot_img.width)
+            max_height = ref_img.height + lot_img.height
+
+            combined = Image.new("RGB", (total_width, max_height), "white")
+            combined.paste(ref_img, (0, 0))
+            combined.paste(lot_img, (0, ref_img.height))
+
+            # combined file save on BytesIO
+            combined_file = BytesIO()
+            combined.save(combined_file, format="PNG")
+            combined_file.seek(0)
+
+            # Streamlit에 이미지 표시
+            st.image(combined, caption="Combined Barcode")
+
+            # 다운로드 버튼 (아이콘 가능)
+            st.download_button(
+                label="📥 Download Barcode",
+                data=combined_file,
+                file_name=f"barcode_{lot_number}_{reference}.png",
+                mime="image/png"
+            )
         st.success("DB updated")
     else:
 
-        st.warning("Reference missing")
+        st.warning("Reference error")
+
+
+
+df = pd.read_sql("SELECT * FROM reception", con=engine)
+
+if "baseline" not in st.session_state:
+    with engine.connect() as conn:
+        st.session_state["baseline"] = conn.execute(
+            text("SELECT MAX(Lot_number) FROM reception")
+        ).scalar()
+
+baseline = st.session_state["baseline"]
+
+
+new_rows = df[df["Lot_number"] > baseline]
+
+st.subheader("Reception declaration history")
+st.table(new_rows)
+
+
+
+
+
 
 
 
