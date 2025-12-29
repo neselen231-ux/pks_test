@@ -9,11 +9,13 @@ from PIL import Image, ImageDraw, ImageFont
 
 hide_ui = """
 <style>
-#MainMenu {visibility: hidden;}     /* 좌측 상단 메뉴 */
-footer {visibility: hidden;}        /* 하단 footer */
-header {visibility: hidden;}        /* 상단 Streamlit 헤더 */
-div[data-testid="stStatusWidget"] {display: none;}
-div.viewerBadge_link__1S137 {display: none;}
+#MainMenu {visibility: hidden;}      /* 메뉴 */
+header {visibility: hidden;}         /* 헤더 */
+footer {visibility: hidden;}         /* Footer */
+
+div[data-testid="stStatusWidget"] {display: none;}   /* status badge */
+div[data-testid="stDecoration"] {display: none;}     /* hosted badge */
+div.viewerBadge_link__1S137 {display: none;}         /* created by */
 </style>
 """
 st.markdown(hide_ui, unsafe_allow_html=True)
