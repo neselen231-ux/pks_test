@@ -86,6 +86,7 @@ if st.button("Input"):
                 file_name=f"barcode_{lot_number}_{reference}.png",
                 mime="image/png"
             )
+        st.rerun()
         st.success("DB updated")
     else:
 
@@ -116,6 +117,7 @@ new_rows = df[df["Lot_number"] > baseline].iloc[:,:4]
 
 
 st.table(new_rows)
+
 
 
 
