@@ -112,13 +112,11 @@ if "baseline" not in st.session_state:
 
 baseline = st.session_state["baseline"]
 
-
-
-
-new_rows = df[df["Lot_number"] > baseline]
+new_rows = df[df["Lot_number"] > baseline].iloc[:,:4]
 
 
 st.table(new_rows)
+
 
 
 
