@@ -91,9 +91,18 @@ if st.button("Input"):
 
         st.warning("Reference error")
 
+delete_id = st.number_input("Delete lot",min_value=0)
+
+if st.button("Delete"):
+    with engine.begin() as deletion:
+        deletion.execute(text("DELETE FROM reception WHERE Lot_number = :lot"),{"lot":int(delete_id)})
+    st.rerun()
 
 
+st.subheader("Reception declaration history")
 df = pd.read_sql("SELECT * FROM reception", con=engine)
+
+
 
 if "baseline" not in st.session_state:
     with engine.connect() as conn:
@@ -104,9 +113,11 @@ if "baseline" not in st.session_state:
 baseline = st.session_state["baseline"]
 
 
+
+
 new_rows = df[df["Lot_number"] > baseline]
 
-st.subheader("Reception declaration history")
+
 st.table(new_rows)
 
 
