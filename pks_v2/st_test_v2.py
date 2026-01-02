@@ -27,69 +27,68 @@ engine = create_engine(
     }
 )
 
-st.title("Reception")
-
+st.title("PFE Reception")
 
 # 2 input boxes
 reference = st.text_input("Reference number")
 qty = st.number_input("quantity", min_value=0, step=1)
+delivery_note = st.text_input("Delivery note",max_chars=20)
+remark = st.text_input("Remark",max_chars=20)
 
 # Reference pattern
 pattern = r"^\d{7}[A-Za-z]{2}$"
 
 
+
+
+
 if st.button("Input"):
-    if re.fullmatch(pattern,reference):
-        with engine.begin() as conn_2: 
-            conn_2.execute(
-                text("INSERT INTO reception (Reference, Quantity) VALUES (:ref, :qty)"),
-                {"ref": reference.upper(), "qty": int(qty)}
-            )
+    if delivery_note:
+        if re.fullmatch(pattern,reference):
+            with engine.begin() as conn_2: 
+                conn_2.execute(
+                    text("INSERT INTO reception (Reference, Quantity, delivery_note, Remark) VALUES (:ref, :qty, :dev, :rem)"),
+                    {"ref": reference.upper(), "qty": int(qty), "dev": delivery_note, "rem":remark}
+                )
+                lot_number = conn_2.execute(
+                    text("SELECT LAST_INSERT_ID()")
+                ).scalar()
+                # ----- Reference Barcode -----
+                buf_ref = BytesIO()
+                Code128(reference.upper(), writer=ImageWriter()).write(buf_ref)
+                buf_ref.seek(0)
+                ref_img = Image.open(buf_ref)
+
+                # ----- Lot_number Barcode -----
+                buf_lot = BytesIO()
+                Code128(str(lot_number), writer=ImageWriter()).write(buf_lot)
+                buf_lot.seek(0)
+                lot_img = Image.open(buf_lot)
+                # ===== 이미지 합치기  =====
+                total_width = max(ref_img.width , lot_img.width)
+                max_height = ref_img.height + lot_img.height
+
+                combined = Image.new("RGB", (total_width, max_height), "white")
+                combined.paste(ref_img, (0, 0))
+                combined.paste(lot_img, (0, ref_img.height))
+
+                # ✅ 최종 파일만 저장
+                combined_file = BytesIO()
+                combined.save(combined_file, format="PNG")
+                combined_file.seek(0)
+
+                st.image(combined, caption="Combined Barcode")
+
+                st.download_button(
+                    label="📥 Download Barcode",
+                    data=combined_file,
+                    file_name=f"barcode_{lot_number}_{reference}.png",
+                    mime="image/png"
+                )
+            st.success("DB updated")
+        else: st.warning("Reference missing")
+    else: st.warning("Delivery note missing")        
             
-            ## Last lot number
-            lot_number = conn_2.execute(
-                text("SELECT LAST_INSERT_ID()")
-            ).scalar()
-            
-            # ----- Reference Barcode -----
-            buf_ref = BytesIO()
-            Code128(reference.upper(), writer=ImageWriter()).write(buf_ref)
-            buf_ref.seek(0)
-            ref_img = Image.open(buf_ref)
-
-            # ----- Lot_number Barcode -----
-            buf_lot = BytesIO()
-            Code128(str(lot_number), writer=ImageWriter()).write(buf_lot)
-            buf_lot.seek(0)
-            lot_img = Image.open(buf_lot)
-            
-            # ===== PIL =====
-            total_width = max(ref_img.width , lot_img.width)
-            max_height = ref_img.height + lot_img.height
-
-            combined = Image.new("RGB", (total_width, max_height), "white")
-            combined.paste(ref_img, (0, 0))
-            combined.paste(lot_img, (0, ref_img.height))
-
-            # combined file save on BytesIO
-            combined_file = BytesIO()
-            combined.save(combined_file, format="PNG")
-            combined_file.seek(0)
-
-            # Streamlit에 이미지 표시
-            st.image(combined, caption="Combined Barcode")
-
-            # 다운로드 버튼 (아이콘 가능)
-            st.download_button(
-                label="📥 Download Barcode",
-                data=combined_file,
-                file_name=f"barcode_{lot_number}_{reference}.png",
-                mime="image/png"
-            )
-        st.success("DB updated")
-    else:
-
-        st.warning("Reference error")
 
 delete_id = st.number_input("Delete lot",min_value=0)
 
@@ -112,11 +111,12 @@ if "baseline" not in st.session_state:
 
 baseline = st.session_state["baseline"]
 
-new_rows = df[df["Lot_number"] > baseline].iloc[:,:4]
+
+new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:4].tolist() + df.columns[-2:].tolist()]
+
 
 
 st.table(new_rows)
-
 
 
 
