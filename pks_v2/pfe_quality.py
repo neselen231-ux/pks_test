@@ -26,7 +26,7 @@ engine = create_engine(
     }
 )
 
-
+st.title("PFE Quality")
 
 lot_number = st.number_input("Lot number",min_value=0)
 ok_qty = st.number_input("Compliant Quantity",min_value=0,step=1)
