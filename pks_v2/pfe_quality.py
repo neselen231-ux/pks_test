@@ -26,7 +26,15 @@ engine = create_engine(
     }
 )
 
-st.title("PFE Quality")
+
+
+st.title("PFE Reception")
+
+
+st.subheader("lot to be inspected")
+df = pd.read_sql("SELECT * FROM reception", con=engine)
+st.table(df[(df["Quantity"]!=0)&(df["Ok_qty"].isnull())].iloc[:,:3])
+
 
 lot_number = st.number_input("Lot number",min_value=0)
 ok_qty = st.number_input("Compliant Quantity",min_value=0,step=1)
@@ -37,10 +45,12 @@ if "changed_lots" not in st.session_state:
 
 
 
+
+
 ### Input button
 
 if st.button("QI input"):
-    if lot_number:
+    if int(lot_number) in df["Lot_number"].values :
         with engine.begin() as con:
             total_quantity = con.execute(
                 text("SELECT Quantity FROM reception WHERE Lot_number = :lot"),
@@ -88,12 +98,12 @@ if st.button("QI input"):
                 #### Creation of 2 different lots
                 # put 0 on previous lot
                 con.execute(
-                    text("UPDATE reception SET Quantity = 0, Ok_qty = 0, Remark = :rem WHERE Lot_number = :lot"),
+                    text("UPDATE reception SET Quantity = 0, Ok_qty = 0, Status = :rem WHERE Lot_number = :lot"),
                     {"lot": int(lot_number), "rem":"New lots created"}) 
                 
                 # creating new lot for compliant qty
                 con.execute(
-                    text("INSERT INTO reception  (Reference, Quantity, Ok_qty, Remark, delivery_note) VALUES (:ref, :qty, :oqty, :rem, :dev)"),
+                    text("INSERT INTO reception  (Reference, Quantity, Ok_qty, Status, delivery_note) VALUES (:ref, :qty, :oqty, :rem, :dev)"),
                     {"ref": serached_ref,"qty":int(ok_qty),"oqty":int(ok_qty), "rem":f"Ok_qty of {lot_number}","dev": serached_dev}) 
                 ok_lot = con.execute(text("SELECT LAST_INSERT_ID()")).scalar()
                 st.session_state["changed_lots"].append(ok_lot)
@@ -127,7 +137,7 @@ if st.button("QI input"):
 
                 # creating new lot for non_compliant qty
                 con.execute(
-                    text("INSERT INTO reception  (Reference, Quantity, Remark, Ok_qty, delivery_note ) VALUES (:ref, :qty, :rem, :oqty, :dev)"),
+                    text("INSERT INTO reception  (Reference, Quantity, Status, Ok_qty, delivery_note ) VALUES (:ref, :qty, :rem, :oqty, :dev)"),
                     {"ref": serached_ref,"qty":(int(total_quantity) - int(ok_qty)), "rem":f"NoK_qty of {lot_number}","oqty": 0,"dev": serached_dev})
                 st.success("Prison lot & confirmed lot created")
 
@@ -162,7 +172,7 @@ if st.button("QI input"):
                     mime="image/png",
                     key="Not lot"
                 )
-
+    
 
 
 
@@ -192,7 +202,7 @@ with st.expander("Inspected lot roll back", expanded=False):
                         text("""
                             UPDATE reception
                             SET Quantity = :qty,
-                                Remark = '',
+                                Status = '',
                                 Ok_qty = 0
                             WHERE Lot_number = :lot
                         """),
@@ -232,5 +242,5 @@ with st.expander("🗑️ Delete specific lot", expanded=False):
 df = pd.read_sql("SELECT * FROM reception", con=engine)
 new_rows = df[df["Lot_number"].isin(st.session_state["changed_lots"])]
 
-
-st.table(new_rows)
+st.subheader("Inspected lots")
+st.dataframe(new_rows)
