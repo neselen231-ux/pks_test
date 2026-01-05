@@ -18,7 +18,7 @@ div.viewerBadge_link__1S137 {display: none;}         /* created by */
 </style>
 """
 st.markdown(hide_ui, unsafe_allow_html=True)
-
+st_autorefresh(interval=5000, key="refresh")
 engine = create_engine(
     f"mysql+pymysql://{st.secrets['DB_USER']}:{st.secrets['DB_PASS']}@{st.secrets['DB_HOST']}:{st.secrets['DB_PORT']}/{st.secrets['DB_NAME']}",
     connect_args={
