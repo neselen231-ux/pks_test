@@ -27,13 +27,13 @@ engine = create_engine(
     }
 )
 
-st.title("PFE Reception")
+st.title("Reception")
 
 # 2 input boxes
 reference = st.text_input("Reference number")
 qty = st.number_input("quantity", min_value=0, step=1)
 delivery_note = st.text_input("Delivery note",max_chars=20)
-remark = st.text_input("Remark",max_chars=20)
+Status = st.text_input("Status",max_chars=20)
 
 # Reference pattern
 pattern = r"^\d{7}[A-Za-z]{2}$"
@@ -47,8 +47,8 @@ if st.button("Input"):
         if re.fullmatch(pattern,reference):
             with engine.begin() as conn_2: 
                 conn_2.execute(
-                    text("INSERT INTO reception (Reference, Quantity, delivery_note, Remark) VALUES (:ref, :qty, :dev, :rem)"),
-                    {"ref": reference.upper(), "qty": int(qty), "dev": delivery_note, "rem":remark}
+                    text("INSERT INTO reception (Reference, Quantity, delivery_note, Status) VALUES (:ref, :qty, :dev, :rem)"),
+                    {"ref": reference.upper(), "qty": int(qty), "dev": delivery_note, "rem":Status}
                 )
                 lot_number = conn_2.execute(
                     text("SELECT LAST_INSERT_ID()")
@@ -117,6 +117,9 @@ new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:4].tolist() + df.c
 
 
 st.table(new_rows)
+
+
+
 
 
 
