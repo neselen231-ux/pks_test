@@ -5,6 +5,7 @@ from barcode.writer import ImageWriter
 from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
 from sqlalchemy import create_engine, text
+from streamlit_autorefresh import st_autorefresh
 
 hide_ui = """
 <style>
