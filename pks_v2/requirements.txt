@@ -4,5 +4,6 @@ pymysql
 pandas
 python-barcode
 Pillow
+streamlit_autorefresh
 
 
