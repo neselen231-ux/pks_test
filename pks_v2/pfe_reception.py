@@ -33,7 +33,7 @@ st.title("Reception")
 reference = st.text_input("Reference number")
 qty = st.number_input("quantity", min_value=0, step=1)
 delivery_note = st.text_input("Delivery note",max_chars=20)
-Status = st.text_input("Status",max_chars=20)
+Comment = st.text_input("Comment",max_chars=20)
 
 # Reference pattern
 pattern = r"^\d{7}[A-Za-z]{2}$"
@@ -47,8 +47,8 @@ if st.button("Input"):
         if re.fullmatch(pattern,reference):
             with engine.begin() as conn_2: 
                 conn_2.execute(
-                    text("INSERT INTO reception (Reference, Quantity, delivery_note, Status) VALUES (:ref, :qty, :dev, :rem)"),
-                    {"ref": reference.upper(), "qty": int(qty), "dev": delivery_note, "rem":Status}
+                    text("INSERT INTO reception (Reference, Quantity, delivery_note, Comment) VALUES (:ref, :qty, :dev, :rem)"),
+                    {"ref": reference.upper(), "qty": int(qty), "dev": delivery_note, "rem": Comment}
                 )
                 lot_number = conn_2.execute(
                     text("SELECT LAST_INSERT_ID()")
@@ -112,13 +112,11 @@ if "baseline" not in st.session_state:
 baseline = st.session_state["baseline"]
 
 
-new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:4].tolist() + df.columns[-2:].tolist()]
+new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:4].tolist() + df.columns[-3:-2].tolist()]
 
 
 
 st.table(new_rows)
-
-
 
 
 
