@@ -14,7 +14,7 @@ div[data-testid="stDecoration"] {display: none;}     /* hosted badge */
 div.viewerBadge_link__1S137 {display: none;}         /* created by */
 </style>
 """
-df = pd.read_sql("SELECT * FROM reception", con=engine)
+
 st.markdown(hide_ui, unsafe_allow_html=True)
 st_autorefresh(interval=55000, key="refresh")
 engine = create_engine(
@@ -23,7 +23,7 @@ engine = create_engine(
         "ssl": {"ca": "ca.pem"}
     }
 )
-
+df = pd.read_sql("SELECT * FROM reception", con=engine)
 if "changed_lots" not in st.session_state:
     st.session_state["changed_lots"] = []
 
