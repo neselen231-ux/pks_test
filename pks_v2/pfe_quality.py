@@ -85,8 +85,8 @@ if st.button("QI input"):
 
             elif (total_quantity)*-1 == int(ok_qty):
                 con.execute(
-                    text("UPDATE reception SET Ok_qty = 0, Quantity = :qty WHERE Lot_number = :lot"),
-                    {"qty": int(total_quantity), "lot": int(lot_number)}
+                    text("UPDATE reception SET Ok_qty = 0, Quantity = :qty, Remark = :rem WHERE Lot_number = :lot"),
+                    {"qty": int(total_quantity), "lot": int(lot_number), "rem": "prison"}
                     )
 
                 st.success("QI Updated on the same lot")
