@@ -33,7 +33,7 @@ st.title("Reception")
 reference = st.text_input("Reference number")
 qty = st.number_input("quantity", min_value=0, step=1)
 delivery_note = st.text_input("Delivery note",max_chars=20)
-Comment = st.text_input("Comment",max_chars=20)
+Comment = st.text_input("Comment",max_chars=100)
 
 # Reference pattern
 pattern = r"^\d{7}[A-Za-z]{2}$"
@@ -117,6 +117,7 @@ new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:4].tolist() + df.c
 
 
 st.table(new_rows)
+
 
 
 
