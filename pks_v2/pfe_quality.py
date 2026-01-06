@@ -99,7 +99,7 @@ if st.button("QI input"):
                 # put 0 on previous lot
                 con.execute(
                     text("UPDATE reception SET Quantity = 0, Ok_qty = 0, Status = :rem WHERE Lot_number = :lot"),
-                    {"lot": int(lot_number), "rem":"New lots created"}) 
+                    {"lot": int(lot_number), "rem":"Divised into 2 lots"}) 
                 
                 # creating new lot for compliant qty
                 con.execute(
