@@ -27,7 +27,7 @@ st.title("PFE stock system")
 
 st.subheader("Lots to stock")
 df = pd.read_sql("SELECT * FROM reception", con=engine)
-st.table(df[(df["Emplacement"].isna()) & (df["Lot_number"].notna())])
+st.table(df[(df["Emplacement"].isna()) & (df["Lot_number"].notna() & (df["Status"]!="Prison")])
 
 if "changed_lots" not in st.session_state:
     st.session_state["changed_lots"] = []
