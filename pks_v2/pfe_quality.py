@@ -36,8 +36,8 @@ df = pd.read_sql("SELECT * FROM reception", con=engine)
 st.table(df[(df["Quantity"]!=0)&(df["Ok_qty"].isnull())].iloc[:,:3])
 
 
-lot_number = st.number_input("Lot number",min_value=0)
-ok_qty = st.number_input("Compliant Quantity",min_value=0,step=1)
+lot_number = st.number_input("Lot number",value=None,min_value=0)
+ok_qty = st.number_input("Compliant Quantity",value=None,min_value=0,step=1)
 
 
 if "changed_lots" not in st.session_state:
@@ -184,10 +184,10 @@ with st.expander("Inspected lot roll back", expanded=False):
     col1, col2, col3 = st.columns([1,1,1])
 
     with col1:
-        ol = st.number_input("Original Lot", step=1, format="%d")
+        ol = st.number_input("Original Lot",value=None, step=1, format="%d")
 
     with col2:
-        oq = st.number_input("Original Quantity", step=1, format="%d")
+        oq = st.number_input("Original Quantity", value=None,step=1, format="%d")
 
     with col3:
         st.write("") 
@@ -215,7 +215,7 @@ with st.expander("🗑️ Delete specific lot", expanded=False):
     col1, col2 = st.columns([2,1])
 
     with col1:
-        ld = st.number_input("Lot to delete", step=1, format="%d")
+        ld = st.number_input("Lot to delete",Value=None, step=1, format="%d")
 
     with col2:
         st.write("")   # 버튼 정렬용 (한 줄 맞추기)
