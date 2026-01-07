@@ -28,7 +28,7 @@ engine = create_engine(
 )
 
 
-st.title("PFE Reception")
+st.title("PFE Incoming")
 
 
 st.subheader("Lots to be inspected")
@@ -215,7 +215,7 @@ with st.expander("🗑️ Delete specific lot", expanded=False):
     col1, col2 = st.columns([2,1])
 
     with col1:
-        ld = st.number_input("Lot to delete",Value=None, step=1, min_value=None)
+        ld = st.number_input("Lot to delete",value=None, step=1, min_value=None)
 
     with col2:
         st.write("")   # 버튼 정렬용 (한 줄 맞추기)
