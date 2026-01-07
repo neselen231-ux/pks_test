@@ -32,7 +32,7 @@ st.table(df[(df["Emplacement"].isna()) & (df["Lot_number"].notna()) & (df["Statu
 if "changed_lots" not in st.session_state:
     st.session_state["changed_lots"] = []
 
-lot = st.number_input("lot to stock",min_value=0)
+lot = st.number_input("lot to stock",value=None,min_value=0)
 emplacement = st.text_input("Emplactement")
 
 
