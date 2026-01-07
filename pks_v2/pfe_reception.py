@@ -31,7 +31,7 @@ st.title("Reception")
 
 # 2 input boxes
 reference = st.text_input("Reference number")
-qty = st.number_input("quantity", min_value=0, step=1)
+qty = st.number_input("quantity", min_value=0,value=None, step=1)
 delivery_note = st.text_input("Delivery note",max_chars=20)
 Comment = st.text_input("Comment",max_chars=100)
 
@@ -90,7 +90,7 @@ if st.button("Input"):
     else: st.warning("Delivery note missing")        
             
 
-delete_id = st.number_input("Delete lot",min_value=0)
+delete_id = st.number_input("Delete lot",value=None,min_value=0)
 
 if st.button("Delete"):
     with engine.begin() as deletion:
@@ -117,6 +117,7 @@ new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:4].tolist() + df.c
 
 
 st.table(new_rows)
+
 
 
 
