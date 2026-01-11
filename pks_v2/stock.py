@@ -24,7 +24,7 @@ div.viewerBadge_link__1S137 {display: none;}         /* created by */
 """
 
 st.markdown(hide_ui, unsafe_allow_html=True)
-st_autorefresh(interval=5000, key="refresh")
+st_autorefresh(interval=50000, key="refresh")
 if "changed_lots" not in st.session_state:
     st.session_state["changed_lots"] = []
 
