@@ -6,6 +6,7 @@ from barcode.codex import Code128
 from barcode.writer import ImageWriter
 from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
+import datetime as dt
 
 hide_ui = """
 <style>
@@ -117,6 +118,7 @@ new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.c
 
 
 st.table(new_rows)
+
 
 
 
