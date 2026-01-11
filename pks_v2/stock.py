@@ -15,7 +15,7 @@ st.title("PFE stock system")
 
 st.subheader("Lots to stock")
 df = pd.read_sql("SELECT * FROM reception", con=engine)
-st.table(df[(df["Emplacement"].isna()) & (df["Lot_number"].notna()) & (df["Status"]!="Prison")& (df["Ok_qty"]!=0)& (df["Nok_qty"]==0)].loc[:,-1:3])
+st.table(df[(df["Emplacement"].isna()) & (df["Lot_number"].notna()) & (df["Status"]!="Prison")& (df["Ok_qty"]!=0)& (df["Nok_qty"]==0)].iloc[:,-1:3])
 
 hide_ui = """
 <style>
