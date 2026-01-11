@@ -31,9 +31,9 @@ st.title("Reception")
 
 # 2 input boxes
 reference = st.text_input("Reference number")
-qty = st.number_input("quantity", min_value=None,value=None, step=1)
+qty = st.number_input("quantity", min_value=0, step=1)
 delivery_note = st.text_input("Delivery note",max_chars=20)
-Comment = st.text_input("Comment",max_chars=100)
+Comment = st.text_input("Comment",max_chars=20)
 
 # Reference pattern
 pattern = r"^\d{7}[A-Za-z]{2}$"
@@ -47,8 +47,8 @@ if st.button("Input"):
         if re.fullmatch(pattern,reference):
             with engine.begin() as conn_2: 
                 conn_2.execute(
-                    text("INSERT INTO reception (Reference, Quantity, delivery_note, Comment) VALUES (:ref, :qty, :dev, :rem)"),
-                    {"ref": reference.upper(), "qty": int(qty), "dev": delivery_note, "rem": Comment}
+                    text("INSERT INTO reception (Reference, Quantity, delivery_note, Comment, reception_date, Status) VALUES (:ref, :qty, :dev, :rem, :rep, :sta)"),
+                    {"ref": reference.upper(), "qty": int(qty), "dev": delivery_note, "rem": Comment, "rep": dt.datetime.now(), "sta":"to insepct"}
                 )
                 lot_number = conn_2.execute(
                     text("SELECT LAST_INSERT_ID()")
@@ -90,7 +90,7 @@ if st.button("Input"):
     else: st.warning("Delivery note missing")        
             
 
-delete_id = st.number_input("Delete lot",value=None,min_value=None)
+delete_id = st.number_input("Delete lot",min_value=0)
 
 if st.button("Delete"):
     with engine.begin() as deletion:
@@ -99,7 +99,7 @@ if st.button("Delete"):
 
 
 st.subheader("Reception declaration history")
-df = pd.read_sql("SELECT * FROM reception", con=engine)
+
 
 
 
@@ -108,17 +108,15 @@ if "baseline" not in st.session_state:
         st.session_state["baseline"] = conn.execute(
             text("SELECT MAX(Lot_number) FROM reception")
         ).scalar()
-
+df = pd.read_sql("SELECT * FROM reception", con=engine)
 baseline = st.session_state["baseline"]
 
 
-new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:4].tolist() + df.columns[-3:-2].tolist()]
+new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.columns[-1:].tolist()]
 
 
 
 st.table(new_rows)
-
-
 
 
 
