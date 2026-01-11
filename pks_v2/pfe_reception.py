@@ -102,7 +102,7 @@ if st.button("Delete"):
 st.subheader("Reception declaration history")
 
 
-baseline = st.session_state["baseline"] or 0
+
 
 if "baseline" not in st.session_state:
     with engine.connect() as conn:
@@ -111,13 +111,14 @@ if "baseline" not in st.session_state:
         ).scalar()
 df = pd.read_sql("SELECT * FROM reception", con=engine)
 
-
+baseline = st.session_state["baseline"] or 0
 
 new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.columns[-1:].tolist()]
 
 
 
 st.table(new_rows)
+
 
 
 
