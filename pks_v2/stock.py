@@ -4,6 +4,13 @@ from sqlalchemy import create_engine, text
 from streamlit_autorefresh import st_autorefresh
 import datetime as dt
 
+engine = create_engine(
+    f"mysql+pymysql://{st.secrets['DB_USER']}:{st.secrets['DB_PASS']}@{st.secrets['DB_HOST']}:{st.secrets['DB_PORT']}/{st.secrets['DB_NAME']}",
+    connect_args={
+        "ssl": {"ca": "ca.pem"}
+    }
+)
+
 hide_ui = """
 <style>
 #MainMenu {visibility: hidden;}      /* 메뉴 */
