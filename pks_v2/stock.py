@@ -11,6 +11,8 @@ engine = create_engine(
     }
 )
 
+st.title("PFE stock system")
+
 hide_ui = """
 <style>
 #MainMenu {visibility: hidden;}      /* 메뉴 */
