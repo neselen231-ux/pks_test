@@ -2,6 +2,7 @@ import streamlit as st
 from sqlalchemy import create_engine, text
 import pandas as pd
 import re
+import os
 from barcode.codex import Code128
 from barcode.writer import ImageWriter
 from io import BytesIO
@@ -105,7 +106,9 @@ if st.button("Input"):
 
                 # ===== Supplier lot N 텍스트 =====
                 if sup_lot:
-                    ffont = ImageFont.truetype("C:/Windows/Fonts/malgun.ttf", 30)
+                    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+                    FONT_PATH = os.path.join(BASE_DIR, "fonts", "NanumGothic-Regular.ttf")
+                    ffont = ImageFont.truetype(FONT_PATH, 30)
                     sticker_text = ImageDraw.Draw(combined)
                     sticker_text.text(
                         (10, ref_img.height - 45),   # 폰트 크기 고려해서 위로 올림
@@ -159,6 +162,7 @@ new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.c
 
 
 st.table(new_rows)
+
 
 
 
