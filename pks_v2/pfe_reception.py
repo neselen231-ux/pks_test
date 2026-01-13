@@ -90,13 +90,13 @@ if st.button("Input"):
         else: st.warning("Reference missing")
     else: st.warning("Delivery note missing")        
             
-
-delete_id = st.number_input("Delete lot",min_value=0)
-
-if st.button("Delete"):
-    with engine.begin() as deletion:
-        deletion.execute(text("DELETE FROM reception WHERE Lot_number = :lot"),{"lot":int(delete_id)})
-    st.rerun()
+with st.expander("Delete lot",expanded=False)
+    delete_id = st.number_input("Delete lot",min_value=0)
+    
+    if st.button("Delete"):
+        with engine.begin() as deletion:
+            deletion.execute(text("DELETE FROM reception WHERE Lot_number = :lot"),{"lot":int(delete_id)})
+        st.rerun()
 
 
 st.subheader("Reception declaration history")
@@ -118,6 +118,7 @@ new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.c
 
 
 st.table(new_rows)
+
 
 
 
