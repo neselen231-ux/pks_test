@@ -92,7 +92,8 @@ if st.button("Input"):
 
                 # ===== combined 캔버스 크기 계산 =====
                 max_w = max([ref_img.width] + [img.width for img in lot_imgs])
-                total_h = ref_img.height + sum(img.height for img in lot_imgs)
+                total_h = len(lot_imgs) * ref_img.height + sum(img.height for img in lot_imgs)
+
 
                 combined = Image.new("RGB", (max_w, total_h), "white")
 
@@ -162,6 +163,7 @@ new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.c
 
 
 st.table(new_rows)
+
 
 
 
