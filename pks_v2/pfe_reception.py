@@ -68,7 +68,7 @@ if st.button("Input"):
 
                 # sup_sn_check == True 면 qty만큼 lot 바코드 여러 개 생성
                 if sup_sn_check is True:
-                    for i in range(qty):
+                    for i in range(1,qty+1):
                         buf_lot = BytesIO()
                         if sup_lot:
                             Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(buf_lot)
@@ -163,6 +163,7 @@ new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.c
 
 
 st.table(new_rows)
+
 
 
 
