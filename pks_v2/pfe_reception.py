@@ -90,7 +90,7 @@ if st.button("Input"):
         else: st.warning("Reference missing")
     else: st.warning("Delivery note missing")        
             
-with st.expander("Delete lot",expanded=False)
+with st.expander("Delete lot",expanded=False):
     delete_id = st.number_input("Delete lot",min_value=0)
     
     if st.button("Delete"):
@@ -118,6 +118,7 @@ new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.c
 
 
 st.table(new_rows)
+
 
 
 
