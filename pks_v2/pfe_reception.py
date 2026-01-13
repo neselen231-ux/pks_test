@@ -50,8 +50,8 @@ if st.button("Input"):
         if re.fullmatch(pattern,reference):
             with engine.begin() as conn_2: 
                 conn_2.execute(
-                    text("INSERT INTO reception (Reference, Quantity, delivery_note, Comment, reception_date, Status) VALUES (:ref, :qty, :dev, :rem, :rep, :sta)"),
-                    {"ref": reference.upper(), "qty": int(qty), "dev": delivery_note, "rem": Comment, "rep": dt.datetime.now(), "sta":"to insepct"}
+                    text("INSERT INTO reception (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot) VALUES (:ref, :qty, :dev, :rem, :rep, :sta ,:sup)"),
+                    {"ref": reference.upper(), "qty": int(qty), "dev": delivery_note, "rem": Comment, "rep": dt.datetime.now(), "sta":"to insepct", "sup":sup_lot}
                 )
                 lot_number = conn_2.execute(
                     text("SELECT LAST_INSERT_ID()")
@@ -60,20 +60,59 @@ if st.button("Input"):
                 buf_ref = BytesIO()
                 Code128(reference.upper(), writer=ImageWriter()).write(buf_ref)
                 buf_ref.seek(0)
-                ref_img = Image.open(buf_ref)
+                ref_img = Image.open(buf_ref).convert("RGB")
 
-                # ----- Lot_number Barcode -----
-                buf_lot = BytesIO()
-                Code128(str(lot_number), writer=ImageWriter()).write(buf_lot)
-                buf_lot.seek(0)
-                lot_img = Image.open(buf_lot)
-                # ===== 이미지 합치기  =====
-                total_width = max(ref_img.width , lot_img.width)
-                max_height = ref_img.height + lot_img.height
+                # ===== LOT 이미지들 만들기 =====
+                lot_imgs = []
 
-                combined = Image.new("RGB", (total_width, max_height), "white")
-                combined.paste(ref_img, (0, 0))
-                combined.paste(lot_img, (0, ref_img.height))
+                # sup_sn_check == True 면 qty만큼 lot 바코드 여러 개 생성
+                if sup_sn_check is True:
+                    for i in range(qty):
+                        buf_lot = BytesIO()
+                        if sup_lot:
+                            Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(buf_lot)
+                        else:
+                            Code128(f"{lot_number}_{i}", writer=ImageWriter()).write(buf_lot)
+
+                        buf_lot.seek(0)
+                        img = Image.open(buf_lot).convert("RGB")
+                        lot_imgs.append(img)
+                else:
+                    # sup_sn_check False면 lot 바코드 1개만 생성
+                    buf_lot = BytesIO()
+                    if sup_lot:
+                        Code128(str(sup_lot), writer=ImageWriter()).write(buf_lot)
+                    else:
+                        Code128(str(lot_number), writer=ImageWriter()).write(buf_lot)
+
+                    buf_lot.seek(0)
+                    lot_img = Image.open(buf_lot).convert("RGB")
+                    lot_imgs.append(lot_img)
+
+                # ===== combined 캔버스 크기 계산 =====
+                max_w = max([ref_img.width] + [img.width for img in lot_imgs])
+                total_h = ref_img.height + sum(img.height for img in lot_imgs)
+
+                combined = Image.new("RGB", (max_w, total_h), "white")
+
+                # ===== ref 붙이기 =====
+                y = 0
+                for img in lot_imgs:
+                    combined.paste(ref_img, (0, y))
+                    y += ref_img.height
+                    combined.paste(img, (0, y))
+                    y += img.height
+
+                # ===== Supplier lot N 텍스트 =====
+                if sup_lot:
+                    ffont = ImageFont.truetype("C:/Windows/Fonts/malgun.ttf", 30)
+                    sticker_text = ImageDraw.Draw(combined)
+                    sticker_text.text(
+                        (10, ref_img.height - 45),   # 폰트 크기 고려해서 위로 올림
+                        "Supplier lot N",
+                        fill="black",
+                        font=ffont
+                    )
 
                 # ✅ 최종 파일만 저장
                 combined_file = BytesIO()
@@ -88,8 +127,8 @@ if st.button("Input"):
                     file_name=f"barcode_{lot_number}_{reference}.png",
                     mime="image/png"
                 )
-            st.success("DB updated")
-        else: st.warning("Reference missing")
+                st.success("DB updated")            
+        else: st.warning("Reference missing") 
     else: st.warning("Delivery note missing")        
             
 with st.expander("Delete lot",expanded=False):
@@ -115,11 +154,12 @@ df = pd.read_sql("SELECT * FROM reception", con=engine)
 
 baseline = st.session_state["baseline"] or 0
 
-new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.columns[-1:].tolist()]
+new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.columns[-2:].tolist()]
 
 
 
 st.table(new_rows)
+
 
 
 
