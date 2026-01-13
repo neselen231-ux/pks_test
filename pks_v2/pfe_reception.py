@@ -40,7 +40,7 @@ Comment = st.text_input("Comment",max_chars=20)
 pattern = r"^\d{7}[A-Za-z]{2}$"
 
 
-
+sup_sn_check = st.checkbox("S/N mode", value = False )
 
 
 if st.button("Input"):
@@ -118,6 +118,7 @@ new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.c
 
 
 st.table(new_rows)
+
 
 
 
