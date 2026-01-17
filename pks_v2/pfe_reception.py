@@ -50,10 +50,35 @@ if st.button("Input"):
     if delivery_note:
         if re.fullmatch(pattern,reference):
             with engine.begin() as conn_2: 
-                conn_2.execute(
-                    text("INSERT INTO reception (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot) VALUES (:ref, :qty, :dev, :rem, :rep, :sta ,:sup)"),
-                    {"ref": reference.upper(), "qty": int(qty), "dev": delivery_note, "rem": Comment, "rep": dt.datetime.now(), "sta":"to insepct", "sup":sup_lot}
-                )
+                if sup_sn_check == True:
+                    for i in range(1,qty+1):
+                        if sup_lot:
+                            conn_2.execute(
+                                text("INSERT INTO reception (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot) VALUES (:ref, :qty, :dev, :rem, :rep, :sta ,:sup)"),
+                                {"ref": reference.upper(), "qty": "1", "dev": delivery_note, "rem": Comment, "rep": dt.datetime.now(), "sta":"to insepct", "sup":f"{sup_lot}_{i}"}
+                            )
+                        else:
+                            conn_2.execute(
+                                text("INSERT INTO reception (Reference, Quantity, delivery_note, Comment, reception_date, Status) VALUES (:ref, :qty, :dev, :rem, :rep, :sta)"),
+                                {"ref": reference.upper(), "qty": "1", "dev": delivery_note, "rem": Comment, "rep": dt.datetime.now(), "sta":"to insepct"}
+                            )
+                            lot_number = conn_2.execute(
+                            text("SELECT LAST_INSERT_ID()")
+                            ).scalar()
+                            status_value = f"{lot_number}_{i}"
+                            conn_2.execute(
+                                text("""
+                                    UPDATE reception
+                                    SET Status = :status
+                                    WHERE lot_number = :lot_number
+                                """),
+                                {"status": status_value, "lot_number": lot_number}
+                            )
+                else:
+                     conn_2.execute(
+                            text("INSERT INTO reception (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot) VALUES (:ref, :qty, :dev, :rem, :rep, :sta ,:sup)"),
+                            {"ref": reference.upper(), "qty": {qty}, "dev": delivery_note, "rem": Comment, "rep": dt.datetime.now(), "sta":"to insepct", "sup":f"{sup_lot}"}
+                        )
                 lot_number = conn_2.execute(
                     text("SELECT LAST_INSERT_ID()")
                 ).scalar()
@@ -66,9 +91,9 @@ if st.button("Input"):
                 # ===== LOT 이미지들 만들기 =====
                 lot_imgs = []
 
-                # sup_sn_check == True 면 qty만큼 lot 바코드 여러 개 생성
+
                 if sup_sn_check is True:
-                    for i in range(1,qty+1):
+                    for i in range(1, qty+ 1):
                         buf_lot = BytesIO()
                         if sup_lot:
                             Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(buf_lot)
@@ -93,8 +118,7 @@ if st.button("Input"):
                 # ===== combined 캔버스 크기 계산 =====
                 max_w = max([ref_img.width] + [img.width for img in lot_imgs])
                 total_h = len(lot_imgs) * ref_img.height + sum(img.height for img in lot_imgs)
-
-
+                
                 combined = Image.new("RGB", (max_w, total_h), "white")
 
                 # ===== ref 붙이기 =====
@@ -107,9 +131,7 @@ if st.button("Input"):
 
                 # ===== Supplier lot N 텍스트 =====
                 if sup_lot:
-                    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-                    FONT_PATH = os.path.join(BASE_DIR, "fonts", "NanumGothic-Regular.ttf")
-                    ffont = ImageFont.truetype(FONT_PATH, 30)
+                    ffont = ImageFont.truetype("C:/Windows/Fonts/malgun.ttf", 30)
                     sticker_text = ImageDraw.Draw(combined)
                     sticker_text.text(
                         (10, ref_img.height - 45),   # 폰트 크기 고려해서 위로 올림
@@ -163,6 +185,9 @@ new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.c
 
 
 st.table(new_rows)
+
+
+
 
 
 
