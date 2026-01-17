@@ -131,13 +131,13 @@ if st.button("Input"):
 
                 # ===== Supplier lot N 텍스트 =====
                 if sup_lot:
-                    ffont = ImageFont.truetype("C:/Windows/Fonts/malgun.ttf", 30)
+                    FONT_PATH = os.path.join("pks_v2", "fonts", "NanumGothic-Bold.ttf")
                     sticker_text = ImageDraw.Draw(combined)
                     sticker_text.text(
                         (10, ref_img.height - 45),   # 폰트 크기 고려해서 위로 올림
                         "Supplier lot N",
                         fill="black",
-                        font=ffont
+                        font=FONT_PATH
                     )
 
                 # ✅ 최종 파일만 저장
@@ -185,6 +185,7 @@ new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.c
 
 
 st.table(new_rows)
+
 
 
 
