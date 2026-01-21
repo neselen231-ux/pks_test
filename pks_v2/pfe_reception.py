@@ -28,7 +28,6 @@ engine = create_engine(
         "ssl": {"ca": "ca.pem"}
     }
 )
-
 st.title("Reception")
 
 # 2 input boxes
@@ -82,77 +81,91 @@ if st.button("Input"):
                 lot_number = conn_2.execute(
                     text("SELECT LAST_INSERT_ID()")
                 ).scalar()
-                # ----- Reference Barcode -----
+
                 buf_ref = BytesIO()
                 Code128(reference.upper(), writer=ImageWriter()).write(buf_ref)
                 buf_ref.seek(0)
                 ref_img = Image.open(buf_ref).convert("RGB")
 
-                # ===== LOT 이미지들 만들기 =====
-                lot_imgs = []
-
-
                 if sup_sn_check is True:
-                    for i in range(1, qty+ 1):
-                        buf_lot = BytesIO()
-                        if sup_lot:
-                            Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(buf_lot)
-                        else:
-                            Code128(f"{lot_number}_{i}", writer=ImageWriter()).write(buf_lot)
+                    download_buffer = BytesIO()
+                    with zipfile.ZipFile(download_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+                        for i in range(1, qty + 1):
+                            buf_lot = BytesIO()
 
-                        buf_lot.seek(0)
-                        img = Image.open(buf_lot).convert("RGB")
-                        lot_imgs.append(img)
+                            if sup_lot:
+                                Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(buf_lot)
+                                filename = f"{sup_lot}_{i}_{reference}_barcodes.png"
+                            else:
+                                Code128(f"{lot_number}_{i}", writer=ImageWriter()).write(buf_lot)
+                                filename = f"{lot_number}_{i}_{reference}_barcodes.png"
+
+                            buf_lot.seek(0)
+                            lot_img = Image.open(buf_lot).convert("RGB")
+
+                            # ✅ combined 캔버스 크기 계산 (ref + lot 기준)
+                            max_w = max(ref_img.width, lot_img.width)
+                            total_h = ref_img.height + lot_img.height
+
+                            # ✅ 루프마다 새 combined 생성
+                            combined = Image.new("RGB", (max_w, total_h), "white")
+                            combined.paste(ref_img, (0, 0))
+                            combined.paste(lot_img, (0, ref_img.height))
+
+                            img_bytes = BytesIO()
+                            combined.save(img_bytes, format="PNG")
+                            img_bytes.seek(0)
+
+                            zf.writestr(filename, img_bytes.read())
+
+                    download_buffer.seek(0)
+
                 else:
-                    # sup_sn_check False면 lot 바코드 1개만 생성
-                    buf_lot = BytesIO()
+                    image_bytes = BytesIO()
                     if sup_lot:
-                        Code128(str(sup_lot), writer=ImageWriter()).write(buf_lot)
+                        Code128(str(sup_lot), writer=ImageWriter()).write(image_bytes)
                     else:
-                        Code128(str(lot_number), writer=ImageWriter()).write(buf_lot)
+                        Code128(str(lot_number), writer=ImageWriter()).write(image_bytes)
 
-                    buf_lot.seek(0)
-                    lot_img = Image.open(buf_lot).convert("RGB")
-                    lot_imgs.append(lot_img)
+                    image_bytes.seek(0)
+                    lot_img = Image.open(image_bytes).convert("RGB")
 
-                # ===== combined 캔버스 크기 계산 =====
-                max_w = max([ref_img.width] + [img.width for img in lot_imgs])
-                total_h = len(lot_imgs) * ref_img.height + sum(img.height for img in lot_imgs)
-                
-                combined = Image.new("RGB", (max_w, total_h), "white")
+                    max_w = max(ref_img.width, lot_img.width)
+                    total_h = ref_img.height + lot_img.height
 
-                # ===== ref 붙이기 =====
-                y = 0
-                for img in lot_imgs:
-                    combined.paste(ref_img, (0, y))
-                    y += ref_img.height
-                    combined.paste(img, (0, y))
-                    y += img.height
+                    combined = Image.new("RGB", (max_w, total_h), "white")
+                    combined.paste(ref_img, (0, 0))
+                    combined.paste(lot_img, (0, ref_img.height))
+
+                    download_buffer = BytesIO()
+                    combined.save(download_buffer, format="PNG")
+                    download_buffer.seek(0)
+
+                    st.image(download_buffer, caption="Combined Barcode")
+
+
+
+
 
                 # ===== Supplier lot N 텍스트 =====
-                if sup_lot:
-                    FONT_PATH = os.path.join("pks_v2", "fonts", "NanumGothic-Bold.ttf")
-                    ffont = ImageFont.truetype(FONT_PATH, 32)
-                    sticker_text = ImageDraw.Draw(combined)
-                    sticker_text.text(
-                        (10, ref_img.height - 45),   # 폰트 크기 고려해서 위로 올림
-                        "Supplier lot N",
-                        fill="black",
-                        font=ffont
-                    )
+                #if sup_lot:
+                #    ffont = ImageFont.truetype("C:/Windows/Fonts/malgun.ttf", 30)
+                #    sticker_text = ImageDraw.Draw(combined)
+                #    sticker_text.text(
+                #        (3, 3),   # 폰트 크기 고려해서 위로 올림
+                #        "Supplier lot N",
+                #        fill="black",
+                #        font=ffont
+                #    )
 
-                # ✅ 최종 파일만 저장
-                combined_file = BytesIO()
-                combined.save(combined_file, format="PNG")
-                combined_file.seek(0)
 
-                st.image(combined, caption="Combined Barcode")
+
 
                 st.download_button(
                     label="📥 Download Barcode",
-                    data=combined_file,
-                    file_name=f"barcode_{lot_number}_{reference}.png",
-                    mime="image/png"
+                    data=download_buffer,
+                    file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
+                    mime="application/zip" if sup_sn_check else "image/png",
                 )
                 st.success("DB updated")            
         else: st.warning("Reference missing") 
@@ -167,32 +180,20 @@ with st.expander("Delete lot",expanded=False):
         st.rerun()
 
 
-st.subheader("Reception declaration history")
 
 
 
 
-if "baseline" not in st.session_state:
-    with engine.connect() as conn:
-        st.session_state["baseline"] = conn.execute(
-            text("SELECT MAX(Lot_number) FROM reception")
-        ).scalar()
+
 df = pd.read_sql("SELECT * FROM reception", con=engine)
 
-baseline = st.session_state["baseline"] or 0
-
-new_rows = df[df["Lot_number"] > baseline].loc[:, df.columns[:3].tolist() + df.columns[-2:].tolist()]
 
 
-
-st.table(new_rows)
-
+new_rows = df.iloc[-10:,:3]
 
 
-
-
-
-
+with st.expander("last 10 receptions",expanded=False):
+    st.table(new_rows)
 
 
 
