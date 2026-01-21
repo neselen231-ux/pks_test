@@ -8,6 +8,7 @@ from barcode.writer import ImageWriter
 from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
 import datetime as dt
+import zipfile
 
 hide_ui = """
 <style>
@@ -194,6 +195,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
