@@ -136,7 +136,7 @@ if st.button("Input"):
                     image_bytes.seek(0)
                     lot_img = Image.open(image_bytes).convert("RGB")
 
-                    max_w = max(ref_img.width, lot_img.width)+200
+                    max_w = max(ref_img.width, lot_img.width)+250
                     total_h = ref_img.height + lot_img.height
 
 
@@ -147,8 +147,8 @@ if st.button("Input"):
                     text_sticker.text((15,0),f"Reception date : {dt.datetime.now().date()}",fill="black")
                     
                     
-                    combined.paste(ref_img, (100, 0))
-                    combined.paste(lot_img, (100, ref_img.height))
+                    combined.paste(ref_img, (150, 0))
+                    combined.paste(lot_img, (150, ref_img.height))
 
                     download_buffer = BytesIO()
                     combined.save(download_buffer, format="PNG")
@@ -207,6 +207,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
