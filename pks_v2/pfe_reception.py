@@ -47,7 +47,7 @@ options = {
     "module_height": 4.0,   # 바 높이
     "quiet_zone": 1.0,       # 좌우 여백
     "font_size": 5,          # 글자 크기
-    "text_distance": 1.0
+    "text_distance": 1.0}
 
 sup_sn_check = st.checkbox("S/N mode", value = False )
 
@@ -201,6 +201,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
