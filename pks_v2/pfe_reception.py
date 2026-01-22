@@ -140,12 +140,12 @@ if st.button("Input"):
                             lot_img = Image.open(buf_lot).convert("RGB")
 
                             # ✅ combined 캔버스 크기 계산
-                            max_w = max(ref_img.width, lot_img.width) + 150
+                            max_w = max(ref_img.width, lot_img.width) + 50
                             total_h = ref_img.height + lot_img.height
 
                             combined = Image.new("RGB", (max_w, total_h), "white")
-                            combined.paste(ref_img, (135, 0))
-                            combined.paste(lot_img, (135, ref_img.height))
+                            combined.paste(ref_img, (35, 0))
+                            combined.paste(lot_img, (35, ref_img.height))
 
                             text_sticker = ImageDraw.Draw(combined)
                             text_sticker.text(
@@ -240,6 +240,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
