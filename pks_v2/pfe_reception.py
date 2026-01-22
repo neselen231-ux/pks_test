@@ -144,7 +144,7 @@ if st.button("Input"):
                     combined = Image.new("RGB", (max_w, total_h), "white")
 
                     text_sticker = ImageDraw.Draw(combined)
-                    text_sticker.text((15,0)),f"Reception date : {dt.datetime.now().date()}",fill="black",font=ffont)
+                    text_sticker.text((15,0),f"Reception date : {dt.datetime.now().date()}",fill="black",font=ffont)
                     
                     
                     combined.paste(ref_img, (235, 0))
@@ -206,6 +206,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
