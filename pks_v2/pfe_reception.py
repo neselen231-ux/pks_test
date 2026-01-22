@@ -51,7 +51,7 @@ options = {
 
 sup_sn_check = st.checkbox("S/N mode", value = False )
 
-
+ffont = ImageFont.truetype("C:/Windows/Fonts/malgun.ttf", 20)
 if st.button("Input"):
     if delivery_note:
         if re.fullmatch(pattern,reference):
@@ -144,7 +144,7 @@ if st.button("Input"):
                     combined = Image.new("RGB", (max_w, total_h), "white")
 
                     text_sticker = ImageDraw.Draw(combined)
-                    text_sticker.text((15,0),f"Reception date : {dt.datetime.now().date()}",fill="black")
+                    text_sticker.text((15,0),f"Reception date : {dt.datetime.now().date()}",fill="black",font=ffont)
                     
                     
                     combined.paste(ref_img, (150, 0))
@@ -162,7 +162,6 @@ if st.button("Input"):
 
                 # ===== Supplier lot N 텍스트 =====
                 #if sup_lot:
-                #    ffont = ImageFont.truetype("C:/Windows/Fonts/malgun.ttf", 30)
                 #    sticker_text = ImageDraw.Draw(combined)
                 #    sticker_text.text(
                 #        (3, 3),   # 폰트 크기 고려해서 위로 올림
@@ -207,6 +206,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
