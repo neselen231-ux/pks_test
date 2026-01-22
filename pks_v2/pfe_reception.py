@@ -118,15 +118,6 @@ if st.button("Input"):
                             combined.paste(ref_img, (235, 0))
                             combined.paste(lot_img, (235, ref_img.height))
                             
-                            # ===== Supplier lot N 텍스트 =====
-                            if sup_lot:
-                                sticker_text = ImageDraw.Draw(combined)
-                                sticker_text.text(
-                                    (30, 30),   # 폰트 크기 고려해서 위로 올림
-                                    "Supplier lot N",
-                                    fill="black",
-                                    font=ffont
-                                )
                             text_sticker = ImageDraw.Draw(combined)
                             text_sticker.text((15,0),f"Reception: {dt.datetime.now().date()}",fill="black",font=ffont)
                             
@@ -210,6 +201,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
