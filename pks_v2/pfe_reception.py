@@ -54,23 +54,38 @@ sup_sn_check = st.checkbox("S/N mode", value = False )
 ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 20)
 if st.button("Input"):
     if delivery_note:
-        if re.fullmatch(pattern,reference):
-            with engine.begin() as conn_2: 
+        if re.fullmatch(pattern, reference):
+            with engine.begin() as conn_2:
+                # -------------------------
+                # INSERT 파트
+                # -------------------------
+
                 if sup_sn_check == True:
-                    for i in range(1,qty+1):
+                    lot_numbers = []  ### ✅ FIX: 각 INSERT의 lot_number들을 저장
+
+                    for i in range(1, qty + 1):
                         if sup_lot:
                             conn_2.execute(
-                                text("INSERT INTO reception (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot) VALUES (:ref, :qty, :dev, :rem, :rep, :sta ,:sup)"),
-                                {"ref": reference.upper(), "qty": "1", "dev": delivery_note, "rem": Comment, "rep": dt.datetime.now(), "sta":"to insepct", "sup":f"{sup_lot}_{i}"}
+                                text("""INSERT INTO reception
+                                        (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot)
+                                        VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup)"""),
+                                {"ref": reference.upper(), "qty": "1", "dev": delivery_note,
+                                 "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct",
+                                 "sup": f"{sup_lot}_{i}"}
                             )
+
                         else:
                             conn_2.execute(
-                                text("INSERT INTO reception (Reference, Quantity, delivery_note, Comment, reception_date, Status) VALUES (:ref, :qty, :dev, :rem, :rep, :sta)"),
-                                {"ref": reference.upper(), "qty": "1", "dev": delivery_note, "rem": Comment, "rep": dt.datetime.now(), "sta":"to insepct"}
+                                text("""INSERT INTO reception
+                                        (Reference, Quantity, delivery_note, Comment, reception_date, Status)
+                                        VALUES (:ref, :qty, :dev, :rem, :rep, :sta)"""),
+                                {"ref": reference.upper(), "qty": "1", "dev": delivery_note,
+                                 "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct"}
                             )
-                            lot_number = conn_2.execute(
-                            text("SELECT LAST_INSERT_ID()")
-                            ).scalar()
+
+                            lot_number = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
+                            lot_numbers.append(lot_number)  ### ✅ FIX: 매 insert ID 저장
+
                             status_value = f"{lot_number}_{i}"
                             conn_2.execute(
                                 text("""
@@ -80,78 +95,102 @@ if st.button("Input"):
                                 """),
                                 {"status": status_value, "lot_number": lot_number}
                             )
-                else:
-                     conn_2.execute(
-                            text("INSERT INTO reception (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot) VALUES (:ref, :qty, :dev, :rem, :rep, :sta ,:sup)"),
-                            {"ref": reference.upper(), "qty": {qty}, "dev": delivery_note, "rem": Comment, "rep": dt.datetime.now(), "sta":"to insepct", "sup":f"{sup_lot}"}
-                        )
-                lot_number = conn_2.execute(
-                    text("SELECT LAST_INSERT_ID()")
-                ).scalar()
 
+                else:
+                    conn_2.execute(
+                        text("""INSERT INTO reception
+                                (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot)
+                                VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup)"""),
+                        {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
+                         "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct",
+                         "sup": f"{sup_lot}"}
+                    )
+
+                # ✅ (기존 로직 유지) 마지막 ID
+                lot_number = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
+
+                # -------------------------
+                # REFERENCE 바코드 생성
+                # -------------------------
                 buf_ref = BytesIO()
-                Code128(reference.upper(), writer=ImageWriter()).write(buf_ref,options)
+                Code128(reference.upper(), writer=ImageWriter()).write(buf_ref, options)
                 buf_ref.seek(0)
                 ref_img = Image.open(buf_ref).convert("RGB")
 
+                # -------------------------
+                # SN 케이스: zip 여러개 생성
+                # -------------------------
                 if sup_sn_check is True:
                     download_buffer = BytesIO()
+
                     with zipfile.ZipFile(download_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
                         for i in range(1, qty + 1):
                             buf_lot = BytesIO()
 
                             if sup_lot:
-                                Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(buf_lot,options)
+                                Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
                                 filename = f"{sup_lot}_{i}_{reference}_barcodes.png"
+
                             else:
-                                Code128(f"{lot_number}_{i}", writer=ImageWriter()).write(buf_lot,options)
-                                filename = f"{lot_number}_{i}_{reference}_barcodes.png"
+                                this_lot = lot_numbers[i - 1]  ### ✅ FIX: i번째 row의 lot_number 사용
+                                Code128(f"{this_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
+                                filename = f"{this_lot}_{i}_{reference}_barcodes.png"  ### ✅ FIX
 
                             buf_lot.seek(0)
                             lot_img = Image.open(buf_lot).convert("RGB")
 
-                            # ✅ combined 캔버스 크기 계산 (ref + lot 기준)
-                            max_w = max(ref_img.width, lot_img.width)+250
+                            # ✅ combined 캔버스 크기 계산
+                            max_w = max(ref_img.width, lot_img.width) + 250
                             total_h = ref_img.height + lot_img.height
 
                             combined = Image.new("RGB", (max_w, total_h), "white")
                             combined.paste(ref_img, (235, 0))
                             combined.paste(lot_img, (235, ref_img.height))
-                            
+
                             text_sticker = ImageDraw.Draw(combined)
-                            text_sticker.text((5,0),f"Reception: {dt.datetime.now().date()}",fill="black",font=ffont)
-                            
+                            text_sticker.text(
+                                (5, 0),
+                                f"Reception: {dt.datetime.now().date()}",
+                                fill="black",
+                                font=ffont
+                            )
+
                             img_bytes = BytesIO()
                             combined.save(img_bytes, format="PNG")
                             img_bytes.seek(0)
-                            
 
                             zf.writestr(filename, img_bytes.read())
 
                     download_buffer.seek(0)
 
+                # -------------------------
+                # SN 아닌 케이스: 단일 바코드 생성
+                # -------------------------
                 else:
                     image_bytes = BytesIO()
                     if sup_lot:
-                        Code128(str(sup_lot), writer=ImageWriter()).write(image_bytes,options)
+                        Code128(str(sup_lot), writer=ImageWriter()).write(image_bytes, options)
                     else:
-                        Code128(str(lot_number), writer=ImageWriter()).write(image_bytes,options)
+                        Code128(str(lot_number), writer=ImageWriter()).write(image_bytes, options)
 
                     image_bytes.seek(0)
                     lot_img = Image.open(image_bytes).convert("RGB")
 
-                    max_w = max(ref_img.width, lot_img.width)+250
+                    max_w = max(ref_img.width, lot_img.width) + 250
                     total_h = ref_img.height + lot_img.height
 
-
-                    
                     combined = Image.new("RGB", (max_w, total_h), "white")
 
                     text_sticker = ImageDraw.Draw(combined)
-                    text_sticker.text((5,0),f"Reception: {dt.datetime.now().date()}",fill="black",font=ffont)
-                    
-                    
+                    text_sticker.text(
+                        (5, 0),
+                        f"Reception: {dt.datetime.now().date()}",
+                        fill="black",
+                        font=ffont
+                    )
+
                     combined.paste(ref_img, (235, 0))
+                    combined.paste(lot_img, (235, ref_img.height))
                     combined.paste(lot_img, (235, ref_img.height))
 
                     download_buffer = BytesIO()
@@ -201,6 +240,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
