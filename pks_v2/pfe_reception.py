@@ -45,7 +45,7 @@ pattern = r"^\d{7}[A-Za-z]{2}$"
 options = {
     "module_width": 0.2,     
     "module_height": 4,   
-    "quiet_zone": 10.0,       
+    "quiet_zone": 1.0,       
     "font_size": 5,          
     "text_distance": 2.0}
 
@@ -207,6 +207,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
