@@ -150,7 +150,7 @@ if st.button("Input"):
                             text_sticker = ImageDraw.Draw(combined)
                             text_sticker.text(
                                 (150, 0),
-                                f"Reception: {dt.datetime.now().date()}",
+                                f"PFE Reception: {dt.datetime.now().date()}",
                                 fill="black",
                                 font=ffont
                             )
@@ -184,7 +184,7 @@ if st.button("Input"):
                     text_sticker = ImageDraw.Draw(combined)
                     text_sticker.text(
                         (150, 0),
-                        f"Reception: {dt.datetime.now().date()}",
+                        f"PFE Reception: {dt.datetime.now().date()}",
                         fill="black",
                         font=ffont
                     )
@@ -240,6 +240,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
