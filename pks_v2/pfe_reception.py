@@ -114,7 +114,6 @@ if st.button("Input"):
                             max_w = max(ref_img.width, lot_img.width)
                             total_h = ref_img.height + lot_img.height
 
-                            # ✅ 루프마다 새 combined 생성
                             combined = Image.new("RGB", (max_w, total_h), "white")
                             combined.paste(ref_img, (0, 0))
                             combined.paste(lot_img, (0, ref_img.height))
@@ -140,7 +139,13 @@ if st.button("Input"):
                     max_w = max(ref_img.width, lot_img.width)
                     total_h = ref_img.height + lot_img.height
 
+
+                    
                     combined = Image.new("RGB", (max_w, total_h), "white")
+
+                    text_sticker = Imagedraw.draw(combined)
+                    draw.text((0,0),f"Reception date : {dt.datetime().now().date()}")
+                    
                     combined.paste(ref_img, (100, 0))
                     combined.paste(lot_img, (100, ref_img.height))
 
@@ -201,6 +206,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
