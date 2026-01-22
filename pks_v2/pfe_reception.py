@@ -51,7 +51,7 @@ options = {
 
 sup_sn_check = st.checkbox("S/N mode", value = False )
 
-ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 10)
+ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 13)
 if st.button("Input"):
     if delivery_note:
         if re.fullmatch(pattern, reference):
@@ -144,8 +144,8 @@ if st.button("Input"):
                             total_h = ref_img.height + lot_img.height
 
                             combined = Image.new("RGB", (max_w, total_h), "white")
-                            combined.paste(ref_img, (220, 0))
-                            combined.paste(lot_img, (220, ref_img.height))
+                            combined.paste(ref_img, (200, 0))
+                            combined.paste(lot_img, (200, ref_img.height))
 
                             text_sticker = ImageDraw.Draw(combined)
                             text_sticker.text(
@@ -189,9 +189,9 @@ if st.button("Input"):
                         font=ffont
                     )
 
-                    combined.paste(ref_img, (220, 0))
-                    combined.paste(lot_img, (220, ref_img.height))
-                    combined.paste(lot_img, (220, ref_img.height))
+                    combined.paste(ref_img, (200, 0))
+                    combined.paste(lot_img, (200, ref_img.height))
+                    combined.paste(lot_img, (200, ref_img.height))
 
                     download_buffer = BytesIO()
                     combined.save(download_buffer, format="PNG")
@@ -240,6 +240,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
