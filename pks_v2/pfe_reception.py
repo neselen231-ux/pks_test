@@ -115,7 +115,7 @@ if st.button("Input"):
                             total_h = ref_img.height + lot_img.height
 
                             # ✅ 루프마다 새 combined 생성
-                            combined = Image.new("RGB", (max_w*1.3, total_h*1.3), "white")
+                            combined = Image.new("RGB", (max_w, total_h), "white")
                             combined.paste(ref_img, (0, 0))
                             combined.paste(lot_img, (0, ref_img.height))
 
@@ -201,6 +201,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
