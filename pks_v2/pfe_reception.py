@@ -144,12 +144,12 @@ if st.button("Input"):
                             total_h = ref_img.height + lot_img.height
 
                             combined = Image.new("RGB", (max_w, total_h), "white")
-                            combined.paste(ref_img, (200, 0))
-                            combined.paste(lot_img, (200, ref_img.height))
+                            combined.paste(ref_img, (150, 40))
+                            combined.paste(lot_img, (150, ref_img.height))
 
                             text_sticker = ImageDraw.Draw(combined)
                             text_sticker.text(
-                                (50, 0),
+                                (150, 0),
                                 f"Reception: {dt.datetime.now().date()}",
                                 fill="black",
                                 font=ffont
@@ -183,15 +183,15 @@ if st.button("Input"):
 
                     text_sticker = ImageDraw.Draw(combined)
                     text_sticker.text(
-                        (50, 0),
+                        (150, 0),
                         f"Reception: {dt.datetime.now().date()}",
                         fill="black",
                         font=ffont
                     )
 
-                    combined.paste(ref_img, (200, 0))
-                    combined.paste(lot_img, (200, ref_img.height))
-                    combined.paste(lot_img, (200, ref_img.height))
+                    combined.paste(ref_img, (150, 40))
+                    combined.paste(lot_img, (150, ref_img.height))
+
 
                     download_buffer = BytesIO()
                     combined.save(download_buffer, format="PNG")
@@ -240,6 +240,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
