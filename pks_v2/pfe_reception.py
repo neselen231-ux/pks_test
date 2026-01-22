@@ -140,12 +140,12 @@ if st.button("Input"):
                             lot_img = Image.open(buf_lot).convert("RGB")
 
                             # ✅ combined 캔버스 크기 계산
-                            max_w = max(ref_img.width, lot_img.width) + 50
+                            max_w = max(ref_img.width, lot_img.width) + 150
                             total_h = ref_img.height + lot_img.height
 
                             combined = Image.new("RGB", (max_w, total_h), "white")
-                            combined.paste(ref_img, (35, 0))
-                            combined.paste(lot_img, (35, ref_img.height))
+                            combined.paste(ref_img, (135, 0))
+                            combined.paste(lot_img, (135, ref_img.height))
 
                             text_sticker = ImageDraw.Draw(combined)
                             text_sticker.text(
@@ -176,7 +176,7 @@ if st.button("Input"):
                     image_bytes.seek(0)
                     lot_img = Image.open(image_bytes).convert("RGB")
 
-                    max_w = max(ref_img.width, lot_img.width) + 250
+                    max_w = max(ref_img.width, lot_img.width) + 150
                     total_h = ref_img.height + lot_img.height
 
                     combined = Image.new("RGB", (max_w, total_h), "white")
@@ -189,9 +189,9 @@ if st.button("Input"):
                         font=ffont
                     )
 
-                    combined.paste(ref_img, (235, 0))
-                    combined.paste(lot_img, (235, ref_img.height))
-                    combined.paste(lot_img, (235, ref_img.height))
+                    combined.paste(ref_img, (135, 0))
+                    combined.paste(lot_img, (135, ref_img.height))
+                    combined.paste(lot_img, (135, ref_img.height))
 
                     download_buffer = BytesIO()
                     combined.save(download_buffer, format="PNG")
@@ -240,6 +240,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
