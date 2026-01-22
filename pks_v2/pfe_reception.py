@@ -141,8 +141,8 @@ if st.button("Input"):
                     total_h = ref_img.height + lot_img.height
 
                     combined = Image.new("RGB", (max_w, total_h), "white")
-                    combined.paste(ref_img, (75, 0))
-                    combined.paste(lot_img, (75, ref_img.height))
+                    combined.paste(ref_img, (90, 0))
+                    combined.paste(lot_img, (90, ref_img.height))
 
                     download_buffer = BytesIO()
                     combined.save(download_buffer, format="PNG")
@@ -201,6 +201,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
