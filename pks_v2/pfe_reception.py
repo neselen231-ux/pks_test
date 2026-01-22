@@ -122,7 +122,7 @@ if st.button("Input"):
                             if sup_lot:
                                 sticker_text = ImageDraw.Draw(combined)
                                 sticker_text.text(
-                                    (100, 3),   # 폰트 크기 고려해서 위로 올림
+                                    (30, 30),   # 폰트 크기 고려해서 위로 올림
                                     "Supplier lot N",
                                     fill="black",
                                     font=ffont
@@ -210,6 +210,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
