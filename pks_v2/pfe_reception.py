@@ -45,7 +45,7 @@ pattern = r"^\d{7}[A-Za-z]{2}$"
 options = {
     "module_width": 0.2,     
     "module_height": 2.7,   
-    "quiet_zone": 10.0,       
+    "quiet_zone": 12.0,       
     "font_size": 5,          
     "text_distance": 2.0}
 
@@ -141,8 +141,8 @@ if st.button("Input"):
                     total_h = ref_img.height + lot_img.height
 
                     combined = Image.new("RGB", (max_w, total_h), "white")
-                    combined.paste(ref_img, (0, 0))
-                    combined.paste(lot_img, (0, ref_img.height))
+                    combined.paste(ref_img, (5, 0))
+                    combined.paste(lot_img, (5, ref_img.height))
 
                     download_buffer = BytesIO()
                     combined.save(download_buffer, format="PNG")
@@ -201,6 +201,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
