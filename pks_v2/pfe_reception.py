@@ -43,11 +43,11 @@ Comment = st.text_input("Comment",max_chars=20)
 pattern = r"^\d{7}[A-Za-z]{2}$"
 
 options = {
-    "module_width": 0.2,     # 바 두께
-    "module_height": 4.0,   # 바 높이
-    "quiet_zone": 1.0,       # 좌우 여백
-    "font_size": 5,          # 글자 크기
-    "text_distance": 1.0}
+    "module_width": 0.2,     
+    "module_height": 4.0,   
+    "quiet_zone": 1.0,       
+    "font_size": 5,          
+    "text_distance": 2.0}
 
 sup_sn_check = st.checkbox("S/N mode", value = False )
 
@@ -201,6 +201,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
