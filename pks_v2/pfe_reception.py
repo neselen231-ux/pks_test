@@ -137,10 +137,10 @@ if st.button("Input"):
                     image_bytes.seek(0)
                     lot_img = Image.open(image_bytes).convert("RGB")
 
-                    max_w = max(ref_img.width, lot_img.width)*
+                    max_w = max(ref_img.width, lot_img.width)
                     total_h = ref_img.height + lot_img.height
 
-                    combined = Image.new("RGB", (max_w, total_h), "white")
+                    combined = Image.new("RGB", (max_w*1.3, total_h*1.3), "white")
                     combined.paste(ref_img, (0, 0))
                     combined.paste(lot_img, (0, ref_img.height))
 
@@ -201,6 +201,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
