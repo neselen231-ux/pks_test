@@ -51,7 +51,7 @@ options = {
 
 sup_sn_check = st.checkbox("S/N mode", value = False )
 
-ffont = ImageFont.truetype("C:/Windows/Fonts/malgun.ttf", 20)
+ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 20)
 if st.button("Input"):
     if delivery_note:
         if re.fullmatch(pattern,reference):
@@ -206,6 +206,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
