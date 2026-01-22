@@ -133,8 +133,8 @@ if st.button("Input"):
 
                             else:
                                 this_lot = lot_numbers[i - 1]  ### ✅ FIX: i번째 row의 lot_number 사용
-                                Code128(f"{this_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
-                                filename = f"{this_lot}_{i}_{reference}_barcodes.png"  ### ✅ FIX
+                                Code128(f"{this_lot}", writer=ImageWriter()).write(buf_lot, options)
+                                filename = f"{this_lot}_{reference}_barcodes.png"  ### ✅ FIX
 
                             buf_lot.seek(0)
                             lot_img = Image.open(buf_lot).convert("RGB")
@@ -240,6 +240,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
