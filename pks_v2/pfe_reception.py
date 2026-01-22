@@ -42,6 +42,12 @@ Comment = st.text_input("Comment",max_chars=20)
 # Reference pattern
 pattern = r"^\d{7}[A-Za-z]{2}$"
 
+options = {
+    "module_width": 0.2,     # 바 두께
+    "module_height": 4.0,   # 바 높이
+    "quiet_zone": 1.0,       # 좌우 여백
+    "font_size": 5,          # 글자 크기
+    "text_distance": 1.0
 
 sup_sn_check = st.checkbox("S/N mode", value = False )
 
@@ -84,7 +90,7 @@ if st.button("Input"):
                 ).scalar()
 
                 buf_ref = BytesIO()
-                Code128(reference.upper(), writer=ImageWriter()).write(buf_ref)
+                Code128(reference.upper(), writer=ImageWriter()).write(buf_ref,options)
                 buf_ref.seek(0)
                 ref_img = Image.open(buf_ref).convert("RGB")
 
@@ -95,10 +101,10 @@ if st.button("Input"):
                             buf_lot = BytesIO()
 
                             if sup_lot:
-                                Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(buf_lot)
+                                Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(buf_lot,options)
                                 filename = f"{sup_lot}_{i}_{reference}_barcodes.png"
                             else:
-                                Code128(f"{lot_number}_{i}", writer=ImageWriter()).write(buf_lot)
+                                Code128(f"{lot_number}_{i}", writer=ImageWriter()).write(buf_lot,options)
                                 filename = f"{lot_number}_{i}_{reference}_barcodes.png"
 
                             buf_lot.seek(0)
@@ -124,9 +130,9 @@ if st.button("Input"):
                 else:
                     image_bytes = BytesIO()
                     if sup_lot:
-                        Code128(str(sup_lot), writer=ImageWriter()).write(image_bytes)
+                        Code128(str(sup_lot), writer=ImageWriter()).write(image_bytes,options)
                     else:
-                        Code128(str(lot_number), writer=ImageWriter()).write(image_bytes)
+                        Code128(str(lot_number), writer=ImageWriter()).write(image_bytes,options)
 
                     image_bytes.seek(0)
                     lot_img = Image.open(image_bytes).convert("RGB")
@@ -195,6 +201,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
