@@ -44,8 +44,8 @@ pattern = r"^\d{7}[A-Za-z]{2}$"
 
 options = {
     "module_width": 0.2,     
-    "module_height": 2.7,   
-    "quiet_zone": 2.0,       
+    "module_height": 4,   
+    "quiet_zone": 10.0,       
     "font_size": 5,          
     "text_distance": 2.0}
 
@@ -147,8 +147,8 @@ if st.button("Input"):
                     text_sticker.text((15,0),f"Reception date : {dt.datetime.now().date()}",fill="black")
                     
                     
-                    combined.paste(ref_img, (120, 0))
-                    combined.paste(lot_img, (120, ref_img.height))
+                    combined.paste(ref_img, (100, 0))
+                    combined.paste(lot_img, (100, ref_img.height))
 
                     download_buffer = BytesIO()
                     combined.save(download_buffer, format="PNG")
@@ -207,6 +207,7 @@ new_rows = df.iloc[-10:,:3]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
