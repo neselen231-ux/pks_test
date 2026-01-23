@@ -190,7 +190,7 @@ if st.button("Input"):
                     )
 
                     combined.paste(ref_img, (135, 25))
-                    combined.paste(lot_img, (135, ref_img.height+15))
+                    #combined.paste(lot_img, (135, ref_img.height+15))
 
 
                     download_buffer = BytesIO()
@@ -240,6 +240,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
