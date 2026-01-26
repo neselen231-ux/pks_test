@@ -27,7 +27,7 @@ div.viewerBadge_link__1S137 {display: none;}         /* created by */
 </style>
 """
 st.markdown(hide_ui, unsafe_allow_html=True)
-st_autorefresh(interval=50000, key="refresh")
+st_autorefresh(interval=500000, key="refresh")
 st.title("PFE Reception")
 
 
