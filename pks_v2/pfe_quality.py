@@ -264,7 +264,7 @@ with st.expander("🗑️ Delete specific lot", expanded=False):
                     st.error(f"❌ Delete failed: {e}")
 
 df = pd.read_sql("SELECT * FROM reception", con=engine)
-new_rows = df[df["Op_lot"].isin(st.session_state["changed_lots"])]
+new_rows = df[df["OP_lot"].isin(st.session_state["changed_lots"])]
 
 st.subheader("Inspected lots")
 st.dataframe(new_rows)
