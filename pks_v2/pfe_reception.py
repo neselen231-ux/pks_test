@@ -193,7 +193,7 @@ if st.button("Input"):
                             )
                             text_sticker.text(
                                 (85, ref_img.height+115),
-                                "Supplier lot number",
+                                "Supplier lot",
                                 fill="black",
                                 font=ffont2
                             )
@@ -249,7 +249,7 @@ if st.button("Input"):
                     )
                     text_sticker.text(
                         (85, ref_img.height+115),
-                        "Supplier lot number",
+                        "Supplier lot",
                         fill="black",
                         font=ffont2
                     )
@@ -306,6 +306,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
