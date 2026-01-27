@@ -33,7 +33,7 @@ st.title("PFE Reception")
 
 st.subheader("lot to be inspected")
 df = pd.read_sql("SELECT * FROM reception", con=engine)
-st.table(df[(df["Quantity"]!=0)&(df["Ok_qty"].isnull())].iloc[:,:3])
+st.table(df[(df["Quantity"]!=0)&(df["Ok_qty"].isnull())].iloc[:,-1:3])
 
 
 lot_number = st.number_input("Lot number",min_value=0)
