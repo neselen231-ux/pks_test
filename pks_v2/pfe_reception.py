@@ -161,19 +161,19 @@ if st.button("Input"):
                                 font=ffont
                             )
                             text_sticker.text(
-                                (85, 40),
+                                (85, 45),
                                 "Reference",
                                 fill="black",
                                 font=ffont2
                             )
                             text_sticker.text(
-                                (85, ref_img.height+30),
+                                (85, ref_img.height+35),
                                 "OP lot number",
                                 fill="black",
                                 font=ffont2
                             )
                             text_sticker.text(
-                                (85, ref_img.height+110),
+                                (85, ref_img.height+115),
                                 "Supplier lot number",
                                 fill="black",
                                 font=ffont2
@@ -217,19 +217,19 @@ if st.button("Input"):
                         font=ffont
                     )
                     text_sticker.text(
-                        (85, 40),
+                        (85, 45),
                         "Reference",
                         fill="black",
                         font=ffont2
                     )
                     text_sticker.text(
-                        (85, ref_img.height+30),
+                        (85, ref_img.height+35),
                         "OP lot number",
                         fill="black",
                         font=ffont2
                     )
                     text_sticker.text(
-                        (85, ref_img.height+110),
+                        (85, ref_img.height+115),
                         "Supplier lot number",
                         fill="black",
                         font=ffont2
@@ -287,6 +287,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
