@@ -61,7 +61,7 @@ if st.button("Input"):
                 # -------------------------
 
                 if sup_sn_check == True:
-                    lot_numbers = []  ### ✅ FIX: 각 INSERT의 lot_number들을 저장
+                    OP_lots = []  ### ✅ FIX: 각 INSERT의 OP_lot들을 저장
 
                     for i in range(1, qty + 1):
                         if sup_lot:
@@ -83,17 +83,17 @@ if st.button("Input"):
                                  "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct"}
                             )
 
-                            lot_number = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
-                            lot_numbers.append(lot_number)  ### ✅ FIX: 매 insert ID 저장
+                            OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
+                            OP_lots.append(OP_lot)  ### ✅ FIX: 매 insert ID 저장
 
-                            status_value = f"{lot_number}_{i}"
+                            status_value = f"{OP_lot}_{i}"
                             conn_2.execute(
                                 text("""
                                     UPDATE reception
                                     SET Status = :status
-                                    WHERE lot_number = :lot_number
+                                    WHERE OP_lot = :OP_lot
                                 """),
-                                {"status": status_value, "lot_number": lot_number}
+                                {"status": status_value, "OP_lot": OP_lot}
                             )
 
                 else:
@@ -107,7 +107,7 @@ if st.button("Input"):
                     )
 
                 # ✅ (기존 로직 유지) 마지막 ID
-                lot_number = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
+                OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
 
                 # -------------------------
                 # REFERENCE 바코드 생성
@@ -126,26 +126,28 @@ if st.button("Input"):
                     with zipfile.ZipFile(download_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
                         for i in range(1, qty + 1):
                             buf_lot = BytesIO()
-
+                            sup_lots = BytesIO()
                             if sup_lot:
-                                Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
+                                Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(sup_lot, options)
                                 filename = f"{sup_lot}_{i}_{reference}_barcodes.png"
 
                             else:
-                                this_lot = lot_numbers[i - 1]  ### ✅ FIX: i번째 row의 lot_number 사용
+                                this_lot = OP_lots[i - 1]  ### ✅ FIX: i번째 row의 OP_lot 사용
                                 Code128(f"{this_lot}", writer=ImageWriter()).write(buf_lot, options)
                                 filename = f"{this_lot}_{reference}_barcodes.png"  ### ✅ FIX
-
+                            sup_lot.seek(0)
+                            sup_img = Image.open(sup_lot).convert("RGB")
                             buf_lot.seek(0)
                             lot_img = Image.open(buf_lot).convert("RGB")
 
                             # ✅ combined 캔버스 크기 계산
-                            max_w = max(ref_img.width, lot_img.width) + 250
-                            total_h = ref_img.height + lot_img.height
+                            max_w = max(ref_img.width, lot_img.width, sup_img.width) + 250
+                            total_h = ref_img.height + lot_img.height + sup_img.height
 
                             combined = Image.new("RGB", (max_w, total_h), "white")
                             combined.paste(ref_img, (135, 25))
                             combined.paste(lot_img, (135, ref_img.height+15))
+                            combined.paste(sup_img, (135, ref_img.height+55))
 
                             text_sticker = ImageDraw.Draw(combined)
                             text_sticker.text(
@@ -168,16 +170,19 @@ if st.button("Input"):
                 # -------------------------
                 else:
                     image_bytes = BytesIO()
+                    sup_lots = BytesIO()
                     if sup_lot:
-                        Code128(str(sup_lot), writer=ImageWriter()).write(image_bytes, options)
+                        Code128(str(sup_lot), writer=ImageWriter()).write(sup_lots, options)
                     else:
-                        Code128(str(lot_number), writer=ImageWriter()).write(image_bytes, options)
-
+                        Code128(str(OP_lot), writer=ImageWriter()).write(image_bytes, options)
+                        
+                    sup_lot.seek(0)
+                    sup_img = Image.open(sup_lot).convert("RGB")
                     image_bytes.seek(0)
                     lot_img = Image.open(image_bytes).convert("RGB")
 
-                    max_w = max(ref_img.width, lot_img.width) + 250
-                    total_h = ref_img.height + lot_img.height
+                    max_w = max(ref_img.width, lot_img.width, sup_img.width) + 250
+                    total_h = ref_img.height + lot_img.height + sup_img.height
 
                     combined = Image.new("RGB", (max_w, total_h), "white")
 
@@ -191,6 +196,7 @@ if st.button("Input"):
 
                     combined.paste(ref_img, (135, 25))
                     combined.paste(lot_img, (135, ref_img.height+15))
+                    combined.paste(sup_img, (135, ref_img.height+55))
 
 
                     download_buffer = BytesIO()
@@ -222,7 +228,7 @@ with st.expander("Delete lot",expanded=False):
     
     if st.button("Delete"):
         with engine.begin() as deletion:
-            deletion.execute(text("DELETE FROM reception WHERE Lot_number = :lot"),{"lot":int(delete_id)})
+            deletion.execute(text("DELETE FROM reception WHERE OP_lot = :lot"),{"lot":int(delete_id)})
         st.rerun()
 
 
@@ -240,6 +246,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
