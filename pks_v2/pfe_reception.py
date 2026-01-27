@@ -53,6 +53,7 @@ options = {
 sup_sn_check = st.checkbox("S/N mode", value = False )
 
 ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 25)
+ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 15)
 if st.button("Input"):
     if delivery_note:
         if re.fullmatch(pattern, reference):
@@ -190,10 +191,28 @@ if st.button("Input"):
 
                     text_sticker = ImageDraw.Draw(combined)
                     text_sticker.text(
-                        (115, 0),
+                        (65, 0),
                         f"{dt.datetime.now().date()}",
                         fill="black",
                         font=ffont
+                    )
+                    text_sticker.text(
+                        (80, 25),
+                        "Reference",
+                        fill="black",
+                        font=ffont2
+                    )
+                    text_sticker.text(
+                        (85, ref_img.height+15),
+                        "OP lot number",
+                        fill="black",
+                        font=ffont2
+                    )
+                    text_sticker.text(
+                        (85, ref_img.height+95),
+                        "Supplier lot number",
+                        fill="black",
+                        font=ffont2
                     )
 
                     combined.paste(ref_img, (165, 25))
@@ -248,6 +267,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
