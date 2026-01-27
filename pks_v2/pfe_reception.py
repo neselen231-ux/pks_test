@@ -135,8 +135,8 @@ if st.button("Input"):
                                 this_lot = OP_lots[i - 1]  ### ✅ FIX: i번째 row의 OP_lot 사용
                                 Code128(f"{this_lot}", writer=ImageWriter()).write(buf_lot, options)
                                 filename = f"{this_lot}_{reference}_barcodes.png"  ### ✅ FIX
-                            sup_lot.seek(0)
-                            sup_img = Image.open(sup_lot).convert("RGB")
+                            sup_lots.seek(0)
+                            sup_img = Image.open(sup_lots).convert("RGB")
                             buf_lot.seek(0)
                             lot_img = Image.open(buf_lot).convert("RGB")
 
@@ -176,8 +176,8 @@ if st.button("Input"):
                     else:
                         Code128(str(OP_lot), writer=ImageWriter()).write(image_bytes, options)
                         
-                    sup_lot.seek(0)
-                    sup_img = Image.open(sup_lot).convert("RGB")
+                    sup_lots.seek(0)
+                    sup_img = Image.open(sup_lots).convert("RGB")
                     image_bytes.seek(0)
                     lot_img = Image.open(image_bytes).convert("RGB")
 
@@ -246,6 +246,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
