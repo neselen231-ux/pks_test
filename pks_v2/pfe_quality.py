@@ -36,7 +36,7 @@ df = pd.read_sql("SELECT * FROM reception", con=engine)
 st.table(df[(df["Quantity"]!=0)&(df["Ok_qty"].isnull())].iloc[:,[-1,0,1,2]])
 
 
-lot_number = st.number_input("Lot number",min_value=0)
+lot_number = st.number_input("OP Lot number",min_value=0)
 ok_qty = st.number_input("Compliant Quantity",min_value=0,step=1)
 
 
