@@ -54,6 +54,8 @@ sup_sn_check = st.checkbox("S/N mode", value = False )
 
 ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 25)
 ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 15)
+OP_lots = []  ### ✅ FIX: 각 INSERT의 OP_lot들을 저장
+
 if st.button("Input"):
     if delivery_note:
         if re.fullmatch(pattern, reference):
@@ -63,7 +65,7 @@ if st.button("Input"):
                 # -------------------------
 
                 if sup_sn_check == True:
-                    OP_lots = []  ### ✅ FIX: 각 INSERT의 OP_lot들을 저장
+
 
                     for i in range(1, qty + 1):
                         if sup_lot:
@@ -292,6 +294,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
