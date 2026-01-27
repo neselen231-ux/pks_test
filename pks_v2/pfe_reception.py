@@ -188,14 +188,14 @@ if st.button("Input"):
                     text_sticker = ImageDraw.Draw(combined)
                     text_sticker.text(
                         (115, 0),
-                        f"{dt.datetime.now().date()}_{delivery_note}",
+                        f"{dt.datetime.now().date()}",
                         fill="black",
                         font=ffont
                     )
 
                     combined.paste(ref_img, (135, 25))
                     combined.paste(lot_img, (135, ref_img.height+15))
-                    combined.paste(sup_img, (135, ref_img.height+55))
+                    combined.paste(sup_img, (135, ref_img.height+95))
 
 
                     download_buffer = BytesIO()
@@ -245,6 +245,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
