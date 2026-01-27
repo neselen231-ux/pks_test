@@ -134,6 +134,8 @@ if st.button("Input"):
                                 filename = f"{sup_lot}_{i}_{reference}_barcodes.png"
 
                             else:
+                                if not sup_lot:
+                                    sup_lot="NA"
                                 this_lot = OP_lots[i - 1]  ### ✅ FIX: i번째 row의 OP_lot 사용
                                 Code128(f"{this_lot}", writer=ImageWriter()).write(buf_lot, options)
                                 filename = f"{this_lot}_{reference}_barcodes.png"  ### ✅ FIX
@@ -153,10 +155,28 @@ if st.button("Input"):
 
                             text_sticker = ImageDraw.Draw(combined)
                             text_sticker.text(
-                                (115, 0),
-                                f"PFE Reception: {dt.datetime.now().date()}",
+                                (105, 0),
+                                f"{dt.datetime.now().date()}",
                                 fill="black",
                                 font=ffont
+                            )
+                            text_sticker.text(
+                                (85, 40),
+                                "Reference",
+                                fill="black",
+                                font=ffont2
+                            )
+                            text_sticker.text(
+                                (85, ref_img.height+30),
+                                "OP lot number",
+                                fill="black",
+                                font=ffont2
+                            )
+                            text_sticker.text(
+                                (85, ref_img.height+110),
+                                "Supplier lot number",
+                                fill="black",
+                                font=ffont2
                             )
 
                             img_bytes = BytesIO()
@@ -191,25 +211,25 @@ if st.button("Input"):
 
                     text_sticker = ImageDraw.Draw(combined)
                     text_sticker.text(
-                        (65, 0),
+                        (105, 0),
                         f"{dt.datetime.now().date()}",
                         fill="black",
                         font=ffont
                     )
                     text_sticker.text(
-                        (80, 25),
+                        (85, 40),
                         "Reference",
                         fill="black",
                         font=ffont2
                     )
                     text_sticker.text(
-                        (85, ref_img.height+15),
+                        (85, ref_img.height+30),
                         "OP lot number",
                         fill="black",
                         font=ffont2
                     )
                     text_sticker.text(
-                        (85, ref_img.height+95),
+                        (85, ref_img.height+110),
                         "Supplier lot number",
                         fill="black",
                         font=ffont2
@@ -267,6 +287,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
