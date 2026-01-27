@@ -77,6 +77,18 @@ if st.button("Input"):
                                  "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct",
                                  "sup": f"{sup_lot}_{i}"}
                             )
+                            OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
+                            OP_lots.append(OP_lot)  ### ✅ FIX: 매 insert ID 저장
+
+                            status_value = f"{OP_lot}_{i}"
+                            conn_2.execute(
+                                text("""
+                                    UPDATE reception
+                                    SET Status = :status
+                                    WHERE OP_lot = :OP_lot
+                                """),
+                                {"status": status_value, "OP_lot": OP_lot}
+                            )
 
                         else:
                             conn_2.execute(
@@ -294,6 +306,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
