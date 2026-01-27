@@ -38,8 +38,7 @@ delivery_note = st.text_input("Delivery note",max_chars=20)
 sup_lot = st.text_input("Supplier lot",max_chars=40)
 Comment = st.text_input("Comment",max_chars=20)
 
-if sup_lot == False:
-    sup_lot="NA"
+
 
 # Reference pattern
 pattern = r"^\d{7}[A-Za-z]{2}$"
@@ -171,6 +170,8 @@ if st.button("Input"):
                 # SN 아닌 케이스: 단일 바코드 생성
                 # -------------------------
                 else:
+                    if not sup_lot:
+                        sup_lot="NA"
                     image_bytes = BytesIO()
                     sup_lots = BytesIO()
                     
@@ -247,6 +248,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
