@@ -72,11 +72,11 @@ if st.button("Input"):
                         if sup_lot:
                             conn_2.execute(
                                 text("""INSERT INTO reception
-                                        (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot)
-                                        VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup)"""),
+                                        (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot, project)
+                                        VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
                                 {"ref": reference.upper(), "qty": "1", "dev": delivery_note,
                                  "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct",
-                                 "sup": f"{sup_lot}_{i}"}
+                                 "sup": f"{sup_lot}_{i}", "prog" : project}
                             )
                             OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
                             OP_lots.append(OP_lot)  ### ✅ FIX: 매 insert ID 저장
@@ -94,10 +94,10 @@ if st.button("Input"):
                         else:
                             conn_2.execute(
                                 text("""INSERT INTO reception
-                                        (Reference, Quantity, delivery_note, Comment, reception_date, Status)
-                                        VALUES (:ref, :qty, :dev, :rem, :rep, :sta)"""),
+                                        (Reference, Quantity, delivery_note, Comment, reception_date, Status, project)
+                                        VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :prog)"""),
                                 {"ref": reference.upper(), "qty": "1", "dev": delivery_note,
-                                 "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct"}
+                                 "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct","prog" : project}
                             )
 
                             OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
@@ -116,11 +116,11 @@ if st.button("Input"):
                 else:
                     conn_2.execute(
                         text("""INSERT INTO reception
-                                (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot)
-                                VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup)"""),
+                                (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot, project)
+                                VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
                         {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
                          "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct",
-                         "sup": f"{sup_lot}"}
+                         "sup": f"{sup_lot}","prog" : project}
                     )
 
                 # ✅ (기존 로직 유지) 마지막 ID
@@ -307,6 +307,7 @@ new_rows = df.iloc[-10:,[-1,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
