@@ -72,7 +72,7 @@ if st.button("Input"):
                         if sup_lot:
                             conn_2.execute(
                                 text("""INSERT INTO reception
-                                        (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot, project)
+                                        (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot, program)
                                         VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
                                 {"ref": reference.upper(), "qty": "1", "dev": delivery_note,
                                  "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct",
@@ -94,7 +94,7 @@ if st.button("Input"):
                         else:
                             conn_2.execute(
                                 text("""INSERT INTO reception
-                                        (Reference, Quantity, delivery_note, Comment, reception_date, Status, project)
+                                        (Reference, Quantity, delivery_note, Comment, reception_date, Status, program)
                                         VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :prog)"""),
                                 {"ref": reference.upper(), "qty": "1", "dev": delivery_note,
                                  "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct","prog": project}
