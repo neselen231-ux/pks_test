@@ -33,11 +33,11 @@ st.title("Reception")
 
 # 2 input boxes
 reference = st.text_input("Reference number")
-qty = st.number_input("quantity", min_value=0, step=1)
+qty = st.number_input("quantity", min_value=0.0, step=0.1)
 delivery_note = st.text_input("Delivery note",max_chars=20)
 sup_lot = st.text_input("Supplier lot",max_chars=40)
 Comment = st.text_input("Comment",max_chars=20)
-project = st.text_input("Project",max_chars=8)
+project = st.selectbox("Project",["Alstom","Hess"])
 
 
 
@@ -307,6 +307,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
