@@ -37,7 +37,7 @@ qty = st.number_input("quantity", min_value=0.0, step=0.1)
 delivery_note = st.text_input("Delivery note",max_chars=20)
 sup_lot = st.text_input("Supplier lot",max_chars=40)
 Comment = st.text_input("Comment",max_chars=20)
-project = st.selectbox("Project",["Alstom","Hess"])
+project = st.selectbox("Project",["Alstom","Hess","TBC"])
 
 
 
@@ -58,7 +58,7 @@ ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 15)
 OP_lots = []  ### ✅ FIX: 각 INSERT의 OP_lot들을 저장
 
 if st.button("Input"):
-    if delivery_note:
+    if delivery_note and project:
         if re.fullmatch(pattern, reference):
             with engine.begin() as conn_2:
                 # -------------------------
@@ -307,6 +307,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
