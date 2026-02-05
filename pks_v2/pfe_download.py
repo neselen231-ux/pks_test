@@ -24,4 +24,8 @@ engine = create_engine(
 )
 st.title("Reception download")
 
-st.button("reception history download",download=)
+st.download_button(
+    label="📥 Download reception history",
+    data=download_buffer,
+    file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
+    mime="application/zip" if sup_sn_check else "image/png",
