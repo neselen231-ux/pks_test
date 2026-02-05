@@ -1,6 +1,7 @@
 import datetime as dt
 import streamlit as st
 import pandas as pd
+from io import BytesIO
 
 
 hide_ui = """
@@ -24,8 +25,16 @@ engine = create_engine(
 )
 st.title("Reception download")
 
+df = pd.read_sql("SELECT * FROM reception", con=engine)
+
+buffer = BytesIO()
+
+with pd.ExcelWriter(buffer, engine="xlsxwriter") as writer:
+    df.to_excel(writer, index=False)
+
 st.download_button(
     label="📥 Download reception history",
-    data=download_buffer,
-    file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
-    mime="application/zip" if sup_sn_check else "image/png",
+    data=buffer.getvalue(),
+    file_name=f"reception_history_{dt.datetime.now():%Y%m%d_%H%M%S}.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
