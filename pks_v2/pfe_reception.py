@@ -201,7 +201,7 @@ if st.button("Input"):
                     image_bytes = BytesIO()
                     qty_lots = BytesIO()
                     
-                    Code128("Q"+str(qty_lot), writer=ImageWriter()).write(qty_lots, options)
+                    Code128("Q"+str(qty), writer=ImageWriter()).write(qty_lots, options)
                     Code128("S"+str(OP_lot), writer=ImageWriter()).write(image_bytes, options)
                         
                     qty_lots.seek(0)
@@ -292,6 +292,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
