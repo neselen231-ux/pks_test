@@ -138,6 +138,7 @@ if st.button("Input"):
                     vendor = vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].iloc[0]
                 except IndexError:
                     st.warning("vendor not found")
+                    st.stop()
 
                 
                 # -------------------------
@@ -313,6 +314,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
