@@ -123,7 +123,6 @@ if st.button("Input"):
                          "sup": f"{sup_lot}", "prog": project}
                     )
 
-                # ✅ (기존 로직 유지) 마지막 ID
                 OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
 
                 # -------------------------
@@ -145,22 +144,13 @@ if st.button("Input"):
                             buf_lot = BytesIO()
                             sup_lots = BytesIO()
                             if sup_lot:
-                                Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(sup_lots, options)
-                                filename = f"{sup_lot}_{i}_{reference}_barcodes.png"
-                                this_lot = OP_lots[i - 1]  ### ✅ FIX: i번째 row의 OP_lot 사용
                                 Code128(f"S{this_lot}", writer=ImageWriter()).write(buf_lot, options)
                                 filename = f"{this_lot}_{reference}_barcodes.png"  ### ✅ FIX
 
                             else:
                                 if not sup_lot:
-                                    sup_lot="NA"
-                                Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(sup_lots, options)
-                                filename = f"{sup_lot}_{i}_{reference}_barcodes.png"
-                                this_lot = OP_lots[i - 1]  ### ✅ FIX: i번째 row의 OP_lot 사용
                                 Code128(f"S{this_lot}", writer=ImageWriter()).write(buf_lot, options)
                                 filename = f"{this_lot}_{reference}_barcodes.png"  ### ✅ FIX
-                            sup_lots.seek(0)
-                            sup_img = Image.open(sup_lots).convert("RGB")
                             buf_lot.seek(0)
                             lot_img = Image.open(buf_lot).convert("RGB")
 
@@ -171,7 +161,6 @@ if st.button("Input"):
                             combined = Image.new("RGB", (max_w, total_h), "white")
                             combined.paste(ref_img, (165, 25))
                             combined.paste(lot_img, (165, ref_img.height+15))
-                            combined.paste(sup_img, (165, ref_img.height+95))
 
                             text_sticker = ImageDraw.Draw(combined)
                             text_sticker.text(
@@ -214,13 +203,13 @@ if st.button("Input"):
                     if not sup_lot:
                         sup_lot="NA"
                     image_bytes = BytesIO()
-                    sup_lots = BytesIO()
+                    qty_lots = BytesIO()
                     
-                    Code128(str(sup_lot), writer=ImageWriter()).write(sup_lots, options)
+                    Code128("Q"+str(qty_lot), writer=ImageWriter()).write(qty_lots, options)
                     Code128("S"+str(OP_lot), writer=ImageWriter()).write(image_bytes, options)
                         
-                    sup_lots.seek(0)
-                    sup_img = Image.open(sup_lots).convert("RGB")
+                    qty_lots.seek(0)
+                    qty_img = Image.open(qty_lots).convert("RGB")
                     image_bytes.seek(0)
                     lot_img = Image.open(image_bytes).convert("RGB")
 
@@ -257,7 +246,7 @@ if st.button("Input"):
 
                     combined.paste(ref_img, (165, 25))
                     combined.paste(lot_img, (165, ref_img.height+15))
-                    combined.paste(sup_img, (165, ref_img.height+95))
+                    combined.paste(qty_img, (165, ref_img.height+95))
 
 
                     download_buffer = BytesIO()
@@ -307,6 +296,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
