@@ -51,9 +51,9 @@ pattern = r"^\d{7}[A-Za-z]{2}$"
 options = {
     "module_width": 0.2,     
     "module_height": 2,   
-    "quiet_zone": 1.3,       
+    "quiet_zone": 1.5,       
     "font_size": 3,          
-    "text_distance": 2.0}
+    "text_distance": 0.5}
 
 sup_sn_check = st.checkbox("S/N mode", value = False )
 
@@ -252,7 +252,7 @@ if st.button("Input"):
                             font=ffont2
                         )
                         text_sticker.text(
-                            (85, ref_img.height+115),
+                            (85, ref_img.height+95),
                             "Quantity",
                             fill="black",
                             font=ffont2
@@ -266,7 +266,7 @@ if st.button("Input"):
     
                         combined.paste(ref_img, (165, 25))
                         combined.paste(lot_img, (165, ref_img.height+15))
-                        combined.paste(qty_img, (165, qty_img.height+95))
+                        combined.paste(qty_img, (165, qty_img.height+75))
                         combined.paste(vendor_img, (165, vendor_img.height+140))
     
     
@@ -318,6 +318,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
