@@ -147,10 +147,6 @@ if st.button("Input"):
                                 Code128(f"S{this_lot}", writer=ImageWriter()).write(buf_lot, options)
                                 filename = f"{this_lot}_{reference}_barcodes.png"  ### ✅ FIX
 
-                            else:
-                                if not sup_lot:
-                                Code128(f"S{this_lot}", writer=ImageWriter()).write(buf_lot, options)
-                                filename = f"{this_lot}_{reference}_barcodes.png"  ### ✅ FIX
                             buf_lot.seek(0)
                             lot_img = Image.open(buf_lot).convert("RGB")
 
@@ -296,6 +292,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
