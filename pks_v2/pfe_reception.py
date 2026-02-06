@@ -45,9 +45,9 @@ pattern = r"^\d{7}[A-Za-z]{2}$"
 
 options = {
     "module_width": 0.2,     
-    "module_height": 4,   
-    "quiet_zone": 1.0,       
-    "font_size": 5,          
+    "module_height": 2,   
+    "quiet_zone": 1.3,       
+    "font_size": 3,          
     "text_distance": 2.0}
 
 sup_sn_check = st.checkbox("S/N mode", value = False )
@@ -243,7 +243,13 @@ if st.button("Input"):
                     )
                     text_sticker.text(
                         (85, ref_img.height+115),
-                        "Supplier lot",
+                        "Quantity",
+                        fill="black",
+                        font=ffont2
+                    )
+                    text_sticker.text(
+                        (85, ref_img.height+145),
+                        "Vendor",
                         fill="black",
                         font=ffont2
                     )
@@ -301,6 +307,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
