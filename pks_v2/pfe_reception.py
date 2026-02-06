@@ -64,7 +64,7 @@ OP_lots = []  ### ✅ FIX: 각 INSERT의 OP_lot들을 저장
 if st.button("Input"):
     if delivery_note and project:
         if re.fullmatch(pattern, reference):
-            if vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].iloc[0] == None: 
+            if vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].empty: 
                 with engine.begin() as conn_2:
                     # -------------------------
                     # INSERT 파트
@@ -318,6 +318,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
