@@ -125,13 +125,21 @@ if st.button("Input"):
                 OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
 
                 # -------------------------
-                # REFERENCE 바코드 생성
+                # REFERENCE barcode generation
                 # -------------------------
                 buf_ref = BytesIO()
                 Code128("P"+reference.upper(), writer=ImageWriter()).write(buf_ref, options)
                 buf_ref.seek(0)
                 ref_img = Image.open(buf_ref).convert("RGB")
 
+                #----- Vendorcheck
+                try:
+                    vendor = vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].iloc[0]
+                except IndexError:
+                    vendor = None
+                    st.warning("vendor not found")
+
+                
                 # -------------------------
                 # SN 케이스: zip 여러개 생성
                 # -------------------------
@@ -195,9 +203,7 @@ if st.button("Input"):
                 # SN 아닌 케이스: 단일 바코드 생성
                 # -------------------------
                 else:
-                    #vendor check
-                    vendor_list = pd.read_csv("vendorlist2.csv",sep=";")
-                    vendor = vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].iloc[0]
+
 
                     if not sup_lot:
                         sup_lot="NA"
@@ -307,6 +313,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
