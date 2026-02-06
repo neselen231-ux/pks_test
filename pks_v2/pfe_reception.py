@@ -133,6 +133,7 @@ if st.button("Input"):
                 ref_img = Image.open(buf_ref).convert("RGB")
 
                 #----- Vendorcheck
+                vendor_list = pd.read_csv("vendorlist2.csv",sep=";")
                 try:
                     vendor = vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].iloc[0]
                 except IndexError:
@@ -313,6 +314,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
