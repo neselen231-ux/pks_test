@@ -130,7 +130,7 @@ if st.button("Input"):
                 # REFERENCE 바코드 생성
                 # -------------------------
                 buf_ref = BytesIO()
-                Code128("S"&reference.upper(), writer=ImageWriter()).write(buf_ref, options)
+                Code128("S"+reference.upper(), writer=ImageWriter()).write(buf_ref, options)
                 buf_ref.seek(0)
                 ref_img = Image.open(buf_ref).convert("RGB")
 
@@ -145,19 +145,19 @@ if st.button("Input"):
                             buf_lot = BytesIO()
                             sup_lots = BytesIO()
                             if sup_lot:
-                                Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(sup_lots, options)
+                                Code128(f"S{sup_lot}_{i}", writer=ImageWriter()).write(sup_lots, options)
                                 filename = f"{sup_lot}_{i}_{reference}_barcodes.png"
                                 this_lot = OP_lots[i - 1]  ### ✅ FIX: i번째 row의 OP_lot 사용
-                                Code128(f"{this_lot}", writer=ImageWriter()).write(buf_lot, options)
+                                Code128(f"S{this_lot}", writer=ImageWriter()).write(buf_lot, options)
                                 filename = f"{this_lot}_{reference}_barcodes.png"  ### ✅ FIX
 
                             else:
                                 if not sup_lot:
                                     sup_lot="NA"
-                                Code128(f"{sup_lot}_{i}", writer=ImageWriter()).write(sup_lots, options)
+                                Code128(f"S{sup_lot}_{i}", writer=ImageWriter()).write(sup_lots, options)
                                 filename = f"{sup_lot}_{i}_{reference}_barcodes.png"
                                 this_lot = OP_lots[i - 1]  ### ✅ FIX: i번째 row의 OP_lot 사용
-                                Code128(f"{this_lot}", writer=ImageWriter()).write(buf_lot, options)
+                                Code128(f"S{this_lot}", writer=ImageWriter()).write(buf_lot, options)
                                 filename = f"{this_lot}_{reference}_barcodes.png"  ### ✅ FIX
                             sup_lots.seek(0)
                             sup_img = Image.open(sup_lots).convert("RGB")
@@ -216,8 +216,8 @@ if st.button("Input"):
                     image_bytes = BytesIO()
                     sup_lots = BytesIO()
                     
-                    Code128(str(sup_lot), writer=ImageWriter()).write(sup_lots, options)
-                    Code128(str(OP_lot), writer=ImageWriter()).write(image_bytes, options)
+                    Code128(str("S"+sup_lot), writer=ImageWriter()).write(sup_lots, options)
+                    Code128(str("S"+OP_lot), writer=ImageWriter()).write(image_bytes, options)
                         
                     sup_lots.seek(0)
                     sup_img = Image.open(sup_lots).convert("RGB")
@@ -307,6 +307,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
