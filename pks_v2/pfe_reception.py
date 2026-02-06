@@ -40,7 +40,6 @@ Comment = st.text_input("Comment",max_chars=20)
 project = st.selectbox("Project",["","Als 105","Als 525","Als common","Hess 3P","Hess 4P","Hess common","TBC"])
 
 
-
 # Reference pattern
 pattern = r"^\d{7}[A-Za-z]{2}$"
 
@@ -196,21 +195,33 @@ if st.button("Input"):
                 # SN 아닌 케이스: 단일 바코드 생성
                 # -------------------------
                 else:
+                    #vendor check
+                    vendor_list = pd.read_csv("pfe_vendor_list.csv",index=False)
+                    vendor = vendor_list.loc[
+                        vendor_list["Part number"] == reference,
+                        "Supplier"
+                    ].iloc[0]
+
                     if not sup_lot:
                         sup_lot="NA"
                     image_bytes = BytesIO()
                     qty_lots = BytesIO()
+                    vendor_bytes = BytesIO()
                     
                     Code128("Q"+str(qty), writer=ImageWriter()).write(qty_lots, options)
                     Code128("S"+str(OP_lot), writer=ImageWriter()).write(image_bytes, options)
+                    Code128("V"+str(vendor), writer=ImageWriter()).write(vendor_bytes, options)
                         
                     qty_lots.seek(0)
                     qty_img = Image.open(qty_lots).convert("RGB")
                     image_bytes.seek(0)
                     lot_img = Image.open(image_bytes).convert("RGB")
+                    vendor_bytes.seek(0)
+                    vendor_img = Image.open(vendor_bytes).convert("RGB")
 
-                    max_w = max(ref_img.width, lot_img.width, qty_img.width) + 250
-                    total_h = ref_img.height + lot_img.height + qty_img.height
+                    
+                    max_w = max(ref_img.width, lot_img.width, qty_img.width, vendor_img.width) + 250
+                    total_h = ref_img.height + lot_img.height + qty_img.height + vendor_img.height
 
                     combined = Image.new("RGB", (max_w, total_h), "white")
 
@@ -243,6 +254,7 @@ if st.button("Input"):
                     combined.paste(ref_img, (165, 25))
                     combined.paste(lot_img, (165, ref_img.height+15))
                     combined.paste(qty_img, (165, qty_img.height+95))
+                    combined.paste(vendor_img, (165, vendor_img.height+140))
 
 
                     download_buffer = BytesIO()
@@ -292,6 +304,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
