@@ -196,7 +196,7 @@ if st.button("Input"):
                 # -------------------------
                 else:
                     #vendor check
-                    vendor_list = pd.read_csv("pfe_vendor_list.csv",index=False)
+                    vendor_list = pd.read_csv("pfe_vendor_list.csv")
                     vendor = vendor_list.loc[
                         vendor_list["Part number"] == reference,
                         "Supplier"
@@ -304,6 +304,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
