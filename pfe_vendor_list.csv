@@ -1,591 +1,592 @@
-﻿Part numbe          ;Supplier            ;Supplier N          
-7130049AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7130067AA         ;433566;DELO INDUSTRIEKLEBSTOFFE GMBH AND  
-7130068AA         ;433566;DELO INDUSTRIEKLEBSTOFFE GMBH AND  
-7130070AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7160097AC         ;SGT       ;Plastic Omnium e.Power GmbH        
-7160098AB         ;SGT       ;Plastic Omnium e.Power GmbH        
-7160099AC         ;SGT       ;Plastic Omnium e.Power GmbH        
-7160112AA         ;434146;ADDEV ADHIS                        
-7210692AA         ;412480;TTI INC                            
-7221116AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221117AB         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221118AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221119AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221122AB         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221153AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221158AB         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221171AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221176AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221218AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221250AA         ;434033;PUBLIFIX INDUSTRIES                
-7221251AA         ;434033;PUBLIFIX INDUSTRIES                
-7221252AA         ;434033;PUBLIFIX INDUSTRIES                
-7221253AA         ;434033;PUBLIFIX INDUSTRIES                
-7221254AA         ;434033;PUBLIFIX INDUSTRIES                
-7221255AA         ;434033;PUBLIFIX INDUSTRIES                
-7221256AA         ;434033;PUBLIFIX INDUSTRIES                
-7221257AA         ;434033;PUBLIFIX INDUSTRIES                
-7221258AA         ;434033;PUBLIFIX INDUSTRIES                
-7221259AA         ;434033;PUBLIFIX INDUSTRIES                
-7221260AA         ;434033;PUBLIFIX INDUSTRIES                
-7221282AA         ;434033;PUBLIFIX INDUSTRIES                
-7221283AA         ;434033;PUBLIFIX INDUSTRIES                
-7221284AA         ;434033;PUBLIFIX INDUSTRIES                
-7221285AA         ;434033;PUBLIFIX INDUSTRIES                
-7221286AA         ;434033;PUBLIFIX INDUSTRIES                
-7221287AA         ;434033;PUBLIFIX INDUSTRIES                
-7221309AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221329AA         ;434033;PUBLIFIX INDUSTRIES                
-7221345AA         ;434033;PUBLIFIX INDUSTRIES                
-7221358AA         ;434033;PUBLIFIX INDUSTRIES                
-7221371AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221374AA         ;434033;PUBLIFIX INDUSTRIES                
-7221376AA         ;434033;PUBLIFIX INDUSTRIES                
-7221377AA         ;434033;PUBLIFIX INDUSTRIES                
-7221378AA         ;434033;PUBLIFIX INDUSTRIES                
-7221389AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221390AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221391AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221392AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7221393AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7230528AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7230546AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7230564AB         ;SGT       ;Plastic Omnium e.Power GmbH        
-7230612AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7230627AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7230634AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7230642AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7230657AA         ;434181;VALSEM INDUSTRIES SAS              
-7230665AA         ;412272;RS COMPONENTS SAS                  
-7230666AA         ;412272;RS COMPONENTS SAS                  
-7230667AA         ;430235;BOSSARD FRANCE                     
-7230668AA         ;401721;TH INDUSTRIE                       
-7230669AA         ;431057;ISP FRANCE                         
-7230670AA         ;412272;RS COMPONENTS SAS                  
-7322067AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7322146AA         ;430235;BOSSARD FRANCE                     
-;431057;ISP FRANCE                         
-7322156AA         ;430235;BOSSARD FRANCE                     
-;431057;ISP FRANCE                         
-7331296AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331341AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331343AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331365AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331368AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331370AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331371AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331372AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331373AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331392AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331406AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331444AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331466AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331467AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331524AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331528AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331640AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331678AA         ;404482;ERCE  PLASTURGIE                   
-7331690AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331693AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331694AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331695AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331701AA         ;434146;ADDEV ADHIS                        
-7331704AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331707AA         ;431779;BROWNELL LIMITED                   
-7331715AA         ;430235;BOSSARD FRANCE                     
-7331716AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331717AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331736AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7331741AA         ;431779;BROWNELL LIMITED                   
-7331833AA         ;404482;ERCE  PLASTURGIE                   
-7331850AA         ;430235;BOSSARD FRANCE                     
-7331892AA         ;404482;ERCE  PLASTURGIE                   
-7331893AA         ;404482;ERCE  PLASTURGIE                   
-7331894AA         ;404482;ERCE  PLASTURGIE                   
-7331961AA         ;434356;IPR TECH                           
-7331994AA         ;429747;DIGI-KEY CORPORATION               
-7411566AA         ;431779;BROWNELL LIMITED                   
-;SGT       ;Plastic Omnium e.Power GmbH        
-7411574AA         ;412272;RS COMPONENTS SAS                  
-7440553AB         ;SGT       ;Plastic Omnium e.Power GmbH        
-7440554AB         ;SGT       ;Plastic Omnium e.Power GmbH        
-7440555AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7440577AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7440578AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7440605AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7440781AA         ;432755;HUTCHINSON S.N.C.                  
-7440782AA         ;432755;HUTCHINSON S.N.C.                  
-7440798AA         ;432755;HUTCHINSON S.N.C.                  
-7440799AA         ;432755;HUTCHINSON S.N.C.                  
-7440800AA         ;432755;HUTCHINSON S.N.C.                  
-7450096AA         ;430235;BOSSARD FRANCE                     
-7550282AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560659AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560874AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560876AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560891AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560892AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560895AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560898AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560899AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560900AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560902AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560909AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560911AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560916AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560918AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560919AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560924AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560925AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560929AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560930AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560931AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560933AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560937AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560938AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560941AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560944AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560946AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560947AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560948AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560949AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560950AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560951AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560952AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560954AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560955AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560956AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560957AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560958AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560960AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560961AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560962AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560963AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560964AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560966AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560967AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560990AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560996AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560998AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7560999AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561059AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561072AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561100AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561137AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561154AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561187AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561189AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561232AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561237AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561249AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561308AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561432AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561435AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561439AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561442AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561454AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561474AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561476AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561544AA         ;404482;ERCE  PLASTURGIE                   
-;426909;PROTO LABS                         
-7561544AB         ;404482;ERCE  PLASTURGIE                   
-7561544TA         ;426909;PROTO LABS                         
-7561545AA         ;404482;ERCE  PLASTURGIE                   
-;426909;PROTO LABS                         
-7561545TA         ;426909;PROTO LABS                         
-7561588AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561590AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561591AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561592AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561594AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561613AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561615AA         ;430235;BOSSARD FRANCE                     
-7561629AB         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561642AA         ;430235;BOSSARD FRANCE                     
-7561657AA         ;430235;BOSSARD FRANCE                     
-7561738AA         ;412519;WURTH FRANCE SA                    
-;430235;BOSSARD FRANCE                     
-7561739AA         ;412519;WURTH FRANCE SA                    
-;430235;BOSSARD FRANCE                     
-7561741AA         ;430235;BOSSARD FRANCE                     
-7561742AA         ;430235;BOSSARD FRANCE                     
-7561750AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561759AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561780AA         ;430235;BOSSARD FRANCE                     
-7561783AA         ;430235;BOSSARD FRANCE                     
-7561823AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561824AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561825AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561826AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561827AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561835AB         ;432537;DUTEIL ARNAUNE SAS                 
-7561840AA         ;430235;BOSSARD FRANCE                     
-7561848AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561849AA         ;430235;BOSSARD FRANCE                     
-7561858AA         ;430235;BOSSARD FRANCE                     
-7561890AA         ;430235;BOSSARD FRANCE                     
-7561898AA         ;430235;BOSSARD FRANCE                     
-7561899AA         ;430235;BOSSARD FRANCE                     
-7561902AA         ;430235;BOSSARD FRANCE                     
-7561903AA         ;430235;BOSSARD FRANCE                     
-7561904AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561906AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561924AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561925AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561926AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561928AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7561963AA         ;430235;BOSSARD FRANCE                     
-7561966AA         ;430235;BOSSARD FRANCE                     
-7562024AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7562026AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7562041AA         ;430235;BOSSARD FRANCE                     
-7562045AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7562057AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7571232AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7571233AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7571234AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7571321AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7571328AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7571329AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7571331AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7571333AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7571336AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7571659AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7571958AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572112AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572152AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572153AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572154AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572162AA         ;433443;ENSINGER FRANCE                    
-7572163AA         ;430234;B&D TECHNOLOGIES                   
-;433443;ENSINGER FRANCE                    
-7572163AB         ;430234;B&D TECHNOLOGIES                   
-7572214AB         ;432537;DUTEIL ARNAUNE SAS                 
-7572217AA         ;433286;PONCIN SAS                         
-7572219AA         ;430196;POTHIER PRODUCTIONS                
-7572236AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572241AB         ;432537;DUTEIL ARNAUNE SAS                 
-7572242AC         ;432537;DUTEIL ARNAUNE SAS                 
-7572263AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572266AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572287AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572310AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572311AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572315AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572316AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572317AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572318AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572319AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572324AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572325AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572326AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572327AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572329AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572330AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572342AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572343AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572344AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572345AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572346AB         ;433499;APT PRODUCTS S.R.O.                
-7572347AB         ;433499;APT PRODUCTS S.R.O.                
-7572348AB         ;427238;CALIP GROUP                        
-7572349AB         ;427238;CALIP GROUP                        
-7572351AA         ;102052;Optimas OE Solutions SAS           
-7572432AA         ;404482;ERCE  PLASTURGIE                   
-7572690AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572695AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7572704AA         ;432537;DUTEIL ARNAUNE SAS                 
-7572790AA         ;430196;POTHIER PRODUCTIONS                
-7572791AA         ;430196;POTHIER PRODUCTIONS                
-7572792AA         ;433645;XD THERMAL TECHNOLOGY CO., LTD     
-7572793AA         ;433499;APT PRODUCTS S.R.O.                
-7572858AA         ;431221;DEPRECQ SAS                        
-7572859AA         ;431221;DEPRECQ SAS                        
-7572860AA         ;431221;DEPRECQ SAS                        
-7572862AA         ;431221;DEPRECQ SAS                        
-7572863AA         ;431221;DEPRECQ SAS                        
-7572879AA         ;431221;DEPRECQ SAS                        
-7572880AA         ;432537;DUTEIL ARNAUNE SAS                 
-7572881AA         ;431221;DEPRECQ SAS                        
-7572882AA         ;431221;DEPRECQ SAS                        
-7572884AA         ;431221;DEPRECQ SAS                        
-7572942AA         ;430235;BOSSARD FRANCE                     
-7572966AA         ;432537;DUTEIL ARNAUNE SAS                 
-7573030AA         ;431221;DEPRECQ SAS                        
-7573032AA         ;431221;DEPRECQ SAS                        
-7573033AA         ;431221;DEPRECQ SAS                        
-7573034AA         ;431221;DEPRECQ SAS                        
-7573035AA         ;431221;DEPRECQ SAS                        
-7573037AA         ;431221;DEPRECQ SAS                        
-7573038AA         ;431221;DEPRECQ SAS                        
-7573040AA         ;434248;GALATEE SAS                        
-7573150AA         ;431221;DEPRECQ SAS                        
-7573252AA         ;432537;DUTEIL ARNAUNE SAS                 
-7573332AA         ;429747;DIGI-KEY CORPORATION               
-7573345AA         ;429663;TTI                                
-7621553AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621554AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621811AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621821AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621853AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621855AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621858AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621868AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621886AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621887AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621888AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621890AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621891AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621892AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621903AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621905AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7621960AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622099AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622105AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622149AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622259AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622301AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622315AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622318AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622319AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622322AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622359AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622390AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622417AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622668AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622685AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7622686AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7622715AB         ;432520;SIRAIL SAS                         
-;432544;SATYS ELECTRIC FRANCE              
-7622716AC         ;432520;SIRAIL SAS                         
-7622717AD         ;432520;SIRAIL SAS                         
-7622731AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622733AC         ;432520;SIRAIL SAS                         
-7622734AC         ;432520;SIRAIL SAS                         
-7622735AB         ;432520;SIRAIL SAS                         
-7622736AC         ;432520;SIRAIL SAS                         
-7622737AC         ;432520;SIRAIL SAS                         
-7622765AB         ;432520;SIRAIL SAS                         
-;432544;SATYS ELECTRIC FRANCE              
-7622772AC         ;432520;SIRAIL SAS                         
-7622773AC         ;432520;SIRAIL SAS                         
-7622774AC         ;432520;SIRAIL SAS                         
-7622775AC         ;432520;SIRAIL SAS                         
-7622776AC         ;432520;SIRAIL SAS                         
-7622777AC         ;432520;SIRAIL SAS                         
-7622778AB         ;432520;SIRAIL SAS                         
-7622779AC         ;432520;SIRAIL SAS                         
-7622780AB         ;432520;SIRAIL SAS                         
-7622781AB         ;432520;SIRAIL SAS                         
-7622782AD         ;432520;SIRAIL SAS                         
-7622783AB         ;432520;SIRAIL SAS                         
-7622784AB         ;432520;SIRAIL SAS                         
-7622785AB         ;432520;SIRAIL SAS                         
-7622786AB         ;432520;SIRAIL SAS                         
-7622787AB         ;432520;SIRAIL SAS                         
-7622811AA         ;412480;TTI INC                            
-7622812AA         ;412480;TTI INC                            
-7622813AB         ;432520;SIRAIL SAS                         
-7622840AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622845AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7622901AA         ;432520;SIRAIL SAS                         
-7622902AA         ;432520;SIRAIL SAS                         
-7622903AA         ;432520;SIRAIL SAS                         
-7622904AA         ;432520;SIRAIL SAS                         
-7622905AA         ;432520;SIRAIL SAS                         
-7622906AA         ;432520;SIRAIL SAS                         
-7622907AA         ;432520;SIRAIL SAS                         
-7622908AA         ;432520;SIRAIL SAS                         
-7622909AA         ;432520;SIRAIL SAS                         
-7622910AA         ;432520;SIRAIL SAS                         
-7622911AA         ;432520;SIRAIL SAS                         
-7622912AA         ;432520;SIRAIL SAS                         
-7622936AA         ;432544;SATYS ELECTRIC FRANCE              
-7622937AA         ;432544;SATYS ELECTRIC FRANCE              
-7622939AA         ;432544;SATYS ELECTRIC FRANCE              
-7622943AA         ;432520;SIRAIL SAS                         
-;432544;SATYS ELECTRIC FRANCE              
-7622961AA         ;432544;SATYS ELECTRIC FRANCE              
-7622962AA         ;432544;SATYS ELECTRIC FRANCE              
-7622963AA         ;432544;SATYS ELECTRIC FRANCE              
-7622964AA         ;432544;SATYS ELECTRIC FRANCE              
-7622965AA         ;432544;SATYS ELECTRIC FRANCE              
-7622966AB         ;432544;SATYS ELECTRIC FRANCE              
-7622967AA         ;432544;SATYS ELECTRIC FRANCE              
-7622968AA         ;432544;SATYS ELECTRIC FRANCE              
-7622969AA         ;432544;SATYS ELECTRIC FRANCE              
-7622970AB         ;432520;SIRAIL SAS                         
-;432544;SATYS ELECTRIC FRANCE              
-7622971AB         ;432520;SIRAIL SAS                         
-;432544;SATYS ELECTRIC FRANCE              
-7622972AB         ;432520;SIRAIL SAS                         
-;432544;SATYS ELECTRIC FRANCE              
-7622974AB         ;432520;SIRAIL SAS                         
-;432544;SATYS ELECTRIC FRANCE              
-7622975AA         ;432544;SATYS ELECTRIC FRANCE              
-7622976AA         ;432544;SATYS ELECTRIC FRANCE              
-7622977AA         ;432544;SATYS ELECTRIC FRANCE              
-7622978AA         ;432544;SATYS ELECTRIC FRANCE              
-7622979AA         ;432544;SATYS ELECTRIC FRANCE              
-7622980AA         ;432544;SATYS ELECTRIC FRANCE              
-7622981AA         ;432520;SIRAIL SAS                         
-7623061AA         ;434248;GALATEE SAS                        
-7623062AA         ;434248;GALATEE SAS                        
-7623063AA         ;434248;GALATEE SAS                        
-7623065AA         ;434248;GALATEE SAS                        
-7623073AA         ;434248;GALATEE SAS                        
-7623082AA         ;434248;GALATEE SAS                        
-7623083AA         ;434248;GALATEE SAS                        
-7623084AA         ;434248;GALATEE SAS                        
-7670042AA         ;433645;XD THERMAL TECHNOLOGY CO., LTD     
-7680012AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680126AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680129AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680148AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680154AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680156AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680157AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680158AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680159AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680160AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680171AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680175AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680176AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680177AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680181AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680182AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680188AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680189AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680191AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680192AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680288AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680290AC         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680307AB         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680431AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680495AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680543AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680582AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680587AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680595AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680598AA         ;430197;CALB GROUP CO., LTD.               
-7680599AA         ;430976;ASPEN AEROGELS, INC.               
-7680600AB         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680600AC         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680601AA         ;430907;STELIAU TECHNOLOGY                 
-;433699;SUZHOU WEST DEANE NEW POWER        
-7680602AA         ;430907;STELIAU TECHNOLOGY                 
-;433699;SUZHOU WEST DEANE NEW POWER        
-7680604AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680605AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680606AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680607AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680608AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680609AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680610AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680611AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680613AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680626AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680633AA         ;431789;JEHIER SAS - HUTCHINSON GROUP      
-7680639AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680641AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680642AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680653AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680654AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680657AA         ;429887;Schaltbau GmbH                     
-7680662AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680717AB         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680718AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680732AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680733AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680736AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680737AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680738AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680739AB         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680740AB         ;431789;JEHIER SAS - HUTCHINSON GROUP      
-7680741AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680742AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680743AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680744AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680745AB         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680747AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680748AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680749AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680755AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680756AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680759AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680760AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7680764AA         ;434237;RECTIFICADORES GUASCH, S.A.U.      
-7680765AA         ;434237;RECTIFICADORES GUASCH, S.A.U.      
-7680766AA         ;430235;BOSSARD FRANCE                     
-;434237;RECTIFICADORES GUASCH, S.A.U.      
-7680776AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680781AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7680791AA         ;412272;RS COMPONENTS SAS                  
-;430242;ADDEV MATERIALS AEROSPACE SAS      
-7710474AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7710475AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7710476AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7710485AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7710550AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7710558AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7710568AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7710570AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7710571AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7710683AA         ;434227;LE JOINT FRANÇAIS SNC              
-7710683AB         ;100061;HIDRO RUBBER IBERICA,  S.A.U.      
-7710687AA         ;100061;HIDRO RUBBER IBERICA,  S.A.U.      
-7710689AA         ;434227;LE JOINT FRANÇAIS SNC              
-7710689AB         ;100061;HIDRO RUBBER IBERICA,  S.A.U.      
-7710690AA         ;434227;LE JOINT FRANÇAIS SNC              
-7710690AB         ;100061;HIDRO RUBBER IBERICA,  S.A.U.      
-7710696AB         ;100061;HIDRO RUBBER IBERICA,  S.A.U.      
-7710710AA         ;434227;LE JOINT FRANÇAIS SNC              
-7710711AA         ;434227;LE JOINT FRANÇAIS SNC              
-7730173AA         ;434227;LE JOINT FRANÇAIS SNC              
-7730173AB         ;100061;HIDRO RUBBER IBERICA,  S.A.U.      
-7730174AA         ;434227;LE JOINT FRANÇAIS SNC              
-7730174AB         ;100061;HIDRO RUBBER IBERICA,  S.A.U.      
-7730175AA         ;434227;LE JOINT FRANÇAIS SNC              
-7730175AB         ;100061;HIDRO RUBBER IBERICA,  S.A.U.      
-7910308AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7910365AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7920169AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7920170AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7920171AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7920200AA         ;429894;Bender GmbH & Co. KG               
-7920239AG         ;433768;UARTRONICA ELECTRONICA LDA         
-7920243AB         ;433768;UARTRONICA ELECTRONICA LDA         
-7920244AB         ;433768;UARTRONICA ELECTRONICA LDA         
-7920245AB         ;433768;UARTRONICA ELECTRONICA LDA         
-7990348AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990355AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990356AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990357AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990360AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990391AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990392AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990393AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990394AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990395AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990396AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990397AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990487AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990594AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990626AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990638AB         ;429782;SIBA GmbH                          
-7990639AA         ;430299;MERSEN FRANCE SB                   
-7990649AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990693AA         ;SGT       ;Plastic Omnium e.Power GmbH        
-7990696AA         ;429887;Schaltbau GmbH                     
-7990697AA         ;429887;Schaltbau GmbH                     
-7990699AA         ;411640;AVNET EMG FRANCE SA                
-7990700AB         ;430299;MERSEN FRANCE SB                   
-7990705AA         ;431956;TELERGON, S.A.U.                   
-7990720AA         ;433699;SUZHOU WEST DEANE NEW POWER        
-7990723AA         ;431956;TELERGON, S.A.U.                   
-7990728AA         ;430201;HARTING France                     
-7990729AA         ;430201;HARTING France                     
-7990730AA         ;430201;HARTING France                     
-7990731AA         ;429869;Cicor Deutschland GmbH             
-7990732AA         ;429869;Cicor Deutschland GmbH             
+﻿Part numbe          ,Supplier            ,Supplier N          
+7130049AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7130067AA         ,433566,DELO INDUSTRIEKLEBSTOFFE GMBH AND  
+7130068AA         ,433566,DELO INDUSTRIEKLEBSTOFFE GMBH AND  
+7130070AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7160097AC         ,SGT       ,Plastic Omnium e.Power GmbH        
+7160098AB         ,SGT       ,Plastic Omnium e.Power GmbH        
+7160099AC         ,SGT       ,Plastic Omnium e.Power GmbH        
+7160112AA         ,434146,ADDEV ADHIS                        
+7210692AA         ,412480,TTI INC                            
+7221116AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221117AB         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221118AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221119AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221122AB         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221153AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221158AB         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221171AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221176AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221218AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221250AA         ,434033,PUBLIFIX INDUSTRIES                
+7221251AA         ,434033,PUBLIFIX INDUSTRIES                
+7221252AA         ,434033,PUBLIFIX INDUSTRIES                
+7221253AA         ,434033,PUBLIFIX INDUSTRIES                
+7221254AA         ,434033,PUBLIFIX INDUSTRIES                
+7221255AA         ,434033,PUBLIFIX INDUSTRIES                
+7221256AA         ,434033,PUBLIFIX INDUSTRIES                
+7221257AA         ,434033,PUBLIFIX INDUSTRIES                
+7221258AA         ,434033,PUBLIFIX INDUSTRIES                
+7221259AA         ,434033,PUBLIFIX INDUSTRIES                
+7221260AA         ,434033,PUBLIFIX INDUSTRIES                
+7221282AA         ,434033,PUBLIFIX INDUSTRIES                
+7221283AA         ,434033,PUBLIFIX INDUSTRIES                
+7221284AA         ,434033,PUBLIFIX INDUSTRIES                
+7221285AA         ,434033,PUBLIFIX INDUSTRIES                
+7221286AA         ,434033,PUBLIFIX INDUSTRIES                
+7221287AA         ,434033,PUBLIFIX INDUSTRIES                
+7221309AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221329AA         ,434033,PUBLIFIX INDUSTRIES                
+7221345AA         ,434033,PUBLIFIX INDUSTRIES                
+7221358AA         ,434033,PUBLIFIX INDUSTRIES                
+7221371AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221374AA         ,434033,PUBLIFIX INDUSTRIES                
+7221376AA         ,434033,PUBLIFIX INDUSTRIES                
+7221377AA         ,434033,PUBLIFIX INDUSTRIES                
+7221378AA         ,434033,PUBLIFIX INDUSTRIES                
+7221389AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221390AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221391AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221392AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7221393AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7230528AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7230546AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7230564AB         ,SGT       ,Plastic Omnium e.Power GmbH        
+7230612AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7230627AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7230634AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7230642AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7230657AA         ,434181,VALSEM INDUSTRIES SAS              
+7230665AA         ,412272,RS COMPONENTS SAS                  
+7230666AA         ,412272,RS COMPONENTS SAS                  
+7230667AA         ,430235,BOSSARD FRANCE                     
+7230668AA         ,401721,TH INDUSTRIE                       
+7230669AA         ,431057,ISP FRANCE                         
+7230670AA         ,412272,RS COMPONENTS SAS                  
+7322067AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7322146AA         ,430235,BOSSARD FRANCE                     
+,431057,ISP FRANCE                         
+7322156AA         ,430235,BOSSARD FRANCE                     
+,431057,ISP FRANCE                         
+7331296AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331341AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331343AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331365AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331368AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331370AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331371AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331372AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331373AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331392AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331406AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331444AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331466AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331467AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331524AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331528AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331640AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331678AA         ,404482,ERCE  PLASTURGIE                   
+7331690AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331693AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331694AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331695AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331701AA         ,434146,ADDEV ADHIS                        
+7331704AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331707AA         ,431779,BROWNELL LIMITED                   
+7331715AA         ,430235,BOSSARD FRANCE                     
+7331716AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331717AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331736AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7331741AA         ,431779,BROWNELL LIMITED                   
+7331833AA         ,404482,ERCE  PLASTURGIE                   
+7331850AA         ,430235,BOSSARD FRANCE                     
+7331892AA         ,404482,ERCE  PLASTURGIE                   
+7331893AA         ,404482,ERCE  PLASTURGIE                   
+7331894AA         ,404482,ERCE  PLASTURGIE                   
+7331961AA         ,434356,IPR TECH                           
+7331994AA         ,429747,DIGI-KEY CORPORATION               
+7411566AA         ,431779,BROWNELL LIMITED                   
+,SGT       ,Plastic Omnium e.Power GmbH        
+7411574AA         ,412272,RS COMPONENTS SAS                  
+7440553AB         ,SGT       ,Plastic Omnium e.Power GmbH        
+7440554AB         ,SGT       ,Plastic Omnium e.Power GmbH        
+7440555AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7440577AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7440578AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7440605AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7440781AA         ,432755,HUTCHINSON S.N.C.                  
+7440782AA         ,432755,HUTCHINSON S.N.C.                  
+7440798AA         ,432755,HUTCHINSON S.N.C.                  
+7440799AA         ,432755,HUTCHINSON S.N.C.                  
+7440800AA         ,432755,HUTCHINSON S.N.C.                  
+7450096AA         ,430235,BOSSARD FRANCE                     
+7550282AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560659AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560874AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560876AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560891AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560892AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560895AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560898AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560899AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560900AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560902AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560909AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560911AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560916AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560918AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560919AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560924AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560925AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560929AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560930AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560931AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560933AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560937AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560938AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560941AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560944AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560946AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560947AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560948AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560949AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560950AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560951AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560952AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560954AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560955AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560956AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560957AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560958AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560960AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560961AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560962AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560963AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560964AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560966AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560967AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560990AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560996AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560998AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7560999AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561059AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561072AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561100AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561137AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561154AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561187AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561189AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561232AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561237AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561249AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561308AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561432AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561435AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561439AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561442AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561454AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561474AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561476AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561544AA         ,404482,ERCE  PLASTURGIE                   
+,426909,PROTO LABS                         
+7561544AB         ,404482,ERCE  PLASTURGIE                   
+7561544TA         ,426909,PROTO LABS                         
+7561545AA         ,404482,ERCE  PLASTURGIE                   
+,426909,PROTO LABS                         
+7561545TA         ,426909,PROTO LABS                         
+7561588AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561590AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561591AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561592AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561594AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561613AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561615AA         ,430235,BOSSARD FRANCE                     
+7561629AB         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561642AA         ,430235,BOSSARD FRANCE                     
+7561657AA         ,430235,BOSSARD FRANCE                     
+7561738AA         ,412519,WURTH FRANCE SA                    
+,430235,BOSSARD FRANCE                     
+7561739AA         ,412519,WURTH FRANCE SA                    
+,430235,BOSSARD FRANCE                     
+7561741AA         ,430235,BOSSARD FRANCE                     
+7561742AA         ,430235,BOSSARD FRANCE                     
+7561750AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561759AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561780AA         ,430235,BOSSARD FRANCE                     
+7561783AA         ,430235,BOSSARD FRANCE                     
+7561823AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561824AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561825AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561826AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561827AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561835AB         ,432537,DUTEIL ARNAUNE SAS                 
+7561840AA         ,430235,BOSSARD FRANCE                     
+7561848AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561849AA         ,430235,BOSSARD FRANCE                     
+7561858AA         ,430235,BOSSARD FRANCE                     
+7561890AA         ,430235,BOSSARD FRANCE                     
+7561898AA         ,430235,BOSSARD FRANCE                     
+7561899AA         ,430235,BOSSARD FRANCE                     
+7561902AA         ,430235,BOSSARD FRANCE                     
+7561903AA         ,430235,BOSSARD FRANCE                     
+7561904AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561906AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561924AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561925AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561926AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561928AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7561963AA         ,430235,BOSSARD FRANCE                     
+7561966AA         ,430235,BOSSARD FRANCE                     
+7562024AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7562026AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7562041AA         ,430235,BOSSARD FRANCE                     
+7562045AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7562057AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7571232AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7571233AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7571234AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7571321AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7571328AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7571329AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7571331AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7571333AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7571336AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7571659AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7571958AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572112AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572152AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572153AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572154AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572162AA         ,433443,ENSINGER FRANCE                    
+7572163AA         ,430234,B&D TECHNOLOGIES                   
+,433443,ENSINGER FRANCE                    
+7572163AB         ,430234,B&D TECHNOLOGIES                   
+7572214AB         ,432537,DUTEIL ARNAUNE SAS                 
+7572217AA         ,433286,PONCIN SAS                         
+7572219AA         ,430196,POTHIER PRODUCTIONS                
+7572236AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572241AB         ,432537,DUTEIL ARNAUNE SAS                 
+7572242AC         ,432537,DUTEIL ARNAUNE SAS                 
+7572263AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572266AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572287AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572310AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572311AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572315AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572316AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572317AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572318AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572319AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572324AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572325AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572326AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572327AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572329AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572330AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572342AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572343AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572344AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572345AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572346AB         ,433499,APT PRODUCTS S.R.O.                
+7572347AB         ,433499,APT PRODUCTS S.R.O.                
+7572348AB         ,427238,CALIP GROUP                        
+7572349AB         ,427238,CALIP GROUP                        
+7572351AA         ,102052,Optimas OE Solutions SAS           
+7572432AA         ,404482,ERCE  PLASTURGIE                   
+7572690AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572695AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7572704AA         ,432537,DUTEIL ARNAUNE SAS                 
+7572790AA         ,430196,POTHIER PRODUCTIONS                
+7572791AA         ,430196,POTHIER PRODUCTIONS                
+7572792AA         ,433645,XD THERMAL TECHNOLOGY CO., LTD     
+7572793AA         ,433499,APT PRODUCTS S.R.O.                
+7572858AA         ,431221,DEPRECQ SAS                        
+7572859AA         ,431221,DEPRECQ SAS                        
+7572860AA         ,431221,DEPRECQ SAS                        
+7572862AA         ,431221,DEPRECQ SAS                        
+7572863AA         ,431221,DEPRECQ SAS                        
+7572879AA         ,431221,DEPRECQ SAS                        
+7572880AA         ,432537,DUTEIL ARNAUNE SAS                 
+7572881AA         ,431221,DEPRECQ SAS                        
+7572882AA         ,431221,DEPRECQ SAS                        
+7572884AA         ,431221,DEPRECQ SAS                        
+7572942AA         ,430235,BOSSARD FRANCE                     
+7572966AA         ,432537,DUTEIL ARNAUNE SAS                 
+7573030AA         ,431221,DEPRECQ SAS                        
+7573032AA         ,431221,DEPRECQ SAS                        
+7573033AA         ,431221,DEPRECQ SAS                        
+7573034AA         ,431221,DEPRECQ SAS                        
+7573035AA         ,431221,DEPRECQ SAS                        
+7573037AA         ,431221,DEPRECQ SAS                        
+7573038AA         ,431221,DEPRECQ SAS                        
+7573040AA         ,434248,GALATEE SAS                        
+7573150AA         ,431221,DEPRECQ SAS                        
+7573252AA         ,432537,DUTEIL ARNAUNE SAS                 
+7573332AA         ,429747,DIGI-KEY CORPORATION               
+7573345AA         ,429663,TTI                                
+7621553AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621554AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621811AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621821AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621853AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621855AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621858AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621868AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621886AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621887AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621888AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621890AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621891AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621892AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621903AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621905AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7621960AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622099AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622105AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622149AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622259AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622301AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622315AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622318AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622319AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622322AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622359AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622390AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622417AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622668AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622685AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7622686AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7622715AB         ,432520,SIRAIL SAS                         
+,432544,SATYS ELECTRIC FRANCE              
+7622716AC         ,432520,SIRAIL SAS                         
+7622717AD         ,432520,SIRAIL SAS                         
+7622731AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622733AC         ,432520,SIRAIL SAS                         
+7622734AC         ,432520,SIRAIL SAS                         
+7622735AB         ,432520,SIRAIL SAS                         
+7622736AC         ,432520,SIRAIL SAS                         
+7622737AC         ,432520,SIRAIL SAS                         
+7622765AB         ,432520,SIRAIL SAS                         
+,432544,SATYS ELECTRIC FRANCE              
+7622772AC         ,432520,SIRAIL SAS                         
+7622773AC         ,432520,SIRAIL SAS                         
+7622774AC         ,432520,SIRAIL SAS                         
+7622775AC         ,432520,SIRAIL SAS                         
+7622776AC         ,432520,SIRAIL SAS                         
+7622777AC         ,432520,SIRAIL SAS                         
+7622778AB         ,432520,SIRAIL SAS                         
+7622779AC         ,432520,SIRAIL SAS                         
+7622780AB         ,432520,SIRAIL SAS                         
+7622781AB         ,432520,SIRAIL SAS                         
+7622782AD         ,432520,SIRAIL SAS                         
+7622783AB         ,432520,SIRAIL SAS                         
+7622784AB         ,432520,SIRAIL SAS                         
+7622785AB         ,432520,SIRAIL SAS                         
+7622786AB         ,432520,SIRAIL SAS                         
+7622787AB         ,432520,SIRAIL SAS                         
+7622811AA         ,412480,TTI INC                            
+7622812AA         ,412480,TTI INC                            
+7622813AB         ,432520,SIRAIL SAS                         
+7622840AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622845AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7622901AA         ,432520,SIRAIL SAS                         
+7622902AA         ,432520,SIRAIL SAS                         
+7622903AA         ,432520,SIRAIL SAS                         
+7622904AA         ,432520,SIRAIL SAS                         
+7622905AA         ,432520,SIRAIL SAS                         
+7622906AA         ,432520,SIRAIL SAS                         
+7622907AA         ,432520,SIRAIL SAS                         
+7622908AA         ,432520,SIRAIL SAS                         
+7622909AA         ,432520,SIRAIL SAS                         
+7622910AA         ,432520,SIRAIL SAS                         
+7622911AA         ,432520,SIRAIL SAS                         
+7622912AA         ,432520,SIRAIL SAS                         
+7622936AA         ,432544,SATYS ELECTRIC FRANCE              
+7622937AA         ,432544,SATYS ELECTRIC FRANCE              
+7622939AA         ,432544,SATYS ELECTRIC FRANCE              
+7622943AA         ,432520,SIRAIL SAS                         
+,432544,SATYS ELECTRIC FRANCE              
+7622961AA         ,432544,SATYS ELECTRIC FRANCE              
+7622962AA         ,432544,SATYS ELECTRIC FRANCE              
+7622963AA         ,432544,SATYS ELECTRIC FRANCE              
+7622964AA         ,432544,SATYS ELECTRIC FRANCE              
+7622965AA         ,432544,SATYS ELECTRIC FRANCE              
+7622966AB         ,432544,SATYS ELECTRIC FRANCE              
+7622967AA         ,432544,SATYS ELECTRIC FRANCE              
+7622968AA         ,432544,SATYS ELECTRIC FRANCE              
+7622969AA         ,432544,SATYS ELECTRIC FRANCE              
+7622970AB         ,432520,SIRAIL SAS                         
+,432544,SATYS ELECTRIC FRANCE              
+7622971AB         ,432520,SIRAIL SAS                         
+,432544,SATYS ELECTRIC FRANCE              
+7622972AB         ,432520,SIRAIL SAS                         
+,432544,SATYS ELECTRIC FRANCE              
+7622974AB         ,432520,SIRAIL SAS                         
+,432544,SATYS ELECTRIC FRANCE              
+7622975AA         ,432544,SATYS ELECTRIC FRANCE              
+7622976AA         ,432544,SATYS ELECTRIC FRANCE              
+7622977AA         ,432544,SATYS ELECTRIC FRANCE              
+7622978AA         ,432544,SATYS ELECTRIC FRANCE              
+7622979AA         ,432544,SATYS ELECTRIC FRANCE              
+7622980AA         ,432544,SATYS ELECTRIC FRANCE              
+7622981AA         ,432520,SIRAIL SAS                         
+7623061AA         ,434248,GALATEE SAS                        
+7623062AA         ,434248,GALATEE SAS                        
+7623063AA         ,434248,GALATEE SAS                        
+7623065AA         ,434248,GALATEE SAS                        
+7623073AA         ,434248,GALATEE SAS                        
+7623082AA         ,434248,GALATEE SAS                        
+7623083AA         ,434248,GALATEE SAS                        
+7623084AA         ,434248,GALATEE SAS                        
+7670042AA         ,433645,XD THERMAL TECHNOLOGY CO., LTD     
+7680012AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680126AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680129AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680148AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680154AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680156AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680157AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680158AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680159AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680160AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680171AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680175AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680176AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680177AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680181AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680182AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680188AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680189AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680191AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680192AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680288AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680290AC         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680307AB         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680431AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680495AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680543AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680582AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680587AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680595AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680598AA         ,430197,CALB GROUP CO., LTD.               
+7680599AA         ,430976,ASPEN AEROGELS, INC.               
+7680600AB         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680600AC         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680601AA         ,430907,STELIAU TECHNOLOGY                 
+,433699,SUZHOU WEST DEANE NEW POWER        
+7680602AA         ,430907,STELIAU TECHNOLOGY                 
+,433699,SUZHOU WEST DEANE NEW POWER        
+7680604AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680605AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680606AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680607AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680608AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680609AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680610AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680611AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680613AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680626AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680633AA         ,431789,JEHIER SAS - HUTCHINSON GROUP      
+7680639AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680641AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680642AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680653AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680654AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680657AA         ,429887,Schaltbau GmbH                     
+7680662AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680717AB         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680718AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680732AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680733AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680736AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680737AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680738AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680739AB         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680740AB         ,431789,JEHIER SAS - HUTCHINSON GROUP      
+7680741AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680742AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680743AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680744AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680745AB         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680747AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680748AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680749AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680755AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680756AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680759AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680760AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7680764AA         ,434237,RECTIFICADORES GUASCH, S.A.U.      
+7680765AA         ,434237,RECTIFICADORES GUASCH, S.A.U.      
+7680766AA         ,430235,BOSSARD FRANCE                     
+,434237,RECTIFICADORES GUASCH, S.A.U.      
+7680776AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680781AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7680791AA         ,412272,RS COMPONENTS SAS                  
+,430242,ADDEV MATERIALS AEROSPACE SAS      
+7710474AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7710475AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7710476AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7710485AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7710550AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7710558AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7710568AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7710570AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7710571AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7710683AA         ,434227,LE JOINT FRANÇAIS SNC              
+7710683AB         ,100061,HIDRO RUBBER IBERICA,  S.A.U.      
+7710687AA         ,100061,HIDRO RUBBER IBERICA,  S.A.U.      
+7710689AA         ,434227,LE JOINT FRANÇAIS SNC              
+7710689AB         ,100061,HIDRO RUBBER IBERICA,  S.A.U.      
+7710690AA         ,434227,LE JOINT FRANÇAIS SNC              
+7710690AB         ,100061,HIDRO RUBBER IBERICA,  S.A.U.      
+7710696AB         ,100061,HIDRO RUBBER IBERICA,  S.A.U.      
+7710710AA         ,434227,LE JOINT FRANÇAIS SNC              
+7710711AA         ,434227,LE JOINT FRANÇAIS SNC              
+7730173AA         ,434227,LE JOINT FRANÇAIS SNC              
+7730173AB         ,100061,HIDRO RUBBER IBERICA,  S.A.U.      
+7730174AA         ,434227,LE JOINT FRANÇAIS SNC              
+7730174AB         ,100061,HIDRO RUBBER IBERICA,  S.A.U.      
+7730175AA         ,434227,LE JOINT FRANÇAIS SNC              
+7730175AB         ,100061,HIDRO RUBBER IBERICA,  S.A.U.      
+7910308AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7910365AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7920169AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7920170AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7920171AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7920200AA         ,429894,Bender GmbH & Co. KG               
+7920239AG         ,433768,UARTRONICA ELECTRONICA LDA         
+7920243AB         ,433768,UARTRONICA ELECTRONICA LDA         
+7920244AB         ,433768,UARTRONICA ELECTRONICA LDA         
+7920245AB         ,433768,UARTRONICA ELECTRONICA LDA         
+7990348AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990355AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990356AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990357AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990360AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990391AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990392AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990393AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990394AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990395AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990396AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990397AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990487AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990594AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990626AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990638AB         ,429782,SIBA GmbH                          
+7990639AA         ,430299,MERSEN FRANCE SB                   
+7990649AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990693AA         ,SGT       ,Plastic Omnium e.Power GmbH        
+7990696AA         ,429887,Schaltbau GmbH                     
+7990697AA         ,429887,Schaltbau GmbH                     
+7990699AA         ,411640,AVNET EMG FRANCE SA                
+7990700AB         ,430299,MERSEN FRANCE SB                   
+7990705AA         ,431956,TELERGON, S.A.U.                   
+7990720AA         ,433699,SUZHOU WEST DEANE NEW POWER        
+7990723AA         ,431956,TELERGON, S.A.U.                   
+7990728AA         ,430201,HARTING France                     
+7990729AA         ,430201,HARTING France                     
+7990730AA         ,430201,HARTING France                     
+7990731AA         ,429869,Cicor Deutschland GmbH             
+7990732AA         ,429869,Cicor Deutschland GmbH             
+
