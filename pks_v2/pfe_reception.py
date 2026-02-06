@@ -130,7 +130,7 @@ if st.button("Input"):
                 # REFERENCE 바코드 생성
                 # -------------------------
                 buf_ref = BytesIO()
-                Code128(reference.upper(), writer=ImageWriter()).write(buf_ref, options)
+                Code128("S"&reference.upper(), writer=ImageWriter()).write(buf_ref, options)
                 buf_ref.seek(0)
                 ref_img = Image.open(buf_ref).convert("RGB")
 
@@ -307,6 +307,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
