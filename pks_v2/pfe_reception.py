@@ -209,8 +209,8 @@ if st.button("Input"):
                     image_bytes.seek(0)
                     lot_img = Image.open(image_bytes).convert("RGB")
 
-                    max_w = max(ref_img.width, lot_img.width, sup_img.width) + 250
-                    total_h = ref_img.height + lot_img.height + sup_img.height
+                    max_w = max(ref_img.width, lot_img.width, qty_img.width) + 250
+                    total_h = ref_img.height + lot_img.height + qty_img.height
 
                     combined = Image.new("RGB", (max_w, total_h), "white")
 
@@ -242,7 +242,7 @@ if st.button("Input"):
 
                     combined.paste(ref_img, (165, 25))
                     combined.paste(lot_img, (165, ref_img.height+15))
-                    combined.paste(qty_img, (165, ref_img.height+95))
+                    combined.paste(qty_img, (165, qty_img.height+95))
 
 
                     download_buffer = BytesIO()
@@ -292,6 +292,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
