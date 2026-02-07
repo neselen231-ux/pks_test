@@ -149,8 +149,7 @@ if st.button("Input"):
                     # -------------------------
 
                     
-                    if not sup_lot:
-                        sup_lot="NA"
+
                     image_bytes = BytesIO()
                     qty_lots = BytesIO()
                     vendor_bytes = BytesIO()
@@ -313,6 +312,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
