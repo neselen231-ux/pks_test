@@ -172,6 +172,7 @@ if st.button("Input"):
                         download_zip_buffer = BytesIO()
     
                         with zipfile.ZipFile(download_zip_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+                            zf.writestr(f"barcode_{reference}.png", img_bytes.read())
                             for i in range(1, qty + 1):
                                 buf_lot = BytesIO()
 
@@ -186,7 +187,6 @@ if st.button("Input"):
                                 total_h = ref_img.height + lot_img.height
     
                                 combined = Image.new("RGB", (max_w, total_h), "white")
-                                combined.paste(ref_img, (165, 25))
                                 combined.paste(lot_img, (165, ref_img.height+15))
     
                                 text_sticker = ImageDraw.Draw(combined)
@@ -214,10 +214,10 @@ if st.button("Input"):
                                 img_bytes.seek(0)
     
                                 zf.writestr(filename, img_bytes.read())
-                                zf.writestr(f"barcode_{reference}.png", img_bytes.read())
-
-                                download_zip_buffer.seek(0)
                                 
+
+                                
+                        download_zip_buffer.seek(0)        
                         st.download_button(
                         label="📥 Download Barcode",
                         data=download_zip_buffer,
@@ -261,6 +261,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
