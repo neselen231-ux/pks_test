@@ -231,7 +231,7 @@ if st.button("Input"):
                                 file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
                                 mime="application/zip" if sup_sn_check else "image/png",
                                 )
-                        st.success("DB updated")                        
+                    st.success("DB updated")                        
             
 
             else: st.warning("Vendor missing reference")
@@ -261,6 +261,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
