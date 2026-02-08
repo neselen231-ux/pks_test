@@ -218,19 +218,19 @@ if st.button("Input"):
 
                                 download_zip_buffer.seek(0)
                                 
-                            st.download_button(
-                            label="📥 Download Barcode",
-                            data=download_zip_buffer,
-                            file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
-                            mime="application/zip" if sup_sn_check else "image/png",
-                            )
+                        st.download_button(
+                        label="📥 Download Barcode",
+                        data=download_zip_buffer,
+                        file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
+                        mime="application/zip" if sup_sn_check else "image/png",
+                        )
                     else: 
-                             st.download_button(
-                            label="📥 Download Barcode",
-                            data=download_carton_buffer,
-                            file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
-                            mime="application/zip" if sup_sn_check else "image/png",
-                            )
+                         st.download_button(
+                        label="📥 Download Barcode",
+                        data=download_carton_buffer,
+                        file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
+                        mime="application/zip" if sup_sn_check else "image/png",
+                        )
                     st.success("DB updated")                        
             
 
@@ -261,6 +261,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
