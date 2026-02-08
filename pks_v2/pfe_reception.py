@@ -175,7 +175,6 @@ if st.button("Input"):
                         with zipfile.ZipFile(download_zip_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
                             for i in range(1, qty + 1):
                                 buf_lot = BytesIO()
-                                this_lot = OP_lots[i - 1]
 
                                 Code128(f"S{this_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
                                 filename = f"{this_lot}_{reference}_barcodes.png" 
@@ -261,6 +260,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
