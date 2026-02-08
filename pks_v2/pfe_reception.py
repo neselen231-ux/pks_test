@@ -188,7 +188,7 @@ if st.button("Input"):
                                 total_h = ref_img.height + lot_img.height
     
                                 combined = Image.new("RGB", (max_w, total_h), "white")
-                                combined.paste(lot_img, (165, ref_img.height+15))
+                                combined.paste(lot_img, (125, ref_img.height+15))
     
                                 text_sticker = ImageDraw.Draw(combined)
                                 text_sticker.text(
@@ -199,13 +199,13 @@ if st.button("Input"):
                                 )
                                 text_sticker.text(
                                     (85, 45),
-                                    "Reference",
+                                    f"{reference}",
                                     fill="black",
                                     font=ffont2
                                 )
                                 text_sticker.text(
-                                    (85, ref_img.height+35),
-                                    "OPM lot",
+                                    (55, ref_img.height+35),
+                                    "OPM SN number",
                                     fill="black",
                                     font=ffont2
                                 )
@@ -262,6 +262,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
