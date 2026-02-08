@@ -161,6 +161,7 @@ if st.button("Input"):
                     download_carton_buffer.seek(0)
 
                     st.image(download_carton_buffer, caption="Combined Barcode")
+                    download_carton_buffer.seek(0)
 
 
                     # -------------------------
@@ -261,6 +262,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
