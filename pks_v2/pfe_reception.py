@@ -170,9 +170,9 @@ if st.button("Input"):
 
                     
                     if sup_sn_check is True:
-                        download_buffer = BytesIO()
+                        download_zip_buffer = BytesIO()
     
-                        with zipfile.ZipFile(download_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+                        with zipfile.ZipFile(download_zip_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
                             for i in range(1, qty + 1):
                                 buf_lot = BytesIO()
                                 this_lot = OP_lots[i - 1]
@@ -217,23 +217,24 @@ if st.button("Input"):
     
                                 zf.writestr(filename, img_bytes.read())
                                 zf.writestr(download_carton_buffer, img_bytes.read())
-    
-    
+                                
+                                st.download_button(
+                                label="📥 Download Barcode",
+                                data=download_zip_buffer,
+                                file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
+                                mime="application/zip" if sup_sn_check else "image/png",
+                                )
+                                st.success("DB updated") 
+                    else: 
+                                 st.download_button(
+                                label="📥 Download Barcode",
+                                data=download_carton_buffer,
+                                file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
+                                mime="application/zip" if sup_sn_check else "image/png",
+                                )
+                                st.success("DB updated")                        
+            
 
-    
-    
-    
-    
-    
-    
-    
-                    st.download_button(
-                        label="📥 Download Barcode",
-                        data=download_buffer,
-                        file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
-                        mime="application/zip" if sup_sn_check else "image/png",
-                    )
-                    st.success("DB updated")            
             else: st.warning("Vendor missing reference")
         else: st.warning("Reference missing") 
     else: st.warning("Delivery note missing")        
@@ -261,6 +262,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
