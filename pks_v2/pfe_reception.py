@@ -215,6 +215,8 @@ if st.button("Input"):
     
                                 zf.writestr(filename, img_bytes.read())
                                 zf.writestr(f"barcode_{reference}.png", img_bytes.read())
+
+                                download_zip_buffer.seek(0)
                                 
                                 st.download_button(
                                 label="📥 Download Barcode",
@@ -259,6 +261,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
