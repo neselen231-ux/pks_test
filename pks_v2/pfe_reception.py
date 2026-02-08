@@ -177,8 +177,8 @@ if st.button("Input"):
                             for i in range(1, qty + 1):
                                 buf_lot = BytesIO()
 
-                                Code128(f"S{OP_lot}", writer=ImageWriter()).write(buf_lot, options)
-                                filename = f"{OP_lot}_{reference}_barcodes.png" 
+                                Code128(f"{OP_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
+                                filename = f"{OP_lot}_{i}_{reference}_barcodes.png" 
     
                                 buf_lot.seek(0)
                                 lot_img = Image.open(buf_lot).convert("RGB")
@@ -262,6 +262,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
