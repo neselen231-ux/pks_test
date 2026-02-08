@@ -176,7 +176,7 @@ if st.button("Input"):
                                 buf_lot = BytesIO()
 
                                 Code128(f"S{OP_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
-                                filename = f"{OP_lot}_{reference}_barcodes.png" 
+                                filename = f"{OP_lot}_{i}_{reference}_barcodes.png" 
     
                                 buf_lot.seek(0)
                                 lot_img = Image.open(buf_lot).convert("RGB")
@@ -214,7 +214,7 @@ if st.button("Input"):
                                 img_bytes.seek(0)
     
                                 zf.writestr(filename, img_bytes.read())
-                                zf.writestr(download_carton_buffer, img_bytes.read())
+                                zf.writestr(f"barcode_{reference}.png", img_bytes.read())
                                 
                                 st.download_button(
                                 label="📥 Download Barcode",
@@ -259,6 +259,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
