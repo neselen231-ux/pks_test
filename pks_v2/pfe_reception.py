@@ -198,14 +198,14 @@ if st.button("Input"):
                                     font=ffont
                                 )
                                 text_sticker.text(
-                                    (85, 45),
+                                    (105, 45),
                                     f"{reference}",
                                     fill="black",
-                                    font=ffont2
+                                    font=ffont
                                 )
                                 text_sticker.text(
-                                    (55, ref_img.height+35),
-                                    "OPM SN number",
+                                    (35, ref_img.height+35),
+                                    "OPM SN",
                                     fill="black",
                                     font=ffont2
                                 )
@@ -262,6 +262,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
