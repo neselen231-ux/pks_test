@@ -57,7 +57,7 @@ options = {
 
 sup_sn_check = st.checkbox("S/N mode", value = False )
 
-ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 25)
+ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 20)
 ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 15)
 
 if st.button("Input"):
@@ -150,9 +150,9 @@ if st.button("Input"):
                         font=ffont2
                     )
 
-                    combined.paste(ref_img, (165, 25))
-                    combined.paste(lot_img, (165, ref_img.height+15))
-                    combined.paste(qty_img, (165, qty_img.height+75))
+                    combined.paste(ref_img, (165, 28))
+                    combined.paste(lot_img, (165, ref_img.height+18))
+                    combined.paste(qty_img, (165, qty_img.height+80))
                     combined.paste(vendor_img, (165, vendor_img.height+140))
 
 
@@ -262,6 +262,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
