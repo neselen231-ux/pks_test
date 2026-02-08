@@ -66,69 +66,17 @@ if st.button("Input"):
         if re.fullmatch(pattern, reference):
             if not vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].empty: 
                 with engine.begin() as conn_2:
-                    # -------------------------
-                    # INSERT 파트
-                    # -------------------------
-    
-                    if sup_sn_check == True:
-    
-    
-                        for i in range(1, qty + 1):
-                            if sup_lot:
-                                conn_2.execute(
-                                    text("""INSERT INTO reception
-                                            (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot, program)
-                                            VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
-                                    {"ref": reference.upper(), "qty": "1", "dev": delivery_note,
-                                     "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct",
-                                     "sup": f"{sup_lot}_{i}", "prog": project}
-                                )
-                                OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
-                                OP_lots.append(OP_lot)  ### ✅ FIX: 매 insert ID 저장
-    
-                                status_value = f"{OP_lot}_{i}"
-                                conn_2.execute(
-                                    text("""
-                                        UPDATE reception
-                                        SET Status = :status
-                                        WHERE OP_lot = :OP_lot
-                                    """),
-                                    {"status": status_value, "OP_lot": OP_lot}
-                                )
-    
-                            else:
-                                conn_2.execute(
-                                    text("""INSERT INTO reception
-                                            (Reference, Quantity, delivery_note, Comment, reception_date, Status, program)
-                                            VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :prog)"""),
-                                    {"ref": reference.upper(), "qty": "1", "dev": delivery_note,
-                                     "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct","prog": project}
-                                )
-    
-                                OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
-                                OP_lots.append(OP_lot)  ### ✅ FIX: 매 insert ID 저장
-    
-                                status_value = f"{OP_lot}_{i}"
-                                conn_2.execute(
-                                    text("""
-                                        UPDATE reception
-                                        SET Status = :status
-                                        WHERE OP_lot = :OP_lot
-                                    """),
-                                    {"status": status_value, "OP_lot": OP_lot}
-                                )
-    
-                    else:
-                        conn_2.execute(
-                            text("""INSERT INTO reception
-                                    (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot, program)
-                                    VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
-                            {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
-                             "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct",
-                             "sup": f"{sup_lot}", "prog": project}
-                        )
-    
+
+                    conn_2.execute(
+                        text("""INSERT INTO reception
+                                (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot, program)
+                                VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
+                        {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
+                         "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct",
+                         "sup": f"{sup_lot}", "prog": project}
+                    )
                     OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
+                    
     
                     # -------------------------
                     # REFERENCE barcode generation
@@ -209,11 +157,11 @@ if st.button("Input"):
                     combined.paste(vendor_img, (165, vendor_img.height+140))
 
 
-                    download_buffer = BytesIO()
-                    combined.save(download_buffer, format="PNG")
-                    download_buffer.seek(0)
+                    download_carton_buffer = BytesIO()
+                    combined.save(download_carton_buffer, format="PNG")
+                    download_carton_buffer.seek(0)
 
-                    st.image(download_buffer, caption="Combined Barcode")
+                    st.image(download_carton_buffer, caption="Combined Barcode")
 
 
                     # -------------------------
@@ -268,6 +216,7 @@ if st.button("Input"):
                                 img_bytes.seek(0)
     
                                 zf.writestr(filename, img_bytes.read())
+                                zf.writestr(download_carton_buffer, img_bytes.read())
     
     
 
@@ -312,6 +261,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
