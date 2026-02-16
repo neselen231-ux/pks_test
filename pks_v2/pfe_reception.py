@@ -67,12 +67,13 @@ if submit:
     if delivery_note and project:
         if re.fullmatch(pattern, reference):
             if not vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].empty or reference[0] =="4": 
+                try:
+                    qty = int(qty_input)
+                except:
+                    st.error("Quantity must be a number")
+                    st.stop()
                 with engine.begin() as conn_2:
-                    try:
-                        qty = int(qty_input)
-                    except:
-                        st.error("Quantity must be a number")
-                        st.stop()
+
                     conn_2.execute(
                         text("""INSERT INTO reception
                                 (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot, program)
@@ -279,6 +280,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
