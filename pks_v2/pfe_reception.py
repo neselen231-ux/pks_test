@@ -113,6 +113,15 @@ if submit:
                 except:
                     st.error("Quantity must be a number")
                     st.stop()
+                                #----- Vendorcheck
+
+                vendor_match = vendor_list.loc[vendor_list["Part number"] == reference, "Supplier"]
+                
+                if not vendor_match.empty:
+                    vendor = vendor_match.iloc[0]
+                else:
+                    vendor = "Sub assy"
+
                 st.session_state.reference = reference
                 st.session_state.qty = qty
                 st.session_state.vendor = vendor
@@ -139,14 +148,6 @@ if submit:
                     buf_ref.seek(0)
                     ref_img = Image.open(buf_ref).convert("RGB")
     
-                    #----- Vendorcheck
-    
-                    vendor_match = vendor_list.loc[vendor_list["Part number"] == reference, "Supplier"]
-                    
-                    if not vendor_match.empty:
-                        vendor = vendor_match.iloc[0]
-                    else:
-                        vendor = "Sub assy"
 
     
                     
@@ -342,6 +343,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
