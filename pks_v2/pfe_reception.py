@@ -40,6 +40,7 @@ with st.form("input_form"):
     project = st.selectbox("Project", ["Als 525", "Als 105", "Als Common", "Hess 3P", "Hess 4P", "Hess common"])
     sup_lot = st.text_input("Supplier lot",max_chars=40)
     Comment = st.text_input("Comment",max_chars=20)
+    sup_sn_check = st.checkbox("S/N mode", value = False )
     submit = st.form_submit_button("Input")
 
 ## vendorlist ##
@@ -58,7 +59,7 @@ options = {
     "font_size": 3,          
     "text_distance": 1.5}
 
-sup_sn_check = st.checkbox("S/N mode", value = False )
+
 
 ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 20)
 ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 15)
@@ -280,6 +281,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
