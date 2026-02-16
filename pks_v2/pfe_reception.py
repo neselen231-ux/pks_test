@@ -79,11 +79,7 @@ with st.form("input_form"):
     sup_sn_check = st.checkbox("S/N mode", value = False )
     submit = st.form_submit_button("Input")
 
-st.session_state.reference = reference
-st.session_state.qty = qty
-st.session_state.vendor = vendor
-st.session_state.project = project
-st.session_state.op_lot = OP_lot
+
 
 
 ## vendorlist ##
@@ -111,6 +107,11 @@ if submit:
     if delivery_note and project:
         if re.fullmatch(pattern, reference):
             if not vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].empty or reference[0] =="4": 
+                st.session_state.reference = reference
+                st.session_state.qty = qty
+                st.session_state.vendor = vendor
+                st.session_state.project = project
+                st.session_state.op_lot = OP_lot
                 try:
                     qty = int(qty_input)
                 except:
@@ -340,6 +341,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
