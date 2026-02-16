@@ -314,14 +314,14 @@ with st.expander("Delete lot",expanded=False):
             deletion.execute(text("DELETE FROM reception WHERE OP_lot = :lot"),{"lot":int(delete_id)})
         st.rerun()
 
-if st.button("Print"):
-    print_label(
-    st.session_state.reference,
-    st.session_state.qty,
-    st.session_state.vendor,
-    st.session_state.project,
-    st.session_state.op_lot
-    )
+#if st.button("Print"):
+#    print_label(
+#    st.session_state.reference,
+#    st.session_state.qty,
+#    st.session_state.vendor,
+#    st.session_state.project,
+#    st.session_state.op_lot
+#    )
 
 
 
@@ -336,6 +336,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
