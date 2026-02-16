@@ -122,11 +122,7 @@ if submit:
                 else:
                     vendor = "Sub assy"
 
-                st.session_state.reference = reference
-                st.session_state.qty = qty
-                st.session_state.vendor = vendor
-                st.session_state.project = project
-                st.session_state.op_lot = OP_lot
+
                 with engine.begin() as conn_2:
 
                     conn_2.execute(
@@ -227,7 +223,11 @@ if submit:
                     st.image(display_img)
 
                     download_carton_buffer.seek(0)
-
+                    st.session_state.reference = reference
+                    st.session_state.qty = qty
+                    st.session_state.vendor = vendor
+                    st.session_state.project = project
+                    st.session_state.op_lot = OP_lot
 
                     # -------------------------
                     # Multiple Barcode
@@ -343,6 +343,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
