@@ -9,6 +9,13 @@ from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
 import datetime as dt
 import zipfile
+import socket
+
+st.session_state.reference = reference
+st.session_state.qty = qty
+st.session_state.vendor = vendor
+st.session_state.project = project
+st.session_state.op_lot = OP_lot
 
 def print_label(reference, qty, vendor, project, op_lot):
 
@@ -271,7 +278,13 @@ if submit:
                                 
 
                         if st.button("Print"):
-                            print_label(reference, qty, vendor, project, OP_lot)
+                            print_label(
+                            st.session_state.reference,
+                            st.session_state.qty,
+                            st.session_state.vendor,
+                            st.session_state.project,
+                            st.session_state.op_lot
+                            )
                             
                         download_zip_buffer.seek(0)        
                         st.download_button(
@@ -282,7 +295,13 @@ if submit:
                         )
                     else: 
                         if st.button("Print"):
-                            print_label(reference, qty, vendor, project, OP_lot)
+                               print_label(
+                                st.session_state.reference,
+                                st.session_state.qty,
+                                st.session_state.vendor,
+                                st.session_state.project,
+                                st.session_state.op_lot
+                                )
                         st.download_button(
                         label="📥 Download Barcode",
                         data=download_carton_buffer.getvalue(),
@@ -319,6 +338,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
