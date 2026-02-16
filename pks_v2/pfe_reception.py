@@ -64,7 +64,7 @@ if st.button("Input"):
     if delivery_note and project:
         if re.fullmatch(pattern, reference):
             if not vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].empty: 
-            elif reference[0] == 4
+            elif reference[0] == 4:
                 with engine.begin() as conn_2:
 
                     conn_2.execute(
@@ -264,6 +264,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
