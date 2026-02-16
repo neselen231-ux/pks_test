@@ -165,7 +165,7 @@ if st.button("Input"):
                     combined.save(download_carton_buffer, format="PNG")
                     download_carton_buffer.seek(0)
 
-                    st.image(download_carton_buffer, caption="Combined Barcode")
+                    st.image(combined, caption="Combined Barcode")
                     download_carton_buffer.seek(0)
 
 
@@ -233,7 +233,7 @@ if st.button("Input"):
                     else: 
                          st.download_button(
                         label="📥 Download Barcode",
-                        data=download_carton_buffer,
+                        data=download_carton_buffer.getvalue(),
                         file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
                         mime="application/zip" if sup_sn_check else "image/png",
                         )
@@ -267,6 +267,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
