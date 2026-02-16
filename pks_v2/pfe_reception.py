@@ -283,7 +283,7 @@ if submit:
                     else: 
                         if st.button("Print"):
                             print_label(reference, qty, vendor, project, OP_lot)
-                         st.download_button(
+                        st.download_button(
                         label="📥 Download Barcode",
                         data=download_carton_buffer.getvalue(),
                         file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
@@ -319,6 +319,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
