@@ -32,12 +32,15 @@ engine = create_engine(
 st.title("Reception")
 
 # 2 input boxes
-reference = st.text_input("Reference number")
-qty = st.number_input("quantity", min_value=1, step=1)
-delivery_note = st.text_input("Delivery note",max_chars=20)
-sup_lot = st.text_input("Supplier lot",max_chars=40)
-Comment = st.text_input("Comment",max_chars=20)
-project = st.selectbox("Project",["","Als 105","Als 525","Als common","Hess 3P","Hess 4P","Hess common","TBC"])
+
+with st.form("input_form"):
+    reference = st.text_input("Reference number")
+    qty = int(st.text_input("quantity", "1"))
+    delivery_note = st.text_input("Delivery note")
+    project = st.selectbox("Project", ["", "Als 105"])
+    sup_lot = st.text_input("Supplier lot",max_chars=40)
+    Comment = st.text_input("Comment",max_chars=20)
+    submit = st.form_submit_button("Input")
 
 ## vendorlist ##
 
@@ -272,6 +275,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
