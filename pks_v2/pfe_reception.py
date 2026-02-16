@@ -87,11 +87,13 @@ if st.button("Input"):
     
                     #----- Vendorcheck
     
-                    vendor = vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].iloc[0]
+                    vendor_match = vendor_list.loc[vendor_list["Part number"] == reference, "Supplier"]
+                    
                     if not vendor_match.empty:
                         vendor = vendor_match.iloc[0]
                     else:
                         vendor = "Sub assy"
+
     
                     
                     # -------------------------
@@ -265,6 +267,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
