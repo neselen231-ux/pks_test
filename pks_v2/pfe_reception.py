@@ -10,6 +10,40 @@ from PIL import Image, ImageDraw, ImageFont
 import datetime as dt
 import zipfile
 
+def print_label(reference, qty, vendor, project, op_lot):
+
+    zpl = f"""
+^XA
+
+^CF0,30
+
+^FO50,30
+^FDProject: {project}^FS
+
+^FO50,80
+^BCN,80,Y,N,N
+^FD{op_lot}^FS
+
+^FO50,180
+^BCN,80,Y,N,N
+^FD{reference}^FS
+
+^FO50,280
+^BCN,80,Y,N,N
+^FD{qty}^FS
+
+^FO50,380
+^BCN,80,Y,N,N
+^FD{vendor}^FS
+
+^XZ
+"""
+
+    s = socket.socket()
+    s.connect(("10.172.81.56", 9100))
+    s.sendall(zpl.encode())
+    s.close()
+
 hide_ui = """
 <style>
 #MainMenu {visibility: hidden;}      /* 메뉴 */
@@ -236,7 +270,9 @@ if submit:
                                 zf.writestr(filename, img_bytes.read())
                                 
 
-                                
+                        if st.button("Print"):
+                            print_label(reference, qty, vendor, project, OP_lot)
+                            
                         download_zip_buffer.seek(0)        
                         st.download_button(
                         label="📥 Download Barcode",
@@ -245,6 +281,8 @@ if submit:
                         mime="application/zip" if sup_sn_check else "image/png",
                         )
                     else: 
+                        if st.button("Print"):
+                            print_label(reference, qty, vendor, project, OP_lot)
                          st.download_button(
                         label="📥 Download Barcode",
                         data=download_carton_buffer.getvalue(),
@@ -281,6 +319,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
