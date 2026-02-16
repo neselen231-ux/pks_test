@@ -63,7 +63,7 @@ sup_sn_check = st.checkbox("S/N mode", value = False )
 ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 20)
 ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 15)
 
-if st.button("Input"):
+if submit:
     if delivery_note and project:
         if re.fullmatch(pattern, reference):
             if not vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].empty or reference[0] =="4": 
@@ -275,6 +275,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
