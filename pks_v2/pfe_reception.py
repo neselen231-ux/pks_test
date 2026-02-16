@@ -165,7 +165,12 @@ if st.button("Input"):
                     combined.save(download_carton_buffer, format="PNG")
                     download_carton_buffer.seek(0)
 
-                    st.image(combined, caption="Combined Barcode")
+                    # 모바일 표시용 resize
+                    display_img = combined.copy()
+                    display_img.thumbnail((800, 800))
+                    
+                    st.image(display_img)
+
                     download_carton_buffer.seek(0)
 
 
@@ -267,6 +272,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
