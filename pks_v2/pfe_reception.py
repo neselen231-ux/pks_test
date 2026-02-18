@@ -106,202 +106,198 @@ ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 15)
 if submit:
     if delivery_note and project:
         if re.fullmatch(pattern, reference):
-            if not vendor_list.loc[vendor_list["Part number"] == reference,"Supplier"].empty or reference[0] =="4": 
+            try:
+                qty = int(qty_input)
+            except:
+                st.error("Quantity must be a number")
+                st.stop()
+                            #----- Vendorcheck
 
-                try:
-                    qty = int(qty_input)
-                except:
-                    st.error("Quantity must be a number")
-                    st.stop()
-                                #----- Vendorcheck
-
-                vendor_match = vendor_list.loc[vendor_list["Part number"] == reference, "Supplier"]
-                
-                if not vendor_match.empty:
-                    vendor = vendor_match.iloc[0]
-                else:
-                    vendor = "Sub assy"
-
-
-                with engine.begin() as conn_2:
-
-                    conn_2.execute(
-                        text("""INSERT INTO reception
-                                (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot, program)
-                                VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
-                        {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
-                         "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct",
-                         "sup": f"{sup_lot}", "prog": project}
-                    )
-                    OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
-                    
-    
-                    # -------------------------
-                    # REFERENCE barcode generation
-                    # -------------------------
-                    buf_ref = BytesIO()
-                    Code128("P"+reference.upper(), writer=ImageWriter()).write(buf_ref, options)
-                    buf_ref.seek(0)
-                    ref_img = Image.open(buf_ref).convert("RGB")
-    
-
-    
-                    
-                    # -------------------------
-                    # Barcode
-                    # -------------------------
-
-                    
-
-                    image_bytes = BytesIO()
-                    qty_lots = BytesIO()
-                    vendor_bytes = BytesIO()
-                    
-                    Code128("Q"+str(qty), writer=ImageWriter()).write(qty_lots, options)
-                    Code128("S"+str(OP_lot), writer=ImageWriter()).write(image_bytes, options)
-                    Code128("V"+str(vendor), writer=ImageWriter()).write(vendor_bytes, options)
-                        
-                    qty_lots.seek(0)
-                    qty_img = Image.open(qty_lots).convert("RGB")
-                    image_bytes.seek(0)
-                    lot_img = Image.open(image_bytes).convert("RGB")
-                    vendor_bytes.seek(0)
-                    vendor_img = Image.open(vendor_bytes).convert("RGB")
-
-                    
-                    max_w = max(ref_img.width, lot_img.width, qty_img.width, vendor_img.width) + 250
-                    total_h = ref_img.height + lot_img.height + qty_img.height + vendor_img.height
-
-                    combined = Image.new("RGB", (max_w, total_h), "white")
-
-                    text_sticker = ImageDraw.Draw(combined)
-                    text_sticker.text(
-                        (105, 0),
-                        f"{dt.datetime.now().date()}   project : {project}",
-                        fill="black",
-                        font=ffont
-                    )
-                    text_sticker.text(
-                        (85, 45),
-                        "OPM lot",
-                        fill="black",
-                        font=ffont2
-                    )
-                    text_sticker.text(
-                        (85, ref_img.height+35),
-                        "Reference",
-                        fill="black",
-                        font=ffont2
-                    )
-                    text_sticker.text(
-                        (85, ref_img.height+95),
-                        "Quantity",
-                        fill="black",
-                        font=ffont2
-                    )
-                    text_sticker.text(
-                        (85, ref_img.height+145),
-                        "Vendor",
-                        fill="black",
-                        font=ffont2
-                    )
-
-                    combined.paste(lot_img, (165, 28))
-                    combined.paste(ref_img, (165, ref_img.height+18))
-                    combined.paste(qty_img, (165, qty_img.height+80))
-                    combined.paste(vendor_img, (165, vendor_img.height+140))
-
-
-                    download_carton_buffer = BytesIO()
-                    combined.save(download_carton_buffer, format="PNG")
-                    download_carton_buffer.seek(0)
-
-                    # 모바일 표시용 resize
-                    display_img = combined.copy()
-                    display_img.thumbnail((800, 800))
-                    
-                    st.image(display_img)
-
-                    download_carton_buffer.seek(0)
-                    st.session_state.reference = reference
-                    st.session_state.qty = qty
-                    st.session_state.vendor = vendor
-                    st.session_state.project = project
-                    st.session_state.op_lot = OP_lot
-
-                    # -------------------------
-                    # Multiple Barcode
-                    # -------------------------
-
-                    
-                    if sup_sn_check is True:
-                        download_zip_buffer = BytesIO()
-    
-                        with zipfile.ZipFile(download_zip_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
-                            zf.writestr(f"barcode_{reference}.png", download_carton_buffer.read())
-                            for i in range(1, qty + 1):
-                                buf_lot = BytesIO()
-
-                                Code128(f"{OP_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
-                                filename = f"{OP_lot}_{i}_{reference}_barcodes.png" 
-    
-                                buf_lot.seek(0)
-                                lot_img = Image.open(buf_lot).convert("RGB")
-    
-                                # ✅ combined 캔버스 크기 계산
-                                max_w = max(ref_img.width, lot_img.width) + 100
-                                total_h = ref_img.height + lot_img.height
-    
-                                combined = Image.new("RGB", (max_w, total_h), "white")
-                                combined.paste(lot_img, (125, ref_img.height+15))
-    
-                                text_sticker = ImageDraw.Draw(combined)
-                                text_sticker.text(
-                                    (80, 0),
-                                    f"{dt.datetime.now().date()}   project : {project}",
-                                    fill="black",
-                                    font=ffont
-                                )
-                                text_sticker.text(
-                                    (105, 45),
-                                    f"{reference}",
-                                    fill="black",
-                                    font=ffont
-                                )
-                                text_sticker.text(
-                                    (35, ref_img.height+35),
-                                    "OPM SN",
-                                    fill="black",
-                                    font=ffont2
-                                )
-    
-                                img_bytes = BytesIO()
-                                combined.save(img_bytes, format="PNG")
-                                img_bytes.seek(0)
-    
-                                zf.writestr(filename, img_bytes.read())
-                                
-
-
-                            
-                        download_zip_buffer.seek(0)        
-                        st.download_button(
-                        label="📥 Download Barcode",
-                        data=download_zip_buffer,
-                        file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
-                        mime="application/zip" if sup_sn_check else "image/png",
-                        )
-                    else: 
-
-                        st.download_button(
-                        label="📥 Download Barcode",
-                        data=download_carton_buffer.getvalue(),
-                        file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
-                        mime="application/zip" if sup_sn_check else "image/png",
-                        )
-                    st.success("DB updated")                        
+            vendor_match = vendor_list.loc[vendor_list["Part number"] == reference, "Supplier"]
+            if vendor_match.empty:
+                vendor = "VNOKVENDOR"
             
 
+
+
+            with engine.begin() as conn_2:
+
+                conn_2.execute(
+                    text("""INSERT INTO reception
+                            (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot, program)
+                            VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
+                    {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
+                     "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct",
+                     "sup": f"{sup_lot}", "prog": project}
+                )
+                OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
+                
+
+                # -------------------------
+                # REFERENCE barcode generation
+                # -------------------------
+                buf_ref = BytesIO()
+                Code128("P"+reference.upper(), writer=ImageWriter()).write(buf_ref, options)
+                buf_ref.seek(0)
+                ref_img = Image.open(buf_ref).convert("RGB")
+
+
+
+                
+                # -------------------------
+                # Barcode
+                # -------------------------
+
+                
+
+                image_bytes = BytesIO()
+                qty_lots = BytesIO()
+                vendor_bytes = BytesIO()
+                
+                Code128("Q"+str(qty), writer=ImageWriter()).write(qty_lots, options)
+                Code128("S"+str(OP_lot), writer=ImageWriter()).write(image_bytes, options)
+                Code128("V"+str(vendor), writer=ImageWriter()).write(vendor_bytes, options)
+                    
+                qty_lots.seek(0)
+                qty_img = Image.open(qty_lots).convert("RGB")
+                image_bytes.seek(0)
+                lot_img = Image.open(image_bytes).convert("RGB")
+                vendor_bytes.seek(0)
+                vendor_img = Image.open(vendor_bytes).convert("RGB")
+
+                
+                max_w = max(ref_img.width, lot_img.width, qty_img.width, vendor_img.width) + 250
+                total_h = ref_img.height + lot_img.height + qty_img.height + vendor_img.height
+
+                combined = Image.new("RGB", (max_w, total_h), "white")
+
+                text_sticker = ImageDraw.Draw(combined)
+                text_sticker.text(
+                    (105, 0),
+                    f"{dt.datetime.now().date()}   project : {project}",
+                    fill="black",
+                    font=ffont
+                )
+                text_sticker.text(
+                    (85, 45),
+                    "OPM lot",
+                    fill="black",
+                    font=ffont2
+                )
+                text_sticker.text(
+                    (85, ref_img.height+35),
+                    "Reference",
+                    fill="black",
+                    font=ffont2
+                )
+                text_sticker.text(
+                    (85, ref_img.height+95),
+                    "Quantity",
+                    fill="black",
+                    font=ffont2
+                )
+                text_sticker.text(
+                    (85, ref_img.height+145),
+                    "Vendor",
+                    fill="black",
+                    font=ffont2
+                )
+
+                combined.paste(lot_img, (165, 28))
+                combined.paste(ref_img, (165, ref_img.height+18))
+                combined.paste(qty_img, (165, qty_img.height+80))
+                combined.paste(vendor_img, (165, vendor_img.height+140))
+
+
+                download_carton_buffer = BytesIO()
+                combined.save(download_carton_buffer, format="PNG")
+                download_carton_buffer.seek(0)
+
+                # 모바일 표시용 resize
+                display_img = combined.copy()
+                display_img.thumbnail((800, 800))
+                
+                st.image(display_img)
+
+                download_carton_buffer.seek(0)
+                st.session_state.reference = reference
+                st.session_state.qty = qty
+                st.session_state.vendor = vendor
+                st.session_state.project = project
+                st.session_state.op_lot = OP_lot
+
+                # -------------------------
+                # Multiple Barcode
+                # -------------------------
+
+                
+                if sup_sn_check is True:
+                    download_zip_buffer = BytesIO()
+
+                    with zipfile.ZipFile(download_zip_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+                        zf.writestr(f"barcode_{reference}.png", download_carton_buffer.read())
+                        for i in range(1, qty + 1):
+                            buf_lot = BytesIO()
+
+                            Code128(f"{OP_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
+                            filename = f"{OP_lot}_{i}_{reference}_barcodes.png" 
+
+                            buf_lot.seek(0)
+                            lot_img = Image.open(buf_lot).convert("RGB")
+
+                            # ✅ combined 캔버스 크기 계산
+                            max_w = max(ref_img.width, lot_img.width) + 100
+                            total_h = ref_img.height + lot_img.height
+
+                            combined = Image.new("RGB", (max_w, total_h), "white")
+                            combined.paste(lot_img, (125, ref_img.height+15))
+
+                            text_sticker = ImageDraw.Draw(combined)
+                            text_sticker.text(
+                                (80, 0),
+                                f"{dt.datetime.now().date()}   project : {project}",
+                                fill="black",
+                                font=ffont
+                            )
+                            text_sticker.text(
+                                (105, 45),
+                                f"{reference}",
+                                fill="black",
+                                font=ffont
+                            )
+                            text_sticker.text(
+                                (35, ref_img.height+35),
+                                "OPM SN",
+                                fill="black",
+                                font=ffont2
+                            )
+
+                            img_bytes = BytesIO()
+                            combined.save(img_bytes, format="PNG")
+                            img_bytes.seek(0)
+
+                            zf.writestr(filename, img_bytes.read())
+                            
+
+
+                        
+                    download_zip_buffer.seek(0)        
+                    st.download_button(
+                    label="📥 Download Barcode",
+                    data=download_zip_buffer,
+                    file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
+                    mime="application/zip" if sup_sn_check else "image/png",
+                    )
+                else: 
+
+                    st.download_button(
+                    label="📥 Download Barcode",
+                    data=download_carton_buffer.getvalue(),
+                    file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
+                    mime="application/zip" if sup_sn_check else "image/png",
+                    )
+                st.success("DB updated")                        
+        
             else: st.warning("vendor code missing")
         else: st.warning("Reference missing") 
     else: st.warning("Delivery note missing")        
@@ -336,6 +332,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
