@@ -97,10 +97,10 @@ if submit:
             with engine.begin() as conn_2:
                 conn_2.execute(
                     text("""INSERT INTO reception
-                            (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot)
-                            VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup)"""),
+                            (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot,program)
+                            VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
                     {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
-                     "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct", "sup": sup_lot
+                     "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct", "sup": sup_lot, "prog" : usage
 }
                 )
                 OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
@@ -311,6 +311,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
