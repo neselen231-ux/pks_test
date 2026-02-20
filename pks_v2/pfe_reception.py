@@ -12,34 +12,6 @@ import zipfile
 import socket
 
 
-def print_label(reference, qty, vendor, project, op_lot):
-
-    zpl = f"""
-^XA
-
-^CF0,30
-
-^FO50,30
-^FDProject: {project}^FS
-
-^FO50,80
-^BCN,80,Y,N,N
-^FD{op_lot}^FS
-
-^FO50,180
-^BCN,80,Y,N,N
-^FD{reference}^FS
-
-^FO50,280
-^BCN,80,Y,N,N
-^FD{qty}^FS
-
-^FO50,380
-^BCN,80,Y,N,N
-^FD{vendor}^FS
-
-^XZ
-"""
 
     s = socket.socket()
     s.connect(("10.172.81.56", 9100))
@@ -132,8 +104,8 @@ if submit:
                             (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot, program)
                             VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
                     {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
-                     "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct",
-                     "sup": f"{sup_lot}", "prog": project}
+                     "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct"
+}
                 )
                 OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
                 
@@ -179,7 +151,7 @@ if submit:
                 text_sticker = ImageDraw.Draw(combined)
                 text_sticker.text(
                     (105, 0),
-                    f"{dt.datetime.now().date()} {project} {usage}",
+                    f"{dt.datetime.now().date()}  {usage}",
                     fill="black",
                     font=ffont
                 )
@@ -229,7 +201,7 @@ if submit:
                 st.session_state.reference = reference
                 st.session_state.qty = qty
                 st.session_state.vendor = vendor
-                st.session_state.project = project
+                #st.session_state.project = project
                 st.session_state.op_lot = OP_lot
 
                 # -------------------------
@@ -261,7 +233,7 @@ if submit:
                             text_sticker = ImageDraw.Draw(combined)
                             text_sticker.text(
                                 (80, 0),
-                                f"{dt.datetime.now().date()} {project} {usage}",
+                                f"{dt.datetime.now().date()} {usage}",
                                 fill="black",
                                 font=ffont
                             )
@@ -343,6 +315,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
