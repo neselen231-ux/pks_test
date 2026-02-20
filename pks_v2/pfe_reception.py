@@ -85,7 +85,7 @@ if submit:
 
             vendor_match = vendor_list.loc[vendor_list["Part number"] == reference, "Supplier"]
             usage_match = usage_list.loc[usage_list["reference"] == reference[:7], "usage"]
-            usage = ','.join(usage_match)
+            usage = ','.join(usage_match.dropna().astype(str))
             if vendor_match.empty:
                 vendor = "VNUL"
             else:
@@ -311,6 +311,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
