@@ -85,6 +85,7 @@ with st.form("input_form"):
 ## vendorlist ##
 
 vendor_list = pd.read_csv("vendorlist2.csv",sep=";")
+usage_list = pd.read_csv("usage.csv")
 ##
 
 
@@ -114,6 +115,8 @@ if submit:
                             #----- Vendorcheck
 
             vendor_match = vendor_list.loc[vendor_list["Part number"] == reference, "Supplier"]
+            usage_match = usage_list.loc[usage_list["reference"] == reference[:7], "usage"]
+            usage = ','.join(usage_match)
             if vendor_match.empty:
                 vendor = "VNUL"
             else:
@@ -204,6 +207,12 @@ if submit:
                     fill="black",
                     font=ffont2
                 )
+                text_sticker.text(
+                    (10, ref_img.height+145),
+                    f"{usage}",
+                    fill="black",
+                    font=ffont2
+                )
 
                 combined.paste(lot_img, (165, 28))
                 combined.paste(ref_img, (165, ref_img.height+18))
@@ -273,6 +282,12 @@ if submit:
                                 fill="black",
                                 font=ffont2
                             )
+                            text_sticker.text(
+                                (10, ref_img.height+145),
+                                f"{usage}",
+                                fill="black",
+                                font=ffont2
+                            )
 
                             img_bytes = BytesIO()
                             combined.save(img_bytes, format="PNG")
@@ -333,6 +348,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
