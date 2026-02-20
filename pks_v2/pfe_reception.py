@@ -98,8 +98,8 @@ if submit:
 
                 conn_2.execute(
                     text("""INSERT INTO reception
-                            (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot, program)
-                            VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
+                            (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot)
+                            VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup)"""),
                     {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
                      "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct"
 }
@@ -312,6 +312,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
