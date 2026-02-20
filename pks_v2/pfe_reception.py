@@ -13,10 +13,7 @@ import socket
 
 
 
-    s = socket.socket()
-    s.connect(("10.172.81.56", 9100))
-    s.sendall(zpl.encode())
-    s.close()
+
 
 hide_ui = """
 <style>
@@ -315,6 +312,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
