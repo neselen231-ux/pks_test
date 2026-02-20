@@ -179,7 +179,7 @@ if submit:
                 text_sticker = ImageDraw.Draw(combined)
                 text_sticker.text(
                     (105, 0),
-                    f"{dt.datetime.now().date()}   project : {project}",
+                    f"{dt.datetime.now().date()} {project} {usage}",
                     fill="black",
                     font=ffont
                 )
@@ -207,12 +207,7 @@ if submit:
                     fill="black",
                     font=ffont2
                 )
-                text_sticker.text(
-                    (200, ref_img.height+125),
-                    f"{usage}",
-                    fill="black",
-                    font=ffont2
-                )
+
 
                 combined.paste(lot_img, (165, 28))
                 combined.paste(ref_img, (165, ref_img.height+18))
@@ -266,7 +261,7 @@ if submit:
                             text_sticker = ImageDraw.Draw(combined)
                             text_sticker.text(
                                 (80, 0),
-                                f"{dt.datetime.now().date()}   project : {project}",
+                                f"{dt.datetime.now().date()} {project} {usage}",
                                 fill="black",
                                 font=ffont
                             )
@@ -348,6 +343,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
