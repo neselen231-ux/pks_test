@@ -208,7 +208,7 @@ if submit:
                     font=ffont2
                 )
                 text_sticker.text(
-                    (300, ref_img.height+145),
+                    (200, ref_img.height+125),
                     f"{usage}",
                     fill="black",
                     font=ffont2
@@ -283,7 +283,7 @@ if submit:
                                 font=ffont2
                             )
                             text_sticker.text(
-                                (300, ref_img.height+145),
+                                (200, ref_img.height+125),
                                 f"{usage}",
                                 fill="black",
                                 font=ffont2
@@ -348,6 +348,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
