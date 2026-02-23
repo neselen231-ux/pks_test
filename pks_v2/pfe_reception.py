@@ -220,7 +220,7 @@ if submit:
                             lot_img = Image.open(buf_lot).convert("RGB")
 
                             # ✅ combined 캔버스 크기 계산
-                            max_w = max(ref_img.width, lot_img.width) + 70
+                            max_w = max(ref_img.width, lot_img.width) + 95
                             total_h = ref_img.height + lot_img.height + 20
 
                             combined = Image.new("RGB", (max_w, total_h), "white")
@@ -305,6 +305,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
