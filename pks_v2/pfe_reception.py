@@ -240,12 +240,6 @@ if submit:
                                 font=ffont
                             )
                             text_sticker.text(
-                                (25, ref_img.height+35),
-                                "OPM SN",
-                                fill="black",
-                                font=ffont2
-                            )
-                            text_sticker.text(
                                 (200, ref_img.height+125),
                                 f"{usage}",
                                 fill="black",
@@ -311,6 +305,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
