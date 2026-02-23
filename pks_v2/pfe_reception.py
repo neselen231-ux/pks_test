@@ -223,7 +223,7 @@ if submit:
                             max_w = max(ref_img.width, lot_img.width) + 95
                             total_h = ref_img.height + lot_img.height + 20
 
-                            combined = Image.new("RGB", (max_w, total_h), "white")
+                            combined = Image.new("RGB", (max_w - 15, total_h), "white")
                             combined.paste(lot_img, (50, ref_img.height+15))
 
                             text_sticker = ImageDraw.Draw(combined)
@@ -305,6 +305,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
