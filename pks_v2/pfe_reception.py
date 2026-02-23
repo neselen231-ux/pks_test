@@ -66,7 +66,7 @@ options = {
     "module_height": 2,   
     "quiet_zone": 1.5,       
     "font_size": 5,          
-    "text_distance": 1.5}
+    "text_distance": 2.5}
 
 
 
@@ -305,6 +305,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
