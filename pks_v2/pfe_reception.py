@@ -10,6 +10,7 @@ from PIL import Image, ImageDraw, ImageFont
 import datetime as dt
 import zipfile
 import socket
+from pylibdmtx import encode
 
 
 
@@ -138,7 +139,21 @@ if submit:
                 vendor_bytes.seek(0)
                 vendor_img = Image.open(vendor_bytes).convert("RGB")
 
+                ############ data matrix #############
+                data = f"P{reference.upper()}\rQ{qty}\rS{OP_lot}\rV{vendor})".encode('utf-8')
+
+                encoded = encode(data)
                 
+                dm_img = Image.frombytes(
+                    'RGB',
+                    (encoded.width, encoded.height),
+                    encoded.pixels
+                )
+                ##########################################""
+
+                
+                img.save('datamatrix.png')
+                                
                 max_w = max(ref_img.width, lot_img.width, qty_img.width, vendor_img.width) + 250
                 total_h = ref_img.height + lot_img.height + qty_img.height + vendor_img.height
 
@@ -177,10 +192,10 @@ if submit:
                 )
 
 
-                combined.paste(lot_img, (165, 28))
-                combined.paste(ref_img, (165, ref_img.height+18))
-                combined.paste(qty_img, (165, qty_img.height+80))
-                combined.paste(vendor_img, (165, vendor_img.height+140))
+                #combined.paste(lot_img, (165, 28))
+                #combined.paste(ref_img, (165, ref_img.height+18))
+                combined.paste(dm_img, (165, qty_img.height+80))
+                #combined.paste(vendor_img, (165, vendor_img.height+140))
 
 
                 download_carton_buffer = BytesIO()
@@ -305,6 +320,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
