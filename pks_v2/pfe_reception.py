@@ -186,7 +186,7 @@ if submit:
 
                 #combined.paste(lot_img, (165, 28))
                 #combined.paste(ref_img, (165, ref_img.height+18))
-                combined.paste(dm_img, (280, qty_img.height))
+                combined.paste(dm_img, (290, qty_img.height))
                 #combined.paste(vendor_img, (165, vendor_img.height+140))
 
 
@@ -312,6 +312,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
