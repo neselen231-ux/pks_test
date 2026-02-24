@@ -181,12 +181,7 @@ if submit:
                     fill="black",
                     font=ffont2
                 )
-                text_sticker.text(
-                    (35, ref_img.height+90),
-                    f"Vendor : {vendor}",
-                    fill="black",
-                    font=ffont2
-                )
+
 
 
                 #combined.paste(lot_img, (165, 28))
@@ -317,6 +312,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
