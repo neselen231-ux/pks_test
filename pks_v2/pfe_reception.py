@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw, ImageFont
 import datetime as dt
 import zipfile
 import socket
-from pylibdmtx.pylibdmtx import encode
+import treepoem
 
 
 
@@ -142,13 +142,9 @@ if submit:
                 ############ data matrix #############
                 data = f"P{reference.upper()}\rQ{qty}\rS{OP_lot}\rV{vendor})".encode('utf-8')
 
-                encoded = encode(data)
+                dm_barcode = treepoem.generate_barcode(barcode_type="datamatrix",data=data)
                 
-                dm_img = Image.frombytes(
-                    'RGB',
-                    (encoded.width, encoded.height),
-                    encoded.pixels
-                )
+                dm_img = dm_barcode.convert("RGB")
                 ##########################################""
 
                 
@@ -320,6 +316,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
