@@ -164,7 +164,7 @@ if submit:
                     font=ffont
                 )
                 text_sticker.text(
-                    (35, 60),
+                    (35, 90),
                     f"OPM lot : {OP_lot}",
                     fill="black",
                     font=ffont2
@@ -312,6 +312,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
