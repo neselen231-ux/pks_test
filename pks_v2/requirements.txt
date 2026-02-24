@@ -6,5 +6,7 @@ python-barcode
 Pillow
 streamlit_autorefresh
 xlsxwriter
+pylibdmtx
+
 
 
