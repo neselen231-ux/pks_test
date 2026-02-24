@@ -170,19 +170,19 @@ if submit:
                 )
                 text_sticker.text(
                     (85, ref_img.height+35),
-                    "Reference {reference}",
+                    f"Reference {reference}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
                     (85, ref_img.height+95),
-                    "Quantity {qty}",
+                    f"Quantity {qty}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
                     (85, ref_img.height+145),
-                    "Vendor {vendor}",
+                    f"Vendor {vendor}",
                     fill="black",
                     font=ffont2
                 )
@@ -316,6 +316,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
