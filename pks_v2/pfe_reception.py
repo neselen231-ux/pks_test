@@ -140,7 +140,7 @@ if submit:
                 vendor_img = Image.open(vendor_bytes).convert("RGB")
 
                 ############ data matrix #############
-                data = f"P{reference.upper()}\rQ{qty}\rS{OP_lot}\rV{vendor})".encode('utf-8')
+                data = f"P{reference.upper()}\rQ{qty}\rS{OP_lot}\rV{vendor}"
 
                 dm_barcode = treepoem.generate_barcode(barcode_type="datamatrix",data=data)
                 
@@ -316,6 +316,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
