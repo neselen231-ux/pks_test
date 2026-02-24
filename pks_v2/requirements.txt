@@ -7,6 +7,6 @@ Pillow
 streamlit_autorefresh
 xlsxwriter
 pylibdmtx
-
+setuptools
 
 
