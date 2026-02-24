@@ -145,7 +145,7 @@ if submit:
                 dm_barcode = treepoem.generate_barcode(barcode_type="datamatrix",data=data)
                 
                 dm_img = dm_barcode.convert("RGB")
-                dm_img.resize((1200, 1200))
+                dm_img = dm_img.resize((2200, 2200), Image.NEAREST)
                 ##########################################""
 
                 
@@ -317,6 +317,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
