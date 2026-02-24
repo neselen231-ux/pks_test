@@ -164,25 +164,25 @@ if submit:
                 )
                 text_sticker.text(
                     (85, 45),
-                    "OPM lot",
+                    f"OPM lot {OP_lot}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
                     (85, ref_img.height+35),
-                    "Reference",
+                    "Reference {reference}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
                     (85, ref_img.height+95),
-                    "Quantity",
+                    "Quantity {qty}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
                     (85, ref_img.height+145),
-                    "Vendor",
+                    "Vendor {vendor}",
                     fill="black",
                     font=ffont2
                 )
@@ -190,7 +190,7 @@ if submit:
 
                 #combined.paste(lot_img, (165, 28))
                 #combined.paste(ref_img, (165, ref_img.height+18))
-                combined.paste(dm_img, (165, qty_img.height+80))
+                combined.paste(dm_img, (240, qty_img.height+80))
                 #combined.paste(vendor_img, (165, vendor_img.height+140))
 
 
@@ -316,6 +316,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
