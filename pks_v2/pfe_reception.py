@@ -148,7 +148,7 @@ if submit:
                 ##########################################""
 
                 
-                img.save('datamatrix.png')
+
                                 
                 max_w = max(ref_img.width, lot_img.width, qty_img.width, vendor_img.width) + 250
                 total_h = ref_img.height + lot_img.height + qty_img.height + vendor_img.height
@@ -316,6 +316,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
