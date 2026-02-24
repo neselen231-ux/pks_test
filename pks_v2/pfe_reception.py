@@ -145,7 +145,7 @@ if submit:
                 dm_barcode = treepoem.generate_barcode(barcode_type="datamatrix",data=data)
                 
                 dm_img = dm_barcode.convert("RGB")
-                dm_img = dm_img.resize((210, 210), Image.NEAREST)
+                dm_img = dm_img.resize((200, 200), Image.NEAREST)
                 ##########################################""
 
                 
@@ -158,31 +158,31 @@ if submit:
 
                 text_sticker = ImageDraw.Draw(combined)
                 text_sticker.text(
-                    (105, 0),
+                    (105, 15),
                     f"{dt.datetime.now().date()}  {usage}",
                     fill="black",
                     font=ffont
                 )
                 text_sticker.text(
-                    (85, 45),
+                    (85, 50),
                     f"OPM lot : {OP_lot}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
-                    (85, ref_img.height+35),
+                    (85, ref_img.height+40),
                     f"Reference : {reference}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
-                    (85, ref_img.height+95),
+                    (85, ref_img.height+105),
                     f"Quantity : {qty}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
-                    (85, ref_img.height+145),
+                    (85, ref_img.height+155),
                     f"Vendor : {vendor}",
                     fill="black",
                     font=ffont2
@@ -191,7 +191,7 @@ if submit:
 
                 #combined.paste(lot_img, (165, 28))
                 #combined.paste(ref_img, (165, ref_img.height+18))
-                combined.paste(dm_img, (260, qty_img.height+25))
+                combined.paste(dm_img, (260, qty_img.height+10))
                 #combined.paste(vendor_img, (165, vendor_img.height+140))
 
 
@@ -317,6 +317,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
