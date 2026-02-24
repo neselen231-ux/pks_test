@@ -71,8 +71,8 @@ options = {
 
 
 
-ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 20)
-ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 15)
+ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 30)
+ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 25)
 
 if submit:
     if delivery_note:
@@ -158,31 +158,31 @@ if submit:
 
                 text_sticker = ImageDraw.Draw(combined)
                 text_sticker.text(
-                    (105, 30),
+                    (90, 30),
                     f"{dt.datetime.now().date()}  {usage}",
                     fill="black",
                     font=ffont
                 )
                 text_sticker.text(
-                    (85, 60),
+                    (70, 60),
                     f"OPM lot : {OP_lot}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
-                    (85, ref_img.height+30),
+                    (70, ref_img.height+30),
                     f"Reference : {reference}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
-                    (85, ref_img.height+60),
+                    (70, ref_img.height+60),
                     f"Quantity : {qty}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
-                    (85, ref_img.height+90),
+                    (70, ref_img.height+90),
                     f"Vendor : {vendor}",
                     fill="black",
                     font=ffont2
@@ -317,6 +317,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
