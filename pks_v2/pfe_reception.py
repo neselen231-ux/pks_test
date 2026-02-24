@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw, ImageFont
 import datetime as dt
 import zipfile
 import socket
-from pylibdmtx import encode
+from pylibdmtx.pylibdmtx import encode
 
 
 
@@ -320,6 +320,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
