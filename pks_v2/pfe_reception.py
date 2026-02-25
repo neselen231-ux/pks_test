@@ -145,10 +145,6 @@ if submit:
                 EOT = chr(4)
                 
                 data = (
-                    "[)>" +
-                    RS +
-                    "06" +
-                    GS +
                     f"S{OP_lot}" +
                     GS +
                     f"V{vendor}" +
@@ -330,6 +326,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
