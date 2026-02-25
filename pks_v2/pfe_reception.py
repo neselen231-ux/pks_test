@@ -225,7 +225,7 @@ if submit:
                         for i in range(1, qty + 1):
                             buf_lot = BytesIO()
 
-                            Code128(f"{OP_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
+                            Code128(f"{reference}_{OP_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
                             filename = f"{OP_lot}_{i}_{reference}_barcodes.png" 
 
                             buf_lot.seek(0)
@@ -317,6 +317,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
