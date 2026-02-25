@@ -144,9 +144,9 @@ if submit:
                 GS = chr(29)
                 EOT = chr(4)
 
-                data = "[)>" + RS + GS*5 + f"S{OP_lot}" + GS + f"V{vendor}" + GS + f"P{reference.upper()}" + GS + f"V{vendor}" + RS + EOT
+                data = "[)>" + RS  + f"S{OP_lot}" + GS + f"V{vendor}" + GS + f"P{reference.upper()}" + GS + f"Q{qty}" + RS + EOT
                 
-                data = f"S{OP_lot}\nV{vendor}\nP{reference.upper()}\nQ{qty}"
+                #data = f"S{OP_lot}\nV{vendor}\nP{reference.upper()}\nQ{qty}"
 
                 dm_barcode = treepoem.generate_barcode(barcode_type="datamatrix",data=data)
                 
@@ -318,6 +318,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
