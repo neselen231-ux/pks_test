@@ -144,7 +144,7 @@ if submit:
                 GS = chr(29)
                 EOT = chr(4)
 
-                data = "[)>" + RS  + f"S{OP_lot}" + GS + f"V{vendor}" + GS + f"P{reference.upper()}" + GS + f"Q{qty}" + RS + EOT
+                data = "[)>" + RS+"06"+ GS + "12PGTL3"+ GS + f"V{vendor}"+ GS + f"Q{qty}" +GS+GS+f"P{reference.upper()}"+GS+ f"S{OP_lot}" + RS + EOT
                 
                 #data = f"S{OP_lot}\nV{vendor}\nP{reference.upper()}\nQ{qty}"
 
@@ -318,6 +318,7 @@ new_rows = df.iloc[-10:,[-2,0,1,2]]
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
