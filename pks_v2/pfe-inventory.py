@@ -73,8 +73,12 @@ if submit:
     if inv_lot:
         if inv_qty:
             
-            with engine.begin() as conn_2:
-                result = conn_2.execute(
+             inv_lot = inv_lot.strip()
+            
+            with engine.begin() as conn:
+            
+                # 1️⃣ reference 조회
+                result = conn.execute(
                     text("""
                         SELECT Reference 
                         FROM reception
@@ -84,36 +88,46 @@ if submit:
                 )
             
                 reference = result.scalar()
+            
+                # reference 없을 경우 방지
+                if reference is None:
+                    st.error(f"OP lot '{inv_lot}' not found")
+                    st.stop()
+            
+                reference = str(reference)
+            
+                # 2️⃣ vendor 찾기
+                vendor_match = vendor_list.loc[
+                    vendor_list["Part number"] == reference, "Supplier"
+                ]
+            
+                vendor = vendor_match.iloc[0] if not vendor_match.empty else "VNUL"
+            
+                # 3️⃣ usage 찾기
+                usage_match = usage_list.loc[
+                    usage_list["reference"] == reference[:7], "usage"
+                ]
+            
+                usage = ",".join(usage_match.dropna().astype(str).unique())
+            
+                # 4️⃣ inventory update
+                conn.execute(
+                    text("""
+                        UPDATE reception
+                        SET inventored_qty = :ivq,
+                            inventory_time = :ivt,
+                            Emplacement = :emp
+                        WHERE OP_lot = :oplot
+                    """),
+                    {
+                        "ivq": int(inv_qty),
+                        "ivt": dt.datetime.now(),
+                        "emp": inv_emp,
+                        "oplot": inv_lot
+                    }
+                )
                 
-                vendor_match = vendor_list.loc[vendor_list["Part number"] == reference, "Supplier"]
-                usage_match = usage_list.loc[usage_list["reference"] == reference[:7], "usage"]
-                usage = ','.join(usage_match.dropna().astype(str).unique())
-                if vendor_match.empty:
-                    vendor = "VNUL"
-                else:
-                    vendor = vendor_match.iloc[0]
-                
-    
-    
-    
-                with engine.begin() as conn_1:
-                    conn_1.execute(
-                        text("""
-                            UPDATE reception
-                            SET inventored_qty = :ivq,
-                                inventory_time = :ivt,
-                                Emplacement = :emp
-                            WHERE OP_lot = :oplot
-                        """),
-                        {
-                            "ivq": inv_qty,
-                            "ivt": dt.datetime.now(),
-                            "emp": inv_emp,
-                            "oplot": inv_lot
-                        }
-                    )
-    
-                    
+                                
     
                     # -------------------------
                     # REFERENCE barcode generation
