@@ -145,165 +145,165 @@ if submit:
     
                     
     
-                    image_bytes = BytesIO()
-                    qty_lots = BytesIO()
-                    vendor_bytes = BytesIO()
+                image_bytes = BytesIO()
+                qty_lots = BytesIO()
+                vendor_bytes = BytesIO()
+                
+                Code128("Q"+str(inv_qty), writer=ImageWriter()).write(qty_lots, options)
+                Code128("S"+str(inv_lot), writer=ImageWriter()).write(image_bytes, options)
+                Code128("V"+str(vendor), writer=ImageWriter()).write(vendor_bytes, options)
                     
-                    Code128("Q"+str(inv_qty), writer=ImageWriter()).write(qty_lots, options)
-                    Code128("S"+str(inv_lot), writer=ImageWriter()).write(image_bytes, options)
-                    Code128("V"+str(vendor), writer=ImageWriter()).write(vendor_bytes, options)
-                        
-                    qty_lots.seek(0)
-                    qty_img = Image.open(qty_lots).convert("RGB")
-                    image_bytes.seek(0)
-                    lot_img = Image.open(image_bytes).convert("RGB")
-                    vendor_bytes.seek(0)
-                    vendor_img = Image.open(vendor_bytes).convert("RGB")
-    
-                    ############ data matrix #############
-                    RS = chr(30)
-                    GS = chr(29)
-                    EOT = chr(4)
-    
-                    data = "[)>" + RS+"06"+ GS + "12PGTL3"+ GS + f"V{vendor}"+ GS + f"Q{inv_qty}"+GS+f"P{reference.upper()}"+GS+ f"SI{inv_lot}" + RS + EOT
-                    
-    
-                    dm_barcode = treepoem.generate_barcode(barcode_type="datamatrix",data=data)
-                    
-                    dm_img = dm_barcode.convert("RGB")
-                    dm_img = dm_img.resize((200, 200), Image.NEAREST)
-                    ##########################################""
-    
-                    
-    
-                                    
-                    max_w = max(ref_img.width, lot_img.width, qty_img.width, vendor_img.width) + 250
-                    total_h = ref_img.height + lot_img.height + qty_img.height + vendor_img.height
-    
-                    combined = Image.new("RGB", (max_w, total_h), "white")
-    
-                    text_sticker = ImageDraw.Draw(combined)
-                    text_sticker.text(
-                        (55, 30),
-                        f"{dt.datetime.now().date()}  {usage}",
-                        fill="black",
-                        font=ffont
-                    )
-                    text_sticker.text(
-                        (35, 90),
-                        f"OPM lot : {inv_lot}",
-                        fill="black",
-                        font=ffont2
-                    )
-                    text_sticker.text(
-                        (35, ref_img.height+30),
-                        f"Reference : {reference}",
-                        fill="black",
-                        font=ffont2
-                    )
-                    text_sticker.text(
-                        (35, ref_img.height+60),
-                        f"Quantity : {inv_qty}",
-                        fill="black",
-                        font=ffont2
-                    )
-    
-    
-    
-                    #combined.paste(lot_img, (165, 28))
-                    #combined.paste(ref_img, (165, ref_img.height+18))
-                    combined.paste(dm_img, (290, qty_img.height))
-                    #combined.paste(vendor_img, (165, vendor_img.height+140))
-    
-    
-                    download_carton_buffer = BytesIO()
-                    combined.save(download_carton_buffer, format="PNG")
-                    download_carton_buffer.seek(0)
-    
-                    # 모바일 표시용 resize
-                    display_img = combined.copy()
-                    display_img.thumbnail((800, 800))
-                    
-                    st.image(display_img)
-    
-                    download_carton_buffer.seek(0)
-                    st.session_state.reference = reference
-                    st.session_state.qty = inv_qty
-                    st.session_state.vendor = vendor
-                    #st.session_state.project = project
-                    st.session_state.op_lot = inv_lot
-    
-                    # -------------------------
-                    # Multiple Barcode
-                    # -------------------------
-    
-                    
-                    if sup_sn_check is True:
-                        download_zip_buffer = BytesIO()
-    
-                        with zipfile.ZipFile(download_zip_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
-                            zf.writestr(f"barcode_{reference}.png", download_carton_buffer.read())
-                            for i in range(1, qty + 1):
-                                buf_lot = BytesIO()
-    
-                                Code128(f"{reference}_{OP_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
-                                filename = f"{OP_lot}_{i}_{reference}_barcodes.png" 
-    
-                                buf_lot.seek(0)
-                                lot_img = Image.open(buf_lot).convert("RGB")
-    
-                                # ✅ combined 캔버스 크기 계산
-                                max_w = max(ref_img.width, lot_img.width) + 95
-                                total_h = ref_img.height + lot_img.height + 20
-    
-                                combined = Image.new("RGB", (max_w - 15, total_h), "white")
-                                combined.paste(lot_img, (50, ref_img.height+15))
-    
-                                text_sticker = ImageDraw.Draw(combined)
-                                text_sticker.text(
-                                    (80, 0),
-                                    f"{dt.datetime.now().date()} {usage}",
-                                    fill="black",
-                                    font=ffont
-                                )
-                                text_sticker.text(
-                                    (105, 45),
-                                    f"{reference}",
-                                    fill="black",
-                                    font=ffont
-                                )
-                                text_sticker.text(
-                                    (200, ref_img.height+125),
-                                    f"{usage}",
-                                    fill="black",
-                                    font=ffont2
-                                )
-    
-                                img_bytes = BytesIO()
-                                combined.save(img_bytes, format="PNG")
-                                img_bytes.seek(0)
-    
-                                zf.writestr(filename, img_bytes.read())
+                qty_lots.seek(0)
+                qty_img = Image.open(qty_lots).convert("RGB")
+                image_bytes.seek(0)
+                lot_img = Image.open(image_bytes).convert("RGB")
+                vendor_bytes.seek(0)
+                vendor_img = Image.open(vendor_bytes).convert("RGB")
+
+                ############ data matrix #############
+                RS = chr(30)
+                GS = chr(29)
+                EOT = chr(4)
+
+                data = "[)>" + RS+"06"+ GS + "12PGTL3"+ GS + f"V{vendor}"+ GS + f"Q{inv_qty}"+GS+f"P{reference.upper()}"+GS+ f"SI{inv_lot}" + RS + EOT
+                
+
+                dm_barcode = treepoem.generate_barcode(barcode_type="datamatrix",data=data)
+                
+                dm_img = dm_barcode.convert("RGB")
+                dm_img = dm_img.resize((200, 200), Image.NEAREST)
+                ##########################################""
+
+                
+
                                 
-    
-    
+                max_w = max(ref_img.width, lot_img.width, qty_img.width, vendor_img.width) + 250
+                total_h = ref_img.height + lot_img.height + qty_img.height + vendor_img.height
+
+                combined = Image.new("RGB", (max_w, total_h), "white")
+
+                text_sticker = ImageDraw.Draw(combined)
+                text_sticker.text(
+                    (55, 30),
+                    f"{dt.datetime.now().date()}  {usage}",
+                    fill="black",
+                    font=ffont
+                )
+                text_sticker.text(
+                    (35, 90),
+                    f"OPM lot : {inv_lot}",
+                    fill="black",
+                    font=ffont2
+                )
+                text_sticker.text(
+                    (35, ref_img.height+30),
+                    f"Reference : {reference}",
+                    fill="black",
+                    font=ffont2
+                )
+                text_sticker.text(
+                    (35, ref_img.height+60),
+                    f"Quantity : {inv_qty}",
+                    fill="black",
+                    font=ffont2
+                )
+
+
+
+                #combined.paste(lot_img, (165, 28))
+                #combined.paste(ref_img, (165, ref_img.height+18))
+                combined.paste(dm_img, (290, qty_img.height))
+                #combined.paste(vendor_img, (165, vendor_img.height+140))
+
+
+                download_carton_buffer = BytesIO()
+                combined.save(download_carton_buffer, format="PNG")
+                download_carton_buffer.seek(0)
+
+                # 모바일 표시용 resize
+                display_img = combined.copy()
+                display_img.thumbnail((800, 800))
+                
+                st.image(display_img)
+
+                download_carton_buffer.seek(0)
+                st.session_state.reference = reference
+                st.session_state.qty = inv_qty
+                st.session_state.vendor = vendor
+                #st.session_state.project = project
+                st.session_state.op_lot = inv_lot
+
+                # -------------------------
+                # Multiple Barcode
+                # -------------------------
+
+                
+                if sup_sn_check is True:
+                    download_zip_buffer = BytesIO()
+
+                    with zipfile.ZipFile(download_zip_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+                        zf.writestr(f"barcode_{reference}.png", download_carton_buffer.read())
+                        for i in range(1, qty + 1):
+                            buf_lot = BytesIO()
+
+                            Code128(f"{reference}_{OP_lot}_{i}", writer=ImageWriter()).write(buf_lot, options)
+                            filename = f"{OP_lot}_{i}_{reference}_barcodes.png" 
+
+                            buf_lot.seek(0)
+                            lot_img = Image.open(buf_lot).convert("RGB")
+
+                            # ✅ combined 캔버스 크기 계산
+                            max_w = max(ref_img.width, lot_img.width) + 95
+                            total_h = ref_img.height + lot_img.height + 20
+
+                            combined = Image.new("RGB", (max_w - 15, total_h), "white")
+                            combined.paste(lot_img, (50, ref_img.height+15))
+
+                            text_sticker = ImageDraw.Draw(combined)
+                            text_sticker.text(
+                                (80, 0),
+                                f"{dt.datetime.now().date()} {usage}",
+                                fill="black",
+                                font=ffont
+                            )
+                            text_sticker.text(
+                                (105, 45),
+                                f"{reference}",
+                                fill="black",
+                                font=ffont
+                            )
+                            text_sticker.text(
+                                (200, ref_img.height+125),
+                                f"{usage}",
+                                fill="black",
+                                font=ffont2
+                            )
+
+                            img_bytes = BytesIO()
+                            combined.save(img_bytes, format="PNG")
+                            img_bytes.seek(0)
+
+                            zf.writestr(filename, img_bytes.read())
                             
-                        download_zip_buffer.seek(0)        
-                        st.download_button(
-                        label="📥 Download Barcode",
-                        data=download_zip_buffer,
-                        file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
-                        mime="application/zip" if sup_sn_check else "image/png",
-                        )
-                    else: 
-                        st.download_button(
-                        label="📥 Download Barcode",
-                        data=download_carton_buffer.getvalue(),
-                        file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
-                        mime="application/zip" if sup_sn_check else "image/png",
-                        )
-                    st.success("DB updated")                        
-        
+
+
+                        
+                    download_zip_buffer.seek(0)        
+                    st.download_button(
+                    label="📥 Download Barcode",
+                    data=download_zip_buffer,
+                    file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
+                    mime="application/zip" if sup_sn_check else "image/png",
+                    )
+                else: 
+                    st.download_button(
+                    label="📥 Download Barcode",
+                    data=download_carton_buffer.getvalue(),
+                    file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
+                    mime="application/zip" if sup_sn_check else "image/png",
+                    )
+                st.success("DB updated")                        
+    
         else: st.warning("Qty missing") 
     else: st.warning("Lot number missing")        
             
