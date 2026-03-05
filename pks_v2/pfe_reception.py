@@ -35,17 +35,14 @@ engine = create_engine(
         "ssl": {"ca": "ca.pem"}
     }
 )
-st.title("Reception")
+st.title("PFE inventory")
 
 # 2 input boxes
 
 with st.form("input_form"):
-    reference = st.text_input("Reference number")
-    qty_input = st.text_input("quantity", "1")
-    delivery_note = st.text_input("Delivery note")
-    #project = st.selectbox("Project", ["Als 525", "Als 105", "Als Common", "Hess 3P", "Hess 4P", "Hess common"])
-    sup_lot = st.text_input("Supplier lot",max_chars=40)
-    Comment = st.text_input("Comment",max_chars=20)
+    inv_lot = st.text_input("OP lot")
+    inv_qty = st.text_input("Qty counted", "1")
+    inv_emp = st.text_input("Storage location")
     sup_sn_check = st.checkbox("S/N mode", value = False )
     submit = st.form_submit_button("Input")
 
@@ -59,8 +56,6 @@ usage_list = pd.read_csv("usage.csv",sep=";")
 ##
 
 
-# Reference pattern
-pattern = r"^\d{7}[A-Za-z]{2}$"
 
 options = {
     "module_width": 0.15,     
@@ -75,15 +70,21 @@ ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 27)
 ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 22)
 
 if submit:
-    if delivery_note:
-        if re.fullmatch(pattern, reference):
-            try:
-                qty = int(qty_input)
-            except:
-                st.error("Quantity must be a number")
-                st.stop()
-                            #----- Vendorcheck
-
+    if inv_lot:
+        if inv_qty:
+            
+        with engine.begin() as conn_2:
+            result = conn_2.execute(
+                text("""
+                    SELECT Reference 
+                    FROM reception
+                    WHERE OP_lot = :inv_lot
+                """),
+                {"inv_lot": inv_lot}
+            )
+        
+            reference = result.scalar()
+            
             vendor_match = vendor_list.loc[vendor_list["Part number"] == reference, "Supplier"]
             usage_match = usage_list.loc[usage_list["reference"] == reference[:7], "usage"]
             usage = ','.join(usage_match.dropna().astype(str).unique())
@@ -95,16 +96,23 @@ if submit:
 
 
 
-            with engine.begin() as conn_2:
-                conn_2.execute(
-                    text("""INSERT INTO reception
-                            (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot,program)
-                            VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
-                    {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
-                     "rem": Comment, "rep": dt.datetime.now(), "sta": "to insepct", "sup": sup_lot, "prog" : usage
-}
+            with engine.begin() as conn_1:
+                conn_1.execute(
+                    text("""
+                        UPDATE reception
+                        SET inventored_qty = :ivq,
+                            inventory_time = :ivt,
+                            Emplacement = :emp
+                        WHERE OP_LOT = :oplot
+                    """),
+                    {
+                        "ivq": inv_qty,
+                        "ivt": dt.datetime.now(),
+                        "emp": inv_emp,
+                        "oplot": inv_lot
+                    }
                 )
-                OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
+
                 
 
                 # -------------------------
@@ -182,7 +190,7 @@ if submit:
                 )
                 text_sticker.text(
                     (35, ref_img.height+60),
-                    f"Quantity : {qty}",
+                    f"Quantity : {inv_qty}",
                     fill="black",
                     font=ffont2
                 )
@@ -284,16 +292,10 @@ if submit:
                     )
                 st.success("DB updated")                        
     
-        else: st.warning("Reference missing") 
-    else: st.warning("Delivery note missing")        
+        else: st.warning("Qty missing") 
+    else: st.warning("Lot number missing")        
             
-with st.expander("Delete lot",expanded=False):
-    delete_id = st.number_input("Delete lot",min_value=0)
-    
-    if st.button("Delete"):
-        with engine.begin() as deletion:
-            deletion.execute(text("DELETE FROM reception WHERE OP_lot = :lot"),{"lot":int(delete_id)})
-        st.rerun()
+
 
 #if st.button("Print"):
 #    print_label(
@@ -312,11 +314,12 @@ df = pd.read_sql("SELECT * FROM reception", con=engine)
 
 
 
-new_rows = df.iloc[-10:,[-2,0,1,2]]
+new_rows = df.iloc[-2:]
 
 
 with st.expander("last 10 receptions",expanded=False):
     st.table(new_rows)
+
 
 
 
