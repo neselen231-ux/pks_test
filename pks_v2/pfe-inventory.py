@@ -103,7 +103,7 @@ if submit:
                             SET inventored_qty = :ivq,
                                 inventory_time = :ivt,
                                 Emplacement = :emp
-                            WHERE OP_LOT = :oplot
+                            WHERE OP_lot = :oplot
                         """),
                         {
                             "ivq": inv_qty,
