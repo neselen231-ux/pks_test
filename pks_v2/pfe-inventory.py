@@ -73,61 +73,60 @@ if submit:
     if inv_lot:
         if inv_qty:
             
-             inv_lot = inv_lot.strip()
-            
+            inv_lot = inv_lot.strip()
             with engine.begin() as conn:
             
-                # 1️⃣ reference 조회
-                result = conn.execute(
-                    text("""
-                        SELECT Reference 
-                        FROM reception
-                        WHERE OP_lot = :inv_lot
-                    """),
-                    {"inv_lot": inv_lot}
-                )
+            # 1️⃣ reference 조회
+            result = conn.execute(
+                text("""
+                    SELECT Reference 
+                    FROM reception
+                    WHERE OP_lot = :inv_lot
+                """),
+                {"inv_lot": inv_lot}
+            )
             
-                reference = result.scalar()
+            reference = result.scalar()
             
-                # reference 없을 경우 방지
-                if reference is None:
-                    st.error(f"OP lot '{inv_lot}' not found")
-                    st.stop()
+            # reference 없을 경우 방지
+            if reference is None:
+                st.error(f"OP lot '{inv_lot}' not found")
+                st.stop()
             
-                reference = str(reference)
+            reference = str(reference)
             
-                # 2️⃣ vendor 찾기
-                vendor_match = vendor_list.loc[
-                    vendor_list["Part number"] == reference, "Supplier"
-                ]
+            # 2️⃣ vendor 찾기
+            vendor_match = vendor_list.loc[
+                vendor_list["Part number"] == reference, "Supplier"
+            ]
             
-                vendor = vendor_match.iloc[0] if not vendor_match.empty else "VNUL"
+            vendor = vendor_match.iloc[0] if not vendor_match.empty else "VNUL"
             
-                # 3️⃣ usage 찾기
-                usage_match = usage_list.loc[
-                    usage_list["reference"] == reference[:7], "usage"
-                ]
+            # 3️⃣ usage 찾기
+            usage_match = usage_list.loc[
+                usage_list["reference"] == reference[:7], "usage"
+            ]
             
-                usage = ",".join(usage_match.dropna().astype(str).unique())
+            usage = ",".join(usage_match.dropna().astype(str).unique())
             
-                # 4️⃣ inventory update
-                conn.execute(
-                    text("""
-                        UPDATE reception
-                        SET inventored_qty = :ivq,
-                            inventory_time = :ivt,
-                            Emplacement = :emp
-                        WHERE OP_lot = :oplot
-                    """),
-                    {
-                        "ivq": int(inv_qty),
-                        "ivt": dt.datetime.now(),
-                        "emp": inv_emp,
-                        "oplot": inv_lot
-                    }
-                )
-                
-                                    
+            # 4️⃣ inventory update
+            conn.execute(
+                text("""
+                    UPDATE reception
+                    SET inventored_qty = :ivq,
+                        inventory_time = :ivt,
+                        Emplacement = :emp
+                    WHERE OP_lot = :oplot
+                """),
+                {
+                    "ivq": int(inv_qty),
+                    "ivt": dt.datetime.now(),
+                    "emp": inv_emp,
+                    "oplot": inv_lot
+                }
+            )
+            
+                                
         
                     # -------------------------
                     # REFERENCE barcode generation
