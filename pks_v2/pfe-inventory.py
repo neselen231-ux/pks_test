@@ -136,8 +136,8 @@ if submit:
                     qty_lots = BytesIO()
                     vendor_bytes = BytesIO()
                     
-                    Code128("Q"+str(qty), writer=ImageWriter()).write(qty_lots, options)
-                    Code128("S"+str(OP_lot), writer=ImageWriter()).write(image_bytes, options)
+                    Code128("Q"+str(inv_qty), writer=ImageWriter()).write(qty_lots, options)
+                    Code128("S"+str(inv_lot), writer=ImageWriter()).write(image_bytes, options)
                     Code128("V"+str(vendor), writer=ImageWriter()).write(vendor_bytes, options)
                         
                     qty_lots.seek(0)
