@@ -131,10 +131,10 @@ if submit:
                     # -------------------------
                     # REFERENCE barcode generation
                     # -------------------------
-                    buf_ref = BytesIO()
-                    Code128("P"+reference.upper(), writer=ImageWriter()).write(buf_ref, options)
-                    buf_ref.seek(0)
-                    ref_img = Image.open(buf_ref).convert("RGB")
+                buf_ref = BytesIO()
+                Code128("P"+reference.upper(), writer=ImageWriter()).write(buf_ref, options)
+                buf_ref.seek(0)
+                ref_img = Image.open(buf_ref).convert("RGB")
     
     
     
