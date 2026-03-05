@@ -178,7 +178,7 @@ if submit:
                     )
                     text_sticker.text(
                         (35, 90),
-                        f"OPM lot : {OP_lot}",
+                        f"OPM lot : {inv_lot}",
                         fill="black",
                         font=ffont2
                     )
