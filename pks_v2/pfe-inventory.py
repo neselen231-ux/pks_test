@@ -215,10 +215,10 @@ if submit:
     
                     download_carton_buffer.seek(0)
                     st.session_state.reference = reference
-                    st.session_state.qty = qty
+                    st.session_state.qty = inv_qty
                     st.session_state.vendor = vendor
                     #st.session_state.project = project
-                    st.session_state.op_lot = OP_lot
+                    st.session_state.op_lot = inv_lot
     
                     # -------------------------
                     # Multiple Barcode
