@@ -282,16 +282,15 @@ if submit:
                         file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
                         mime="application/zip" if sup_sn_check else "image/png",
                         )
-                else: 
-
-                    st.download_button(
-                    label="📥 Download Barcode",
-                    data=download_carton_buffer.getvalue(),
-                    file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
-                    mime="application/zip" if sup_sn_check else "image/png",
-                    )
-                st.success("DB updated")                        
-    
+                    else: 
+                        st.download_button(
+                        label="📥 Download Barcode",
+                        data=download_carton_buffer.getvalue(),
+                        file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
+                        mime="application/zip" if sup_sn_check else "image/png",
+                        )
+                    st.success("DB updated")                        
+        
         else: st.warning("Qty missing") 
     else: st.warning("Lot number missing")        
             
