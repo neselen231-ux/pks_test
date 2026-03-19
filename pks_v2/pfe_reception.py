@@ -169,19 +169,19 @@ if submit:
                     font=ffont
                 )
                 text_sticker.text(
-                    (35, 115),
+                    (35, 85),
                     f"OPM lot : {OP_lot}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
-                    (35, ref_img.height+55),
+                    (35, ref_img.height+30),
                     f"Reference : {reference}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
-                    (35, ref_img.height+85),
+                    (35, ref_img.height+80),
                     f"Quantity : {qty}",
                     fill="black",
                     font=ffont2
