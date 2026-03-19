@@ -71,8 +71,8 @@ options = {
 
 
 
-ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 30)
-ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 25)
+ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 32)
+ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 27)
 
 if submit:
     if delivery_note:
@@ -191,7 +191,7 @@ if submit:
 
                 #combined.paste(lot_img, (165, 28))
                 #combined.paste(ref_img, (165, ref_img.height+18))
-                combined.paste(dm_img, (310, qty_img.height-25))
+                combined.paste(dm_img, (325, qty_img.height-20))
                 #combined.paste(vendor_img, (165, vendor_img.height+140))
 
 
