@@ -67,12 +67,12 @@ options = {
     "module_height": 2,   
     "quiet_zone": 1.5,       
     "font_size": 5,          
-    "text_distance": 2.5}
+    "text_distance": 2.7}
 
 
 
-ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 27)
-ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 22)
+ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 30)
+ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 25)
 
 if submit:
     if delivery_note:
