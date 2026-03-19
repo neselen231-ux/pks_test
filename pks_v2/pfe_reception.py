@@ -71,7 +71,7 @@ options = {
 
 
 
-ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 38)
+ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 20)
 ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 38)
 
 if submit:
