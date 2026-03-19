@@ -191,7 +191,7 @@ if submit:
 
                 #combined.paste(lot_img, (165, 28))
                 #combined.paste(ref_img, (165, ref_img.height+18))
-                combined.paste(dm_img, (290, qty_img.height))
+                combined.paste(dm_img, (310, qty_img.height-25))
                 #combined.paste(vendor_img, (165, vendor_img.height+140))
 
 
