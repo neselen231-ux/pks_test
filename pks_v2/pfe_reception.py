@@ -71,8 +71,8 @@ options = {
 
 
 
-ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 35)
-ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 35)
+ffont = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 38)
+ffont2 = ImageFont.truetype("pks_v2/fonts/NanumGothic-Regular.ttf", 38)
 
 if submit:
     if delivery_note:
@@ -163,25 +163,25 @@ if submit:
 
                 text_sticker = ImageDraw.Draw(combined)
                 text_sticker.text(
-                    (55, 30),
+                    (55, 40),
                     f"{dt.datetime.now().date()}  {usage}",
                     fill="black",
                     font=ffont
                 )
                 text_sticker.text(
-                    (35, 90),
+                    (35, 115),
                     f"OPM lot : {OP_lot}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
-                    (35, ref_img.height+30),
+                    (35, ref_img.height+55),
                     f"Reference : {reference}",
                     fill="black",
                     font=ffont2
                 )
                 text_sticker.text(
-                    (35, ref_img.height+60),
+                    (35, ref_img.height+85),
                     f"Quantity : {qty}",
                     fill="black",
                     font=ffont2
