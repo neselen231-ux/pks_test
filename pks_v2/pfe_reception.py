@@ -47,6 +47,8 @@ with st.form("input_form"):
     sup_lot = st.text_input("Supplier lot",max_chars=40)
     Comment = st.text_input("Comment",max_chars=20)
     sup_sn_check = st.checkbox("S/N mode", value = False )
+    dmode = st.checkbox("D mode", value = False )
+    nbox = st.number_input("N of Box",min_value=0,step=1,format="%d")
     submit = st.form_submit_button("Input")
 
 
@@ -213,9 +215,192 @@ if submit:
                 st.session_state.op_lot = OP_lot
 
                 # -------------------------
-                # Multiple Barcode
+                # dmode
                 # -------------------------
+                if dmode is True:
+                    download_zip_buffer = BytesIO()
 
+                    with zipfile.ZipFile(
+                        download_zip_buffer,
+                        mode="w",
+                        compression=zipfile.ZIP_DEFLATED
+                    ) as zf:
+                    
+                        for i in range(1, nbox + 1):
+                    
+                            # -------------------------
+                            # BARCODE GENERATION
+                            # -------------------------
+                    
+                            ref_buffer = BytesIO()
+                            lot_buffer = BytesIO()
+                            qty_buffer = BytesIO()
+                            vendor_buffer = BytesIO()
+                    
+                            Code128(
+                                f"P{reference.upper()}",
+                                writer=ImageWriter()
+                            ).write(ref_buffer, options)
+                    
+                            Code128(
+                                f"S{OP_lot}",
+                                writer=ImageWriter()
+                            ).write(lot_buffer, options)
+                    
+                            Code128(
+                                f"Q{qty}",
+                                writer=ImageWriter()
+                            ).write(qty_buffer, options)
+                    
+                            Code128(
+                                f"V{vendor}",
+                                writer=ImageWriter()
+                            ).write(vendor_buffer, options)
+                    
+                            ref_buffer.seek(0)
+                            lot_buffer.seek(0)
+                            qty_buffer.seek(0)
+                            vendor_buffer.seek(0)
+                    
+                            ref_img = Image.open(ref_buffer).convert("RGB")
+                            lot_img = Image.open(lot_buffer).convert("RGB")
+                            qty_img = Image.open(qty_buffer).convert("RGB")
+                            vendor_img = Image.open(vendor_buffer).convert("RGB")
+                    
+                            # -------------------------
+                            # DATAMATRIX
+                            # -------------------------
+                    
+                            RS = chr(30)
+                            GS = chr(29)
+                            EOT = chr(4)
+                    
+                            data = (
+                                "[)>"
+                                + RS + "06"
+                                + GS + "12PGTL3"
+                                + GS + f"V{vendor}"
+                                + GS + f"Q{qty}"
+                                + GS + f"P{reference.upper()}"
+                                + GS + f"SI{OP_lot}"
+                                + RS + EOT
+                            )
+                    
+                            dm_img = (
+                                treepoem.generate_barcode(
+                                    barcode_type="datamatrix",
+                                    data=data
+                                )
+                                .convert("RGB")
+                                .resize((150, 150), Image.NEAREST)
+                            )
+                    
+                            # -------------------------
+                            # LABEL CANVAS
+                            # -------------------------
+                    
+                            width = 1200
+                            height = 650
+                    
+                            combined = Image.new(
+                                "RGB",
+                                (width, height),
+                                "white"
+                            )
+                    
+                            draw = ImageDraw.Draw(combined)
+                    
+                            # -------------------------
+                            # TEXT
+                            # -------------------------
+                    
+                            draw.text(
+                                (30, 20),
+                                f"{dt.datetime.now().date()}",
+                                fill="black",
+                                font=ffont
+                            )
+                    
+                            draw.text(
+                                (30, 70),
+                                f"Usage : {usage}",
+                                fill="black",
+                                font=ffont2
+                            )
+                    
+                            draw.text(
+                                (30, 120),
+                                f"OPM Lot : {OP_lot}",
+                                fill="black",
+                                font=ffont2
+                            )
+                    
+                            draw.text(
+                                (30, 170),
+                                f"Reference : {reference}",
+                                fill="black",
+                                font=ffont2
+                            )
+                    
+                            draw.text(
+                                (30, 220),
+                                f"Vendor : {vendor}",
+                                fill="black",
+                                font=ffont2
+                            )
+                    
+                            draw.text(
+                                (30, 270),
+                                f"Total lot : {qty / nbox}",
+                                fill="black",
+                                font=ffont2
+                            )
+                    
+                            draw.text(
+                                (30, 320),
+                                f"QTY : {qty / nbox}",
+                                fill="black",
+                                font=ffont2
+                            )
+                    
+                            # -------------------------
+                            # BARCODE PASTE
+                            # -------------------------
+                    
+                            combined.paste(ref_img, (350, 20))
+                            combined.paste(lot_img, (350, 150))
+                            combined.paste(qty_img, (350, 280))
+                            combined.paste(vendor_img, (350, 410))
+                    
+                            combined.paste(dm_img, (950, 30))
+                    
+                            # -------------------------
+                            # SAVE TO ZIP
+                            # -------------------------
+                    
+                            img_buffer = BytesIO()
+                    
+                            combined.save(
+                                img_buffer,
+                                format="PNG"
+                            )
+                    
+                            img_buffer.seek(0)
+                    
+                            zf.writestr(
+                                f"{OP_lot}_{reference}_{i}.png",
+                                img_buffer.read()
+                            )
+                    
+                    download_zip_buffer.seek(0)
+                    
+                    st.download_button(
+                        "📦 Download ZIP",
+                        data=download_zip_buffer,
+                        file_name=f"{OP_lot}_{reference}_dmode.zip",
+                        mime="application/zip"
+                    )
+                
                 
                 if sup_sn_check is True:
                     download_zip_buffer = BytesIO()
@@ -294,16 +479,6 @@ with st.expander("Delete lot",expanded=False):
         with engine.begin() as deletion:
             deletion.execute(text("DELETE FROM reception WHERE OP_lot = :lot"),{"lot":int(delete_id)})
         st.rerun()
-
-#if st.button("Print"):
-#    print_label(
-#    st.session_state.reference,
-#    st.session_state.qty,
-#    st.session_state.vendor,
-#    st.session_state.project,
-#    st.session_state.op_lot
-#    )
-
 
 
 
