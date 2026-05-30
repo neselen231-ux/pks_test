@@ -48,7 +48,7 @@ with st.form("input_form"):
     Comment = st.text_input("Comment",max_chars=20)
     sup_sn_check = st.checkbox("S/N mode", value = False )
     dmode = st.checkbox("D mode", value = False )
-    nbox = st.number_input("N of Box",min_value=0,step=1,format="%d")
+    nbox = st.number_input("N of Box",min_value=1,step=1,format="%d")
     submit = st.form_submit_button("Input")
 
 
@@ -217,75 +217,89 @@ if submit:
                 # -------------------------
                 # dmode
                 # -------------------------
-                if dmode is True:
-                    download_zip_buffer = BytesIO()
-
+                download_zip_buffer_dmode = None
+                
+                if dmode:
+                
+                    if nbox <= 0:
+                        st.error("N of Box must be greater than 0")
+                        st.stop()
+                
+                    download_zip_buffer_dmode = BytesIO()
+                
                     with zipfile.ZipFile(
-                        download_zip_buffer,
+                        download_zip_buffer_dmode,
                         mode="w",
                         compression=zipfile.ZIP_DEFLATED
                     ) as zf:
-                    
+                
+                        download_carton_buffer.seek(0)
+                
+                        zf.writestr(
+                            f"{reference}_master.png",
+                            download_carton_buffer.read()
+                        )
+                
                         for i in range(1, nbox + 1):
-                    
+                
                             # -------------------------
                             # BARCODE GENERATION
                             # -------------------------
-                    
+                
                             ref_buffer = BytesIO()
                             lot_buffer = BytesIO()
                             qty_buffer = BytesIO()
                             vendor_buffer = BytesIO()
-                    
+                
                             Code128(
                                 f"P{reference.upper()}",
                                 writer=ImageWriter()
                             ).write(ref_buffer, options)
-                    
+                
                             Code128(
                                 f"S{OP_lot}",
                                 writer=ImageWriter()
                             ).write(lot_buffer, options)
-                    
+                
                             Code128(
-                                f"Q{qty}",
+                                f"Q{qty/nbox}",
                                 writer=ImageWriter()
                             ).write(qty_buffer, options)
-                    
+                
                             Code128(
                                 f"V{vendor}",
                                 writer=ImageWriter()
                             ).write(vendor_buffer, options)
-                    
+                
                             ref_buffer.seek(0)
                             lot_buffer.seek(0)
                             qty_buffer.seek(0)
                             vendor_buffer.seek(0)
-                    
+                
                             ref_img = Image.open(ref_buffer).convert("RGB")
                             lot_img = Image.open(lot_buffer).convert("RGB")
                             qty_img = Image.open(qty_buffer).convert("RGB")
                             vendor_img = Image.open(vendor_buffer).convert("RGB")
-                    
+                
                             # -------------------------
                             # DATAMATRIX
                             # -------------------------
-                    
+                
                             RS = chr(30)
                             GS = chr(29)
                             EOT = chr(4)
-                    
+                
                             data = (
                                 "[)>"
                                 + RS + "06"
                                 + GS + "12PGTL3"
                                 + GS + f"V{vendor}"
-                                + GS + f"Q{qty}"
+                                + GS + f"Q{qty/nbox}"
                                 + GS + f"P{reference.upper()}"
                                 + GS + f"SI{OP_lot}"
                                 + RS + EOT
                             )
-                    
+                
                             dm_img = (
                                 treepoem.generate_barcode(
                                     barcode_type="datamatrix",
@@ -294,114 +308,93 @@ if submit:
                                 .convert("RGB")
                                 .resize((150, 150), Image.NEAREST)
                             )
-                    
+                
                             # -------------------------
-                            # LABEL CANVAS
+                            # LABEL
                             # -------------------------
-                    
-                            width = 1200
-                            height = 650
-                    
+                
                             combined = Image.new(
                                 "RGB",
-                                (width, height),
+                                (1200, 650),
                                 "white"
                             )
-                    
+                
                             draw = ImageDraw.Draw(combined)
-                    
-                            # -------------------------
-                            # TEXT
-                            # -------------------------
-                    
+                
                             draw.text(
                                 (30, 20),
                                 f"{dt.datetime.now().date()}",
                                 fill="black",
                                 font=ffont
                             )
-                    
+                
                             draw.text(
-                                (30, 70),
+                                (30, 80),
                                 f"Usage : {usage}",
                                 fill="black",
                                 font=ffont2
                             )
-                    
+                
                             draw.text(
-                                (30, 120),
+                                (30, 140),
                                 f"OPM Lot : {OP_lot}",
                                 fill="black",
                                 font=ffont2
                             )
-                    
+                
                             draw.text(
-                                (30, 170),
+                                (30, 200),
                                 f"Reference : {reference}",
                                 fill="black",
                                 font=ffont2
                             )
-                    
+                
                             draw.text(
-                                (30, 220),
+                                (30, 260),
                                 f"Vendor : {vendor}",
                                 fill="black",
                                 font=ffont2
                             )
-                    
-                            draw.text(
-                                (30, 270),
-                                f"Total lot : {qty / nbox}",
-                                fill="black",
-                                font=ffont2
-                            )
-                    
+                
                             draw.text(
                                 (30, 320),
-                                f"QTY : {qty / nbox}",
+                                f"Lot QTY : {qty / nbox}",
                                 fill="black",
                                 font=ffont2
                             )
-                    
+                
+                            draw.text(
+                                (30, 380),
+                                f"QTY : {qty}",
+                                fill="black",
+                                font=ffont2
+                            )
+                
+                            combined.paste(ref_img, (450, 20))
+                            combined.paste(lot_img, (450, 140))
+                            combined.paste(qty_img, (450, 260))
+                            combined.paste(vendor_img, (450, 380))
+                            combined.paste(dm_img, (980, 20))
+                
                             # -------------------------
-                            # BARCODE PASTE
+                            # ZIP SAVE
                             # -------------------------
-                    
-                            combined.paste(ref_img, (350, 20))
-                            combined.paste(lot_img, (350, 150))
-                            combined.paste(qty_img, (350, 280))
-                            combined.paste(vendor_img, (350, 410))
-                    
-                            combined.paste(dm_img, (950, 30))
-                    
-                            # -------------------------
-                            # SAVE TO ZIP
-                            # -------------------------
-                    
+                
                             img_buffer = BytesIO()
-                    
+                
                             combined.save(
                                 img_buffer,
                                 format="PNG"
                             )
-                    
+                
                             img_buffer.seek(0)
-                    
+                
                             zf.writestr(
-                                f"{OP_lot}_{reference}_{i}.png",
+                                f"{OP_lot}_{reference}_BOX_{i}.png",
                                 img_buffer.read()
                             )
-                    
-                    download_zip_buffer.seek(0)
-                    
-                    st.download_button(
-                        "📦 Download ZIP",
-                        data=download_zip_buffer.getvalue(),
-                        file_name=f"{OP_lot}_{reference}_dmode.zip",
-                        mime="application/zip"
-                    )
-                    st.success("DB updated") 
                 
+                    download_zip_buffer_dmode.seek(0)
                 
                 if sup_sn_check is True:
                     download_zip_buffer = BytesIO()
@@ -460,8 +453,16 @@ if submit:
                     file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
                     mime="application/zip" if sup_sn_check else "image/png",
                     )
-                elif dmode is False: 
+                elif dmode is True: 
+                    st.download_button(
+                        label="📦 Download D-Mode ZIP",
+                        data=download_zip_buffer_dmode.getvalue(),
+                        file_name=f"{OP_lot}_{reference}_dmode.zip",
+                        mime="application/zip",
+                        use_container_width=True
+                    )
 
+                else    
                     st.download_button(
                     label="📥 Download Barcode",
                     data=download_carton_buffer.getvalue(),
