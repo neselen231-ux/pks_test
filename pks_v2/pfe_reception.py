@@ -242,44 +242,6 @@ if submit:
                 
                         for i in range(1, nbox + 1):
                 
-                            # -------------------------
-                            # BARCODE GENERATION
-                            # -------------------------
-                
-                            ref_buffer = BytesIO()
-                            lot_buffer = BytesIO()
-                            qty_buffer = BytesIO()
-                            vendor_buffer = BytesIO()
-                
-                            Code128(
-                                f"P{reference.upper()}",
-                                writer=ImageWriter()
-                            ).write(ref_buffer, options)
-                
-                            Code128(
-                                f"S{OP_lot}",
-                                writer=ImageWriter()
-                            ).write(lot_buffer, options)
-                
-                            Code128(
-                                f"Q{qty/nbox}",
-                                writer=ImageWriter()
-                            ).write(qty_buffer, options)
-                
-                            Code128(
-                                f"V{vendor}",
-                                writer=ImageWriter()
-                            ).write(vendor_buffer, options)
-                
-                            ref_buffer.seek(0)
-                            lot_buffer.seek(0)
-                            qty_buffer.seek(0)
-                            vendor_buffer.seek(0)
-                
-                            ref_img = Image.open(ref_buffer).convert("RGB")
-                            lot_img = Image.open(lot_buffer).convert("RGB")
-                            qty_img = Image.open(qty_buffer).convert("RGB")
-                            vendor_img = Image.open(vendor_buffer).convert("RGB")
                 
                             # -------------------------
                             # DATAMATRIX
