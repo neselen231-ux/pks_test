@@ -462,7 +462,7 @@ if submit:
                         use_container_width=True
                     )
 
-                else    
+                else:    
                     st.download_button(
                     label="📥 Download Barcode",
                     data=download_carton_buffer.getvalue(),
