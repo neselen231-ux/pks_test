@@ -227,18 +227,9 @@ if submit:
                 
                     download_zip_buffer_dmode = BytesIO()
                 
-                    with zipfile.ZipFile(
-                        download_zip_buffer_dmode,
-                        mode="w",
-                        compression=zipfile.ZIP_DEFLATED
-                    ) as zf:
+                    with zipfile.ZipFile(download_zip_buffer_dmode,mode="w",compression=zipfile.ZIP_DEFLATED) as zf:
                 
                         download_carton_buffer.seek(0)
-                
-                        zf.writestr(
-                            f"{reference}_master.png",
-                            download_carton_buffer.read()
-                        )
                 
                         for i in range(1, nbox + 1):
                 
@@ -311,12 +302,6 @@ if submit:
                                 font=ffont2
                             )
                 
-                            draw.text(
-                                (30, 260),
-                                f"Vendor : {vendor}",
-                                fill="black",
-                                font=ffont2
-                            )
                 
                             draw.text(
                                 (30, 320),
@@ -332,10 +317,6 @@ if submit:
                                 font=ffont2
                             )
                 
-                            combined.paste(ref_img, (450, 20))
-                            combined.paste(lot_img, (450, 140))
-                            combined.paste(qty_img, (450, 260))
-                            combined.paste(vendor_img, (450, 380))
                             combined.paste(dm_img, (980, 20))
                 
                             # -------------------------
