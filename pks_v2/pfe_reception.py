@@ -267,69 +267,54 @@ if submit:
                             # -------------------------
 
 
-        
-                
-                              # ✅ combined 캔버스 크기 계산
-                            max_w = max(ref_img.width, lot_img.width) + 95
-                            total_h = ref_img.height + lot_img.height + 20
-
-                            combined = Image.new("RGB", (max_w - 15, total_h), "white")
-                            combined.paste(lot_img, (50, ref_img.height+15))
                             max_w = max(ref_img.width, lot_img.width, qty_img.width, vendor_img.width) + 250
                             total_h = ref_img.height + lot_img.height + qty_img.height + vendor_img.height
-            
+                            
                             combined = Image.new("RGB", (max_w, total_h), "white")
-            
+                            
                             text_sticker = ImageDraw.Draw(combined)
+                            
                             text_sticker.text(
                                 (55, 40),
                                 f"{dt.datetime.now().date()}  {usage}",
                                 fill="black",
                                 font=ffont
                             )
+                            
                             text_sticker.text(
                                 (35, 85),
                                 f"OPM lot : {OP_lot}",
                                 fill="black",
                                 font=ffont2
                             )
+                            
                             text_sticker.text(
-                                (35, ref_img.height+30),
+                                (35, ref_img.height + 30),
                                 f"Reference : {reference}",
                                 fill="black",
                                 font=ffont2
                             )
-                            text_sticker.text(
-                                (35, ref_img.height+80),
-                                f"Lot toal : {qty}",
-                                fill="black",
-                                font=ffont2
-                            )
-                            text_sticker.text(
-                                (35, ref_img.height+80),
-                                f"Quantity : {qty/nbox}",
-                                fill="black",
-                                font=ffont2
-                            )
-
-                            text_sticker.text(
-                                (80, 0),
-                                f"{dt.datetime.now().date()} {usage}",
-                                fill="black",
-                                font=ffont)
                             
                             text_sticker.text(
-                                (105, 45),
-                                f"{reference}",
-                                fill="black",
-                                font=ffont
-                            )
-                            text_sticker.text(
-                                (200, ref_img.height+125),
-                                f"{usage}",
+                                (35, ref_img.height + 80),
+                                f"Lot total : {qty}",
                                 fill="black",
                                 font=ffont2
                             )
+                            
+                            text_sticker.text(
+                                (35, ref_img.height + 130),
+                                f"Box qty : {qty / nbox}",
+                                fill="black",
+                                font=ffont2
+                            )
+                            
+                            combined.paste(
+                                dm_img,
+                                (335, qty_img.height + 80)
+                            )  
+                                            
+   
                             # -------------------------
                             # ZIP SAVE
                             # -------------------------
