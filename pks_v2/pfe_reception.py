@@ -201,11 +201,6 @@ if submit:
                 combined.save(download_carton_buffer, format="PNG")
                 download_carton_buffer.seek(0)
 
-                # 모바일 표시용 resize
-                display_img = combined.copy()
-                display_img.thumbnail((800, 800))
-                
-                st.image(display_img)
 
                 download_carton_buffer.seek(0)
                 st.session_state.reference = reference
@@ -301,10 +296,10 @@ if submit:
                                 fill="black",
                                 font=ffont2
                             )
-                            
+                            box_qty = round(qty / nbox)
                             text_sticker.text(
                                 (35, ref_img.height + 130),
-                                f"Box qty : {qty / nbox}",
+                                f"Box qty : {box_qty}",
                                 fill="black",
                                 font=ffont2
                             )
