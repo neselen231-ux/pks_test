@@ -265,13 +265,10 @@ if submit:
                             # -------------------------
                             # LABEL
                             # -------------------------
-                
-                            combined = Image.new(
-                                "RGB",
-                                (1200, 650),
-                                "white"
-                            )
-                
+                            max_w = max(ref_img.width, lot_img.width) + 95
+                            total_h = ref_img.height + lot_img.height + 20
+
+                            combined = Image.new("RGB", (max_w - 15, total_h), "white")
                             draw = ImageDraw.Draw(combined)
                 
                             draw.text(
