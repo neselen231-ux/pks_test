@@ -275,7 +275,7 @@ if submit:
 
                             combined = Image.new("RGB", (max_w - 15, total_h), "white")
                             combined.paste(lot_img, (50, ref_img.height+15))
-                                            max_w = max(ref_img.width, lot_img.width, qty_img.width, vendor_img.width) + 250
+                            max_w = max(ref_img.width, lot_img.width, qty_img.width, vendor_img.width) + 250
                             total_h = ref_img.height + lot_img.height + qty_img.height + vendor_img.height
             
                             combined = Image.new("RGB", (max_w, total_h), "white")
