@@ -396,10 +396,11 @@ if submit:
                     
                     st.download_button(
                         "📦 Download ZIP",
-                        data=download_zip_buffer,
+                        data=download_zip_buffer.getvalue(),
                         file_name=f"{OP_lot}_{reference}_dmode.zip",
                         mime="application/zip"
                     )
+                    st.success("DB updated") 
                 
                 
                 if sup_sn_check is True:
@@ -459,7 +460,7 @@ if submit:
                     file_name=f"barcode_{reference}.zip" if sup_sn_check else f"barcode_{reference}.png",
                     mime="application/zip" if sup_sn_check else "image/png",
                     )
-                else: 
+                elif dmode is False: 
 
                     st.download_button(
                     label="📥 Download Barcode",
