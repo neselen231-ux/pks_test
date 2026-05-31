@@ -35,7 +35,7 @@ engine = create_engine(
         "ssl": {"ca": "ca.pem"}
     }
 )
-st.title("Reception")
+
 st.image("MRGA.jpg")
 # 2 input boxes
 
