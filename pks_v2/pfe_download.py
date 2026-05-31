@@ -34,7 +34,7 @@ after_inv_buffer = BytesIO()
 with pd.ExcelWriter(buffer, engine="xlsxwriter") as writer:
     df.to_excel(writer, index=False)
 
-with pd.ExcelWriter(after_inv_dfr, engine="xlsxwriter") as writer:
+with pd.ExcelWriter(after_inv_df, engine="xlsxwriter") as writer:
     after_inv_buffer.to_excel(writer, index=False)
 
 st.download_button(
