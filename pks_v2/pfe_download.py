@@ -26,11 +26,19 @@ engine = create_engine(
 st.title("Reception download")
 
 df = pd.read_sql("SELECT * FROM reception", con=engine)
+after_inv_df = pd.read_sql("FROM reception 
+                            SELECT * 
+                            WHERE reception_date > 16-05-2026"
+                           , con=engine)
 
 buffer = BytesIO()
+after_inv_buffer = BytesIO()
 
 with pd.ExcelWriter(buffer, engine="xlsxwriter") as writer:
     df.to_excel(writer, index=False)
+
+with pd.ExcelWriter(after_inv_buffer, engine="xlsxwriter") as writer:
+    after_inv_df.to_excel(writer, index=False)
 
 st.download_button(
     label="📥 Download reception history",
@@ -38,3 +46,11 @@ st.download_button(
     file_name=f"reception_history_{dt.datetime.now():%Y%m%d_%H%M%S}.xlsx",
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
+
+st.download_button(
+    label="💎ᴠɪᴘ👍 Laurene's VIP Access 👍💎ᴠɪᴘ",
+    data=buffer.getvalue(),
+    file_name=f"reception_history_afterinv_{dt.datetime.now():%Y%m%d_%H%M%S}.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
+
