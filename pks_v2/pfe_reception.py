@@ -36,7 +36,7 @@ engine = create_engine(
     }
 )
 
-st.image("MRGA.jpg")
+st.image("MRGA.jpg",width=220)
 # 2 input boxes
 
 with st.form("input_form"):
