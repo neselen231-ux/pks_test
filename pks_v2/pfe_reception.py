@@ -36,7 +36,7 @@ engine = create_engine(
     }
 )
 st.title("Reception")
-
+st.image("MRGA.jpg")
 # 2 input boxes
 
 with st.form("input_form"):
