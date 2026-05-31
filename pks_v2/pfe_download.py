@@ -26,10 +26,7 @@ engine = create_engine(
 st.title("Reception download")
 
 df = pd.read_sql("SELECT * FROM reception", con=engine)
-after_inv_df = pd.read_sql("FROM reception 
-                            SELECT * 
-                            WHERE reception_date > 16-05-2026"
-                           , con=engine)
+after_inv_df = pd.read_sql("FROM reception SELECT * WHERE reception_date > '16-05-2026' ", con=engine)
 
 buffer = BytesIO()
 after_inv_buffer = BytesIO()
