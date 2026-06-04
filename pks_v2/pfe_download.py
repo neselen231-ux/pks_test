@@ -44,11 +44,11 @@ st.download_button(
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
 
-st.download_button(
-    label="💎ᴠɪᴘ👍 Laurene's VIP Access 👍💎ᴠɪᴘ",
-    data=after_inv_buffer.getvalue(),
-    file_name=f"reception_history_afterinv_{dt.datetime.now():%Y%m%d_%H%M%S}.xlsx",
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-)
+#st.download_button(
+#    label="💎ᴠɪᴘ👍 Laurene's VIP Access 👍💎ᴠɪᴘ",
+#    data=after_inv_buffer.getvalue(),
+#    file_name=f"reception_history_afterinv_{dt.datetime.now():%Y%m%d_%H%M%S}.xlsx",
+#    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+#)
 
 st.image("supply_yoda.jpg")
