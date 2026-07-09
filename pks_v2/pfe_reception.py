@@ -12,6 +12,7 @@ import zipfile
 import socket
 import treepoem
 from zoneinfo import ZoneInfo
+from urllib.parse import urlparse
 
 
 
