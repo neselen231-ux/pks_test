@@ -24,4 +24,25 @@ engine = create_engine(
     }
 )
 st.title("Kitting input")
-st.button()
+
+if st.button("Add kitting"):
+
+    # GitHub raw URL
+    url = "https://github.com/neselen231-ux/pks_test/blob/main/pks_v2/3PTK0_1.csv"
+    filename = os.path.basename(urlparse(url).path)
+    
+    # CSV 읽기
+    kit_df = pd.read_csv(url)
+
+    # 같은 csv 저장 (선택)
+    df.to_csv("{dt.datetime.today}_{filename}", index=False)
+
+    # SQL에 추가
+    #df.to_sql(
+    #    "vendorlist",
+    #    con=engine,
+    #    if_exists="append",   # append / replace 선택
+    #    index=False
+    #)
+
+    st.success("Import completed")
