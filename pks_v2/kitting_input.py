@@ -3,6 +3,8 @@ import streamlit as st
 import pandas as pd
 from io import BytesIO
 from sqlalchemy import create_engine
+import os
+from urllib.parse import urlparse
 
 hide_ui = """
 <style>
