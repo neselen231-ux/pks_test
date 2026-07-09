@@ -29,18 +29,42 @@ st.title("Kitting input")
 
 if st.button("Add kitting"):
 
-    # GitHub raw URL
     url = "https://raw.githubusercontent.com/neselen231-ux/pks_test/main/pks_v2/3PTK0_1.csv"
-    filename = os.path.basename(urlparse(url).path)
-    
-    # CSV 읽기
     kit_df = pd.read_csv(url)
 
-    # 같은 csv 저장 (선택)
-    kit_df.to_csv(
-    f"pks_v2/kitting_ongoing/src/{dt.datetime.today():%Y%m%d_%H%M%S}_{filename}",
-    index=False
-    )
+    with engine.begin() as conn:
+
+        # 현재 가장 큰 kit_number 조회
+        result = conn.execute(text("SELECT COALESCE(MAX(kit_number), 0) FROM kitting"))
+        kit_number = result.scalar() + 1
+
+        # CSV의 모든 행 INSERT
+        for _, row in kit_df.iterrows():
+
+            conn.execute(
+                text("""
+                    INSERT INTO kitting
+                    (reference, description, qty, place, nlot,
+                     kitting, pb_type, kit_number, comment, date)
+                    VALUES
+                    (:ref, :des, :qty, :pla, :nlt,
+                     :kit, :pbt, :kitn, :com, :dat)
+                """),
+                {
+                    "ref": row["reference"],
+                    "des": row["description"],
+                    "qty": row["qty"],
+                    "pla": row["Place"],
+                    "nlt": row["nlot"],
+                    "kit": row["kitting"],
+                    "pbt": row["pb_type"],
+                    "kitn": kit_number,
+                    "com": row["comment"],
+                    "dat": dt.datetime.now(ZoneInfo("Europe/Paris")),
+                },
+            )
+
+    st.success(f"Kitting {kit_number} added.")
 
     # SQL에 추가
     #df.to_sql(
