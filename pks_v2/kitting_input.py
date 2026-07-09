@@ -35,7 +35,10 @@ if st.button("Add kitting"):
     kit_df = pd.read_csv(url)
 
     # 같은 csv 저장 (선택)
-    df.to_csv("{dt.datetime.today}_{filename}", index=False)
+    kit_df.to_csv(
+    f"pks_v2/kitting_ongoing/src/{dt.datetime.today():%Y%m%d_%H%M%S}_{filename}",
+    index=False
+    )
 
     # SQL에 추가
     #df.to_sql(
