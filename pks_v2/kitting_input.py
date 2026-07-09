@@ -30,7 +30,7 @@ st.title("Kitting input")
 if st.button("Add kitting"):
 
     # GitHub raw URL
-    url = "https://github.com/neselen231-ux/pks_test/blob/main/pks_v2/3PTK0_1.csv"
+    url = "https://raw.githubusercontent.com/neselen231-ux/pks_test/main/pks_v2/3PTK0_1.csv"
     filename = os.path.basename(urlparse(url).path)
     
     # CSV 읽기
