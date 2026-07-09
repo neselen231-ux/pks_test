@@ -104,7 +104,7 @@ if submit:
                             (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot,program)
                             VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
                     {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
-                     "rem": Comment, "rep": dt.now(ZoneInfo("Europe/Paris")), "sta": "to insepct", "sup": sup_lot, "prog" : usage
+                     "rem": Comment, "rep": dt.datetime.now(ZoneInfo("Europe/Paris")), "sta": "to insepct", "sup": sup_lot, "prog" : usage
 }
                 )
                 OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
