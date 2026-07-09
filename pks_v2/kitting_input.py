@@ -31,7 +31,7 @@ st.title("Kitting input")
 if st.button("Add kitting"):
 
     url = "https://raw.githubusercontent.com/neselen231-ux/pks_test/main/pks_v2/ktting_list/3PTK0_1.csv"
-    kit_df = pd.read_csv(url,sep=";")
+    kit_df = pd.read_csv(url,sep=";").fillna("")
 
     with engine.begin() as conn:
 
