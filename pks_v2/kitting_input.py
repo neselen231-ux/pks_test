@@ -44,7 +44,7 @@ if st.button("Add kitting"):
             conn.execute(
                 text("""
                     INSERT INTO kitting
-                    (reference, description, qty, place, nlot,
+                    (reference,description,qty, place, nlot,
                      kitting, pb_type, kit_number, comment, date)
                     VALUES
                     (:ref, :des, :qty, :pla, :nlt,
@@ -55,11 +55,11 @@ if st.button("Add kitting"):
                     "des": row["description"],
                     "qty": row["qty"],
                     "pla": row["Place"],
-                    "nlt": row["nlot"],
-                    "kit": row["kitting"],
+                    "nlt": row["Nlot"],
+                    "kit": row["Kitting"],
                     "pbt": row["pb_type"],
                     "kitn": kit_number,
-                    "com": row["comment"],
+                    "com": row["Comment"],
                     "dat": dt.datetime.now(ZoneInfo("Europe/Paris")),
                 },
             )
