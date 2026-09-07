@@ -44,6 +44,7 @@ st.image("pks_v2/logo-38023-scaled.jpg",width=280)
 with st.form("input_form"):
     reference = st.text_input("Reference number")
     qty_input = st.text_input("quantity", "1")
+    uom = st.selectbox("UOM",["UN", "ml", "m","g"])
     delivery_note = st.text_input("Delivery note")
     #project = st.selectbox("Project", ["Als 525", "Als 105", "Als Common", "Hess 3P", "Hess 4P", "Hess common"])
     sup_lot = st.text_input("Supplier lot",max_chars=40)
@@ -102,11 +103,9 @@ if submit:
             with engine.begin() as conn_2:
                 conn_2.execute(
                     text("""INSERT INTO reception
-                            (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot,program,box_qty)
-                            VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog, :boxq)"""),
-                    {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
-                     "rem": Comment, "rep": dt.datetime.now(ZoneInfo("Europe/Paris")), "sta": "to insepct", "sup": sup_lot, "prog" : usage, "boxq" : box_qty
-}
+                            (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot,program,box_qty,uom)
+                            VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog, :boxq, :uomm)"""),
+                    {"ref": reference.upper(), "qty": qty, "dev": delivery_note,"rem": Comment, "rep": dt.datetime.now(ZoneInfo("Europe/Paris")), "sta": "to insepct", "sup": sup_lot, "prog" : usage, "boxq" : box_qty, "uomm" :uom}
                 )
                 OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
                 
