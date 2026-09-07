@@ -97,15 +97,15 @@ if submit:
                 vendor = vendor_match.iloc[0]
             
 
-
+            box_qty = round(qty / nbox)
 
             with engine.begin() as conn_2:
                 conn_2.execute(
                     text("""INSERT INTO reception
-                            (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot,program)
-                            VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog)"""),
+                            (Reference, Quantity, delivery_note, Comment, reception_date, Status, sup_lot,program,box_qty)
+                            VALUES (:ref, :qty, :dev, :rem, :rep, :sta, :sup, :prog, :boxq)"""),
                     {"ref": reference.upper(), "qty": qty, "dev": delivery_note,
-                     "rem": Comment, "rep": dt.datetime.now(ZoneInfo("Europe/Paris")), "sta": "to insepct", "sup": sup_lot, "prog" : usage
+                     "rem": Comment, "rep": dt.datetime.now(ZoneInfo("Europe/Paris")), "sta": "to insepct", "sup": sup_lot, "prog" : usage, "boxq" : box_qty
 }
                 )
                 OP_lot = conn_2.execute(text("SELECT LAST_INSERT_ID()")).scalar()
@@ -332,7 +332,7 @@ if submit:
                 
                     download_zip_buffer_dmode.seek(0)
                 
-                if sup_sn_check is True:
+                esup_sn_check is True:
                     download_zip_buffer = BytesIO()
 
                     with zipfile.ZipFile(download_zip_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
