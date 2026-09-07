@@ -332,7 +332,7 @@ if submit:
                 
                     download_zip_buffer_dmode.seek(0)
                 
-              if  sup_sn_check is True:
+                  if  sup_sn_check is True:
                     download_zip_buffer = BytesIO()
 
                     with zipfile.ZipFile(download_zip_buffer, "w", compression=zipfile.ZIP_DEFLATED) as zf:
