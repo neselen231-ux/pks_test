@@ -255,7 +255,7 @@ if submit:
                             
                             dm_img = dm_encoder.get_pilimage(cellsize=5).convert("RGB")
                             dm_img = dm_img.resize((150, 150), Image.NEAREST)
-                            )
+                            
                 
                             # -------------------------
                             # LABEL
