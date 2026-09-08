@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw, ImageFont
 import datetime as dt
 import zipfile
 import socket
-import treepoem
+from pystrich.datamatrix import DataMatrixData, DataMatrixEncoder
 from zoneinfo import ZoneInfo
 from urllib.parse import urlparse
 
@@ -150,9 +150,10 @@ if submit:
                 data = "[)>" + RS+"06"+ GS + "12PGTL3"+ GS + f"V{vendor}"+ GS + f"Q{qty}"+GS+f"P{reference.upper()}"+GS+ f"SI{OP_lot}" + RS + EOT
                 
 
-                dm_barcode = treepoem.generate_barcode(barcode_type="datamatrix",data=data)
+                dm_data = DataMatrixData(data, encoding="ascii")
+                dm_encoder = DataMatrixEncoder(dm_data)
                 
-                dm_img = dm_barcode.convert("RGB")
+                dm_img = dm_encoder.get_pilimage(cellsize=5).convert("RGB")
                 dm_img = dm_img.resize((150, 150), Image.NEAREST)
                 ##########################################""
 
@@ -249,13 +250,11 @@ if submit:
                                 + RS + EOT
                             )
                 
-                            dm_img = (
-                                treepoem.generate_barcode(
-                                    barcode_type="datamatrix",
-                                    data=data
-                                )
-                                .convert("RGB")
-                                .resize((150, 150), Image.NEAREST)
+                            dm_data = DataMatrixData(data, encoding="ascii")
+                            dm_encoder = DataMatrixEncoder(dm_data)
+                            
+                            dm_img = dm_encoder.get_pilimage(cellsize=5).convert("RGB")
+                            dm_img = dm_img.resize((150, 150), Image.NEAREST)
                             )
                 
                             # -------------------------
