@@ -8,6 +8,6 @@ streamlit_autorefresh
 xlsxwriter
 pylibdmtx
 treepoem
-
+pystrich
 
 
