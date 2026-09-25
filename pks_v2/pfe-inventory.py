@@ -41,7 +41,6 @@ st.title("PFE inventory")
 
 with st.form("input_form"):
     inv_lot = st.text_input("OP lot")
-    inv_qty = st.text_input("Qty counted", "1")
     inv_emp = st.text_input("Storage location")
     sup_sn_check = st.checkbox("S/N mode", value = False )
     submit = st.form_submit_button("Input")
@@ -113,14 +112,11 @@ if submit:
                 conn.execute(
                     text("""
                         UPDATE reception
-                        SET inventored_qty = :ivq,
-                            inventory_time = :ivt,
+                        SET inventory_time = :ivt,
                             Emplacement = :emp
                         WHERE OP_lot = :oplot
                     """),
-                    {
-                        "ivq": int(inv_qty),
-                        "ivt": dt.datetime.now(),
+                    {   "ivt": dt.datetime.now(),
                         "emp": inv_emp,
                         "oplot": inv_lot
                     }
