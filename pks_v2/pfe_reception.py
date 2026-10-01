@@ -190,6 +190,12 @@ if submit:
                     fill="black",
                     font=ffont2
                 )
+                text_sticker.text(
+                    (15, ref_img.height + 130),
+                    f"BL : {delivery_note}",
+                    fill="black",
+                    font=ffont2
+                )
 
 
 
@@ -300,6 +306,12 @@ if submit:
                             text_sticker.text(
                                 (35, ref_img.height + 130),
                                 f"Box qty : {box_qty}",
+                                fill="black",
+                                font=ffont2
+                            )
+                            text_sticker.text(
+                                (15, ref_img.height + 130),
+                                f"BL : {delivery_note}",
                                 fill="black",
                                 font=ffont2
                             )
