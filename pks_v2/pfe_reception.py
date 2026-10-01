@@ -192,7 +192,7 @@ if submit:
                 )
                 text_sticker.text(
                     (35, ref_img.height + 150),
-                    f"BL : {delivery_note}",
+                    f"{delivery_note}",
                     fill="black",
                     font=ffont
                 )
@@ -311,7 +311,7 @@ if submit:
                             )
                             text_sticker.text(
                                 (35, ref_img.height + 170),
-                                f"BL : {delivery_note}",
+                                f"{delivery_note}",
                                 fill="black",
                                 font=ffont
                             )
