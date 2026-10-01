@@ -194,7 +194,7 @@ if submit:
                     (15, ref_img.height + 130),
                     f"BL : {delivery_note}",
                     fill="black",
-                    font=ffont2
+                    font=ffont
                 )
 
 
@@ -313,7 +313,7 @@ if submit:
                                 (15, ref_img.height + 130),
                                 f"BL : {delivery_note}",
                                 fill="black",
-                                font=ffont2
+                                font=ffont
                             )
                             
                             combined.paste(
